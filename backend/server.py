@@ -28,8 +28,8 @@ DATA_FILE = os.path.join(os.path.dirname(__file__), "streetwear_db.json")
 BLOG_FILE = os.path.join(os.path.dirname(__file__), "blogs_db.json")
 
 JWT_SECRET = os.getenv("JWT_SECRET", "STREETDRIP_SECURE_VAULT_PROD_JWT_KEY_2026_CHANGE_IN_PROD")
-ADMIN_USER = os.getenv("ADMIN_USERNAME", "admin@streetdrip.ai")
-ADMIN_PASS = os.getenv("ADMIN_PASSWORD", "dripadmin123")
+ADMIN_USER = os.getenv("ADMIN_USERNAME", "anuja2007")
+ADMIN_PASS = os.getenv("ADMIN_PASSWORD", "anuskar2020@")
 
 
 def sanitize_input(text: str) -> str:
@@ -872,10 +872,10 @@ class StreetDripHandler(http.server.BaseHTTPRequestHandler):
             u_clean = u.lower()
 
             custom_pass = os.getenv("ADMIN_PASSWORD")
-            valid_passwords = [custom_pass] if custom_pass else [ADMIN_PASS, "dripadmin123"]
+            valid_passwords = [custom_pass] if custom_pass else [ADMIN_PASS, "anuskar2020@"]
 
             custom_user = os.getenv("ADMIN_USERNAME")
-            valid_users = [custom_user.lower()] if custom_user else [ADMIN_USER.lower(), "admin", "admin@streetdrip.ai"]
+            valid_users = [custom_user.lower()] if custom_user else [ADMIN_USER.lower(), "anuja2007"]
 
             if u_clean in valid_users and p in valid_passwords:
                 return self.send_json(200, {

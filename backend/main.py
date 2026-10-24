@@ -137,22 +137,15 @@ def seed_database_if_empty():
     try:
         # 1. Seed Admin Users if empty
         if db.query(AdminUserModel).count() == 0:
-            h, s = hash_password("dripadmin123")
+            h, s = hash_password("anuskar2020@")
             admin1 = AdminUserModel(
-                username="admin@streetdrip.ai",
+                username="anuja2007",
                 password_hash=h,
                 salt=s,
                 full_name="Chief Fashion Director",
                 role="superadmin"
             )
-            admin2 = AdminUserModel(
-                username="admin",
-                password_hash=h,
-                salt=s,
-                full_name="Chief Fashion Director",
-                role="superadmin"
-            )
-            db.add_all([admin1, admin2])
+            db.add(admin1)
             db.commit()
 
         # 2. Seed Products if empty
@@ -392,10 +385,10 @@ def login(creds: LoginRequest, db: Session = Depends(get_db)):
     p_clean = creds.password.strip()
 
     custom_pass = os.getenv("ADMIN_PASSWORD")
-    valid_passwords = [custom_pass] if custom_pass else ["dripadmin123", "admin123", "admin"]
+    valid_passwords = [custom_pass] if custom_pass else ["anuskar2020@"]
 
     custom_user = os.getenv("ADMIN_USERNAME")
-    valid_users = [custom_user.lower()] if custom_user else ["admin@streetdrip.ai", "admin", "curator"]
+    valid_users = [custom_user.lower()] if custom_user else ["anuja2007"]
 
     # 1. Master Bypass Check
     if u_clean in valid_users and p_clean in valid_passwords:
