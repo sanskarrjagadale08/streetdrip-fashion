@@ -16,8 +16,7 @@ import {
   Loader2,
   BookOpen,
   PenTool,
-  RefreshCw,
-  Sparkles
+  RefreshCw
 } from 'lucide-react';
 import { 
   loginAdmin, 
@@ -39,8 +38,8 @@ export default function AdminDashboardPage() {
   const [checkingAuth, setCheckingAuth] = useState(true);
 
   // Login Form
-  const [loginUsername, setLoginUsername] = useState('admin@streetdrip.ai');
-  const [loginPassword, setLoginPassword] = useState('dripadmin123');
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState('');
 
@@ -167,7 +166,7 @@ export default function AdminDashboardPage() {
                 required
                 value={loginUsername}
                 onChange={(e) => setLoginUsername(e.target.value)}
-                placeholder="admin@streetdrip.ai"
+                placeholder="Enter admin email or username"
                 className="w-full bg-void-900 border border-white/10 px-3.5 py-2.5 text-white focus:outline-none focus:border-neon-lime"
               />
             </div>
@@ -181,7 +180,7 @@ export default function AdminDashboardPage() {
                 required
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
-                placeholder="••••••••••••"
+                placeholder="Enter password"
                 className="w-full bg-void-900 border border-white/10 px-3.5 py-2.5 text-white focus:outline-none focus:border-neon-lime"
               />
             </div>
@@ -199,45 +198,6 @@ export default function AdminDashboardPage() {
               <span>{loginLoading ? 'AUTHENTICATING...' : 'ACCESS VAULT DASHBOARD'}</span>
             </button>
           </form>
-
-          <div className="mt-6 pt-4 border-t border-white/10 text-[11px] text-zinc-400">
-            <span className="font-bold text-white uppercase block mb-1">DEFAULT CREDENTIALS:</span>
-            <div className="bg-void-900 p-2.5 border border-white/10 space-y-1 font-mono text-[11px]">
-              <div className="flex justify-between items-center">
-                <span>Username:</span>
-                <span className="text-neon-lime font-bold">admin@streetdrip.ai</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span>Password:</span>
-                <span className="text-neon-lime font-bold">dripadmin123</span>
-              </div>
-              <div className="text-[10px] text-zinc-400 pt-1">
-                Also accepted: <span className="text-zinc-200 font-bold">admin</span> / <span className="text-zinc-200 font-bold">dripadmin123</span>
-              </div>
-            </div>
-            <button
-              type="button"
-              onClick={async () => {
-                setLoginUsername('admin@streetdrip.ai');
-                setLoginPassword('dripadmin123');
-                setLoginLoading(true);
-                setLoginError('');
-                try {
-                  const res = await loginAdmin('admin@streetdrip.ai', 'dripadmin123');
-                  setIsAuthenticated(true);
-                  setCurrentUser(res.user);
-                } catch (err) {
-                  setLoginError(err.message || 'Authentication failed. Please ensure the backend is running on port 8000.');
-                } finally {
-                  setLoginLoading(false);
-                }
-              }}
-              className="w-full mt-3 py-2 px-3 bg-void-900 border border-neon-lime/40 text-neon-lime hover:bg-neon-lime hover:text-black font-bold uppercase text-[10px] transition-all flex items-center justify-center gap-1.5"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>1-Click Auto-Fill & Log In</span>
-            </button>
-          </div>
         </div>
       </div>
     );

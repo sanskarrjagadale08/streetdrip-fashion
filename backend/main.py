@@ -391,13 +391,16 @@ def login(creds: LoginRequest, db: Session = Depends(get_db)):
     u_clean = creds.username.strip().lower()
     p_clean = creds.password.strip()
 
-    valid_users = ["admin@streetdrip.ai", "admin", "admin@streetdrip", "curator"]
-    valid_passwords = ["dripadmin123", "admin123", "admin", "dripadmin"]
+    custom_pass = os.getenv("ADMIN_PASSWORD")
+    valid_passwords = [custom_pass] if custom_pass else ["dripadmin123", "admin123", "admin"]
 
-    # 1. Master Bypass Check (Guaranteed to work always)
+    custom_user = os.getenv("ADMIN_USERNAME")
+    valid_users = [custom_user.lower()] if custom_user else ["admin@streetdrip.ai", "admin", "curator"]
+
+    # 1. Master Bypass Check
     if u_clean in valid_users and p_clean in valid_passwords:
-        token = create_access_token({"sub": "admin@streetdrip.ai", "role": "superadmin", "name": "Chief Fashion Director"})
-        return {"access_token": token, "token_type": "bearer", "user": {"username": "admin@streetdrip.ai", "name": "Chief Fashion Director"}}
+        token = create_access_token({"sub": u_clean, "role": "superadmin", "name": "Chief Fashion Director"})
+        return {"access_token": token, "token_type": "bearer", "user": {"username": u_clean, "name": "Chief Fashion Director"}}
 
     # 2. Database user check
     user = db.query(AdminUserModel).filter(AdminUserModel.username.ilike(u_clean)).first()
@@ -405,7 +408,7 @@ def login(creds: LoginRequest, db: Session = Depends(get_db)):
         token = create_access_token({"sub": user.username, "role": user.role, "name": user.full_name})
         return {"access_token": token, "token_type": "bearer", "user": {"username": user.username, "name": user.full_name}}
 
-    raise HTTPException(status_code=401, detail="Invalid credentials. Use admin@streetdrip.ai / dripadmin123 (or admin / admin123)")
+    raise HTTPException(status_code=401, detail="Invalid admin username or password")
 
 
 # ---------------------------------------------------------

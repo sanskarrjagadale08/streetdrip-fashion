@@ -870,17 +870,21 @@ class StreetDripHandler(http.server.BaseHTTPRequestHandler):
             u = body.get("username", "").strip()
             p = body.get("password", "").strip()
             u_clean = u.lower()
-            valid_users = [ADMIN_USER.lower(), "admin", "admin@streetdrip.ai", "admin@streetdrip", "curator"]
-            valid_passwords = [ADMIN_PASS, "dripadmin123", "admin123", "admin"]
+
+            custom_pass = os.getenv("ADMIN_PASSWORD")
+            valid_passwords = [custom_pass] if custom_pass else [ADMIN_PASS, "dripadmin123"]
+
+            custom_user = os.getenv("ADMIN_USERNAME")
+            valid_users = [custom_user.lower()] if custom_user else [ADMIN_USER.lower(), "admin", "admin@streetdrip.ai"]
 
             if u_clean in valid_users and p in valid_passwords:
                 return self.send_json(200, {
-                    "access_token": make_jwt("admin@streetdrip.ai"),
+                    "access_token": make_jwt(u_clean),
                     "token_type": "bearer",
-                    "user": {"username": "admin@streetdrip.ai", "name": "Chief Fashion Director", "role": "superadmin"}
+                    "user": {"username": u_clean, "name": "Chief Fashion Director", "role": "superadmin"}
                 })
             else:
-                return self.send_json(401, {"detail": "Invalid credentials. Use admin@streetdrip.ai / dripadmin123 (or admin / admin123)"})
+                return self.send_json(401, {"detail": "Invalid admin username or password"})
 
         # POST /admin/products
         if path == "/admin/products":
