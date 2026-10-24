@@ -24,8 +24,10 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
     setLoading(true);
     setError(null);
 
+    const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
     try {
-      const response = await fetch('http://localhost:8000/recommend/vibe', {
+      const response = await fetch(`${apiBase}/recommend/vibe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
