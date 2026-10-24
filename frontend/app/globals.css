@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-emerald: #00FF88;
+  --neon-lime: #CCFF00;
+  --neon-cyan: #00F0FF;
+  --neon-orange: #FF5500;
+  --neon-purple: #A855F7;
+  --neon-pink: #FF007F;
+  --bg-primary: #FAFAFB;
+  --text-primary: #0A0A0B;
+}
+
+/* Luxury Midnight Forest & Jade Cyber Dark Theme */
+html.dark {
+  --bg-primary: #030b06;
+  --bg-surface: #07160d;
+  --bg-card: #0b1f13;
+  --text-primary: #F0FDF4;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom Refined Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f4;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #020905;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #163825;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0f172a;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #00FF88;
+}
+
+/* Architectural Luxury Grid Backdrop Pattern */
+.bg-fashion-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+}
+
+html.dark .bg-fashion-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 255, 136, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 136, 0.045) 1px, transparent 1px);
+}
+
+.bg-cyber-grid {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+html.dark .bg-cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 255, 136, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 136, 0.04) 1px, transparent 1px);
+}
+
+/* Multi-Color Streetwear Glows in Dark Mode */
+.emerald-glow {
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.22);
+}
+
+.lime-glow {
+  box-shadow: 0 0 25px rgba(204, 255, 0, 0.22);
+}
+
+.cyan-glow {
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.22);
+}
+
+.orange-glow {
+  box-shadow: 0 0 25px rgba(255, 85, 0, 0.22);
+}
+
+.purple-glow {
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.22);
+}
+
+.card-luxury {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-luxury:hover {
+  transform: translateY(-3px);
+}

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+venv/
+backend/venv/
+.env
+.env.local
+.env.*.local
+
+# Python cache
+__pycache__/
+backend/__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+
+# Next.js build
+.next/
+frontend/.next/
+out/
+frontend/out/
+
+# System files
+.DS_Store
+*.log
