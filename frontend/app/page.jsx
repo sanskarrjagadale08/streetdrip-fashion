@@ -173,14 +173,14 @@ export default function StreetwearLandingPage() {
         <div className="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950 flex items-center justify-center font-mono font-black text-sm tracking-tighter shadow-sm">
+            <div className="w-8 h-8 bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950 flex items-center justify-center font-display font-bold text-sm tracking-wider shadow-sm">
               SD
             </div>
             <div>
-              <span className="text-xl md:text-2xl font-black uppercase tracking-tighter text-burgundy-950 dark:text-creme-100">
-                STREET<span className="text-burgundy-600 dark:text-dusty-400">DRIP</span>
+              <span className="text-xl md:text-2xl font-display font-bold uppercase tracking-wider text-burgundy-950 dark:text-creme-100">
+                STREET<span className="text-burgundy-600 dark:text-dusty-400 font-light">DRIP</span>
               </span>
-              <span className="block text-[8px] font-mono tracking-widest text-burgundy-700/60 dark:text-dusty-400/70 uppercase -mt-1">
+              <span className="block text-[8px] font-mono tracking-[0.25em] text-sand-600 dark:text-dusty-400/80 uppercase -mt-0.5">
                 ATELIER &amp; ARCHIVE
               </span>
             </div>
@@ -316,7 +316,55 @@ export default function StreetwearLandingPage() {
 
       {/* 5. EDITORIAL HERO & CATALOG SECTION */}
       <main id="catalog" className="max-w-7xl mx-auto px-4 py-8 md:py-12">
-        {/* Section Headline & Editorial Info */}
+        {/* HAUTE EDITORIAL HERO STATEMENT */}
+        <div className="relative mb-10 py-10 md:py-14 px-6 md:px-12 bg-gradient-to-br from-creme-100/90 via-creme-50/60 to-sand-100/40 dark:from-burgundy-950 dark:via-burgundy-900/60 dark:to-burgundy-950 border border-sand-300/80 dark:border-burgundy-800/80 overflow-hidden shadow-sm">
+          {/* Subtle Ambient Glow Blobs */}
+          <div className="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-sand-200/40 dark:bg-burgundy-800/20 blur-3xl pointer-events-none" />
+          <div className="absolute -left-16 -bottom-16 w-80 h-80 rounded-full bg-dusty-200/30 dark:bg-dusty-500/10 blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 max-w-4xl">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-2 h-2 rounded-full bg-burgundy-600 dark:bg-dusty-400 animate-pulse" />
+              <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-sand-700 dark:text-dusty-300 font-semibold">
+                S/S 2026 ARCHIVE EDITION // NOMIKI PALETTE
+              </span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-medium tracking-tight text-burgundy-950 dark:text-creme-100 leading-[1.08] mb-4">
+              The Curated <span className="italic font-normal text-burgundy-700 dark:text-dusty-300">Menswear</span> Archive.
+            </h1>
+
+            <p className="text-sm md:text-base text-burgundy-900/80 dark:text-sand-200/80 font-sans max-w-2xl leading-relaxed mb-6 font-light">
+              Where high-fashion minimalism intersects technical streetwear staples. Real-time 3D inspection, generative AI vibe styling, and direct affiliate drops from premier global ateliers.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="#catalog"
+                className="px-5 py-2.5 bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950 text-xs font-mono font-bold uppercase tracking-wider shadow-sm hover:bg-burgundy-700 dark:hover:bg-dusty-300 transition-all flex items-center gap-2"
+              >
+                <span>Explore Pieces</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+              <button
+                onClick={() => setIsVibeModalOpen(true)}
+                className="px-5 py-2.5 bg-white dark:bg-burgundy-900/90 text-burgundy-950 dark:text-creme-100 border border-sand-300 dark:border-burgundy-700 text-xs font-mono font-bold uppercase tracking-wider hover:border-burgundy-600 dark:hover:border-dusty-400 transition-all flex items-center gap-2"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-dusty-500" />
+                <span>AI Stylist</span>
+              </button>
+              <button
+                onClick={() => setIs3DViewerOpen(!is3DViewerOpen)}
+                className="px-5 py-2.5 bg-white dark:bg-burgundy-900/90 text-burgundy-950 dark:text-creme-100 border border-sand-300 dark:border-burgundy-700 text-xs font-mono font-bold uppercase tracking-wider hover:border-burgundy-600 dark:hover:border-dusty-400 transition-all flex items-center gap-2"
+              >
+                <Box className="w-3.5 h-3.5 text-burgundy-600 dark:text-dusty-400" />
+                <span>3D Atelier</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Section Headline & Filter Info */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-sand-300/80 dark:border-burgundy-800/80">
           <div>
             <div className="flex items-center gap-2 text-sand-700 dark:text-dusty-300/90 text-xs font-mono uppercase tracking-widest mb-1.5">
@@ -326,10 +374,10 @@ export default function StreetwearLandingPage() {
                 {activeMainCategory.toUpperCase()} {activeSubCategory !== "All" && `> ${activeSubCategory.toUpperCase()}`}
               </span>
             </div>
-            <h1 className="text-3xl md:text-5xl font-black uppercase text-burgundy-950 dark:text-creme-100 tracking-tight">
-              {activeMainCategory === "All" ? "THE STREETWEAR ARCHIVE" : activeMainCategory}
-            </h1>
-            <p className="text-xs md:text-sm text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-1.5 max-w-xl">
+            <h2 className="text-3xl md:text-5xl font-serif font-medium tracking-tight text-burgundy-950 dark:text-creme-100 italic">
+              {activeMainCategory === "All" ? "All Curated Silhouettes" : activeMainCategory}
+            </h2>
+            <p className="text-xs md:text-sm text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-1.5 max-w-xl font-light">
               Curated silhouettes with direct brand affiliate links. Click '3D Rotate' on high-ticket grails to inspect textures and volume before copping.
             </p>
           </div>

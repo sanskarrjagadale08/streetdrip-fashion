@@ -146,13 +146,13 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
           </div>
 
           {/* Product Name */}
-          <h3 className="font-sans font-semibold text-sm text-burgundy-950 dark:text-creme-100 line-clamp-1 group-hover:text-burgundy-700 dark:group-hover:text-dusty-300 transition-colors">
+          <h3 className="font-serif font-semibold text-base text-burgundy-950 dark:text-creme-100 line-clamp-1 group-hover:text-burgundy-600 dark:group-hover:text-dusty-300 transition-colors">
             {product.name}
           </h3>
 
           {/* Description snippet */}
           {product.description && (
-            <p className="text-[11px] text-burgundy-900/70 dark:text-sand-300/70 font-sans line-clamp-2 mt-1 leading-snug">
+            <p className="text-[11px] text-burgundy-900/70 dark:text-sand-300/70 font-sans line-clamp-2 mt-1 leading-snug font-light">
               {product.description}
             </p>
           )}
@@ -175,7 +175,7 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
         <div className="mt-4 pt-3 border-t border-sand-200/80 dark:border-burgundy-800/80">
           <div className="flex items-baseline justify-between mb-3 font-mono">
             <div>
-              <span className="text-lg font-bold text-burgundy-950 dark:text-creme-100">
+              <span className="text-xl font-bold text-burgundy-950 dark:text-creme-100 tracking-tight">
                 ${product.price?.toFixed(2)}
               </span>
               <span className="text-[10px] text-sand-500 dark:text-sand-400/60 line-through ml-2">
@@ -193,10 +193,10 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
             href={product.affiliate_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-burgundy-600 text-creme-100 hover:bg-burgundy-700 dark:bg-dusty-400 dark:text-burgundy-950 dark:hover:bg-dusty-300 font-mono font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-sm border border-burgundy-600 dark:border-dusty-400"
+            className="group/btn w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-burgundy-600 text-creme-100 hover:bg-burgundy-700 dark:bg-dusty-400 dark:text-burgundy-950 dark:hover:bg-dusty-300 font-mono font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-sm border border-burgundy-600 dark:border-dusty-400"
           >
             <span>COP THIS LOOK</span>
-            <ExternalLink className="w-3.5 h-3.5" />
+            <ExternalLink className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
           </a>
         </div>
       </div>

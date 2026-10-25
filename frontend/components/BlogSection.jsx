@@ -63,10 +63,10 @@ export default function BlogSection() {
               <BookOpen className="w-3.5 h-3.5" />
               <span>THE STREET JOURNAL // EDITORIAL</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase text-burgundy-950 dark:text-creme-100 tracking-tight">
-              STYLE GUIDES &amp; FIT BREAKDOWNS
+            <h2 className="text-3xl md:text-5xl font-serif font-medium italic text-burgundy-950 dark:text-creme-100 tracking-tight">
+              Style Guides &amp; Fit Breakdowns
             </h2>
-            <p className="text-xs md:text-sm text-burgundy-900/70 dark:text-sand-300/70 mt-2 max-w-xl leading-relaxed">
+            <p className="text-xs md:text-sm text-burgundy-900/70 dark:text-sand-300/70 mt-2 max-w-xl leading-relaxed font-light">
               Curated breakdowns matching our 6 core sections: Lowers &amp; Denims, Boxy Shirts, Drop-Shoulder Tees, Leather &amp; Denim Jackets, Bulky Footwear, and Architectural Eyewear.
             </p>
           </div>
@@ -131,11 +131,11 @@ export default function BlogSection() {
                     <span>{article.date}</span>
                   </div>
 
-                  <h3 className="font-bold text-base text-burgundy-950 dark:text-creme-100 group-hover:text-burgundy-600 dark:group-hover:text-dusty-300 transition-colors leading-snug line-clamp-2">
+                  <h3 className="font-serif font-bold text-lg text-burgundy-950 dark:text-creme-100 group-hover:text-burgundy-600 dark:group-hover:text-dusty-300 transition-colors leading-snug line-clamp-2">
                     {article.title}
                   </h3>
 
-                  <p className="text-xs text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-2.5 line-clamp-3 leading-relaxed">
+                  <p className="text-xs text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-2.5 line-clamp-3 leading-relaxed font-light">
                     {article.excerpt}
                   </p>
                 </div>
@@ -178,7 +178,7 @@ export default function BlogSection() {
               <span className="text-sand-700 dark:text-dusty-300/80">By {activeArticle.author}</span>
             </div>
 
-            <h1 className="text-2xl md:text-4xl font-black text-burgundy-950 dark:text-creme-100 uppercase tracking-tight leading-tight mb-6">
+            <h1 className="text-2xl md:text-4xl font-serif font-medium text-burgundy-950 dark:text-creme-100 tracking-tight leading-tight mb-6">
               {activeArticle.title}
             </h1>
 

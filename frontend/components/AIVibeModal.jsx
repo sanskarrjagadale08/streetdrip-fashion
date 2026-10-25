@@ -118,10 +118,10 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
             <Sparkles className="w-3.5 h-3.5 fill-current" />
             <span>AI ATELIER // OUTFIT SYNTHESIZER</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-black uppercase text-burgundy-950 dark:text-creme-100 tracking-tight">
-            AI VIBE OUTFIT GENERATOR
+          <h2 className="text-2xl md:text-3xl font-serif font-medium italic text-burgundy-950 dark:text-creme-100 tracking-tight">
+            AI Vibe Outfit Generator
           </h2>
-          <p className="text-xs text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-1">
+          <p className="text-xs text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-1 font-light">
             Input any vibe or scenario. The engine synthesizes a cohesive 4-piece streetwear look (Top + Bottom + Shoes + Accessory) with direct affiliate checkout links.
           </p>
         </div>
@@ -235,7 +235,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
                     <div className="text-[9px] font-mono text-sand-600 dark:text-sand-400 uppercase">
                       {piece.brand}
                     </div>
-                    <div className="font-semibold text-xs text-burgundy-950 dark:text-creme-100 line-clamp-2 mt-0.5 leading-tight">
+                    <div className="font-serif font-semibold text-xs text-burgundy-950 dark:text-creme-100 line-clamp-2 mt-0.5 leading-tight">
                       {piece.name}
                     </div>
                   </div>

@@ -82,8 +82,10 @@ module.exports = {
         }
       },
       fontFamily: {
-        mono: ['JetBrains Mono', 'Menlo', 'Courier New', 'monospace'],
-        display: ['Impact', 'Haettenschweiler', 'Arial Black', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'Playfair Display', 'Georgia', 'serif'],
+        display: ['Cinzel', 'Playfair Display', 'Georgia', 'serif'],
+        mono: ['Space Grotesk', 'JetBrains Mono', 'Menlo', 'monospace'],
       },
       animation: {
         'marquee': 'marquee 25s linear infinite',

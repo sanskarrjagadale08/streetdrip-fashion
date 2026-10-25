@@ -586,7 +586,7 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
                 VERIFIED AUTHENTIC
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-bold uppercase text-burgundy-950 dark:text-creme-100 tracking-tight leading-none">
+            <h2 className="text-xl md:text-3xl font-serif font-medium text-burgundy-950 dark:text-creme-100 tracking-tight leading-none">
               {currentItem.name}
             </h2>
             <div className="flex items-baseline gap-3 mt-1.5">
