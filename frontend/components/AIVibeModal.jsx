@@ -114,14 +114,14 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
 
         {/* Modal Header */}
         <div className="mb-6">
-          <div className="inline-flex items-center gap-2 text-burgundy-700 dark:text-dusty-400 text-xs font-mono uppercase tracking-widest mb-1.5 font-bold">
-            <Sparkles className="w-3.5 h-3.5 fill-current" />
+          <div className="inline-flex items-center gap-2 text-burgundy-700 dark:text-dusty-400 text-xs md:text-sm font-mono uppercase tracking-widest mb-1.5 font-bold">
+            <Sparkles className="w-4 h-4 fill-current" />
             <span>AI ATELIER // OUTFIT SYNTHESIZER</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-serif font-medium italic text-burgundy-950 dark:text-creme-100 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-serif font-medium italic text-burgundy-950 dark:text-creme-100 tracking-tight">
             AI Vibe Outfit Generator
           </h2>
-          <p className="text-xs text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-1 font-light">
+          <p className="text-xs md:text-sm text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-1.5 font-light leading-relaxed">
             Input any vibe or scenario. The engine synthesizes a cohesive 4-piece streetwear look (Top + Bottom + Shoes + Accessory) with direct affiliate checkout links.
           </p>
         </div>
@@ -129,7 +129,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
         {/* Input & Quick Pill Selector */}
         <div className="space-y-4 mb-6">
           <div>
-            <label className="block text-[11px] font-bold text-burgundy-950 dark:text-sand-200 uppercase mb-2 font-mono">
+            <label className="block text-xs md:text-sm font-bold text-burgundy-950 dark:text-sand-200 uppercase mb-2 font-mono">
               1. Choose Or Type Your Aesthetic Vibe:
             </label>
             <div className="flex flex-col sm:flex-row gap-2">
@@ -143,7 +143,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
               <button
                 onClick={() => handleGenerateOutfit(aesthetic)}
                 disabled={loading || !aesthetic}
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950 font-bold uppercase text-xs tracking-wider border-2 border-burgundy-600 dark:border-dusty-400 hover:bg-burgundy-700 dark:hover:bg-dusty-300 transition-all disabled:opacity-50 shadow-sm"
+                className="flex items-center justify-center gap-2 px-6 py-3 bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950 font-bold uppercase text-xs md:text-sm tracking-wider border-2 border-burgundy-600 dark:border-dusty-400 hover:bg-burgundy-700 dark:hover:bg-dusty-300 transition-all disabled:opacity-50 shadow-sm"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Flame className="w-4 h-4 fill-current" />}
                 <span>{loading ? 'CURATING...' : 'GENERATE 4-PIECE LOOK'}</span>
@@ -153,7 +153,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
 
           {/* Quick Vibe Chips */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] text-sand-600 dark:text-sand-400/80 uppercase font-mono">Presets:</span>
+            <span className="text-xs text-sand-600 dark:text-sand-400 font-bold uppercase font-mono">Presets:</span>
             {quickAesthetics.map((preset) => (
               <button
                 key={preset.label}
@@ -161,28 +161,28 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
                   setAesthetic(preset.label);
                   handleGenerateOutfit(preset.label);
                 }}
-                className={`flex items-center gap-1.5 px-2.5 py-1 text-[10px] uppercase border transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono uppercase border transition-all ${
                   aesthetic.toLowerCase() === preset.label.toLowerCase()
                     ? 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-400/20 dark:border-dusty-400 dark:text-dusty-300 font-bold'
                     : 'bg-creme-100 dark:bg-burgundy-900 border-sand-200 dark:border-burgundy-800 text-burgundy-900 dark:text-sand-300 hover:border-burgundy-500 dark:hover:border-dusty-400'
                 }`}
               >
                 <span>{preset.icon}</span>
-                <span>{preset.label}</span>
-                <span className="text-[8px] bg-sand-200 dark:bg-burgundy-800 text-burgundy-950 dark:text-sand-300 px-1 py-0.2">{preset.badge}</span>
+                <span className="font-semibold">{preset.label}</span>
+                <span className="text-[9px] bg-sand-200 dark:bg-burgundy-800 text-burgundy-950 dark:text-sand-300 px-1.5 py-0.5 font-bold">{preset.badge}</span>
               </button>
             ))}
           </div>
 
           {/* Optional Brand Filter */}
-          <div className="flex items-center gap-2 pt-2 border-t border-sand-200 dark:border-burgundy-800/80 text-[10px]">
-            <span className="text-sand-600 dark:text-sand-400/80 uppercase font-mono">Anchor Brand (Optional):</span>
-            <div className="flex flex-wrap gap-1">
+          <div className="flex items-center gap-2 pt-2.5 border-t border-sand-200 dark:border-burgundy-800/80 text-xs">
+            <span className="text-sand-600 dark:text-sand-400 uppercase font-mono font-bold">Anchor Brand:</span>
+            <div className="flex flex-wrap gap-1.5">
               {brands.map((b) => (
                 <button
                   key={b}
                   onClick={() => setPreferredBrand(b)}
-                  className={`px-2 py-0.5 uppercase border transition-all ${
+                  className={`px-2.5 py-1 text-xs font-mono uppercase border transition-all ${
                     preferredBrand === b
                       ? 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-400 dark:text-burgundy-950 dark:border-dusty-400 font-bold'
                       : 'bg-creme-100 dark:bg-burgundy-900 border-sand-200 dark:border-burgundy-800 text-burgundy-900 dark:text-sand-300 hover:border-burgundy-500 dark:hover:border-dusty-400'
@@ -201,16 +201,16 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
             {/* Aesthetic Narrative Banner */}
             <div className="p-4 bg-creme-100/70 dark:bg-burgundy-900/90 border border-sand-300 dark:border-burgundy-700 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-3">
               <div>
-                <div className="text-[10px] text-burgundy-700 dark:text-dusty-300 uppercase tracking-wider font-bold font-mono">
+                <div className="text-xs text-burgundy-700 dark:text-dusty-300 uppercase tracking-wider font-bold font-mono">
                   CURATED FOR VIBE: "{outfitResult.vibe}"
                 </div>
-                <p className="text-xs text-burgundy-950 dark:text-creme-100 font-sans mt-0.5 italic">
+                <p className="text-sm text-burgundy-950 dark:text-creme-100 font-sans mt-0.5 italic">
                   "{outfitResult.aesthetic_quote}"
                 </p>
               </div>
               <div className="text-right">
-                <div className="text-[10px] text-sand-600 dark:text-sand-400/80 uppercase font-mono">BUNDLE PRICE</div>
-                <div className="text-xl font-bold text-burgundy-600 dark:text-dusty-400 font-mono">
+                <div className="text-xs text-sand-600 dark:text-sand-400 uppercase font-mono font-bold">BUNDLE PRICE</div>
+                <div className="text-2xl font-bold text-burgundy-600 dark:text-dusty-400 font-mono">
                   ${outfitResult.total_price.toFixed(2)}
                 </div>
               </div>
@@ -219,7 +219,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
             {/* 4-Piece Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {Object.entries(outfitResult.outfit_pieces).map(([role, piece]) => (
-                <div key={role} className="bg-white dark:bg-burgundy-900 border border-sand-300 dark:border-burgundy-800 p-3 flex flex-col justify-between shadow-sm">
+                <div key={role} className="bg-white dark:bg-burgundy-900 border border-sand-300 dark:border-burgundy-800 p-3.5 flex flex-col justify-between shadow-sm">
                   <div>
                     <div className="relative aspect-square w-full overflow-hidden bg-creme-100 dark:bg-burgundy-950 mb-2">
                       <img
@@ -227,21 +227,21 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
                         alt={piece.name}
                         className="w-full h-full object-cover"
                       />
-                      <span className="absolute top-1 left-1 bg-burgundy-950/90 text-creme-100 text-[8px] font-mono uppercase px-1 py-0.5">
+                      <span className="absolute top-1 left-1 bg-burgundy-950/90 text-creme-100 text-[9px] font-mono font-bold uppercase px-1.5 py-0.5">
                         {role.toUpperCase()}
                       </span>
                     </div>
 
-                    <div className="text-[9px] font-mono text-sand-600 dark:text-sand-400 uppercase">
+                    <div className="text-[10px] font-mono text-sand-600 dark:text-sand-400 uppercase font-bold">
                       {piece.brand}
                     </div>
-                    <div className="font-serif font-semibold text-xs text-burgundy-950 dark:text-creme-100 line-clamp-2 mt-0.5 leading-tight">
+                    <div className="font-serif font-semibold text-sm text-burgundy-950 dark:text-creme-100 line-clamp-2 mt-1 leading-snug">
                       {piece.name}
                     </div>
                   </div>
 
-                  <div className="mt-3 pt-2 border-t border-sand-100 dark:border-burgundy-800 flex items-center justify-between">
-                    <span className="font-mono font-bold text-xs text-burgundy-950 dark:text-creme-100">
+                  <div className="mt-3 pt-2.5 border-t border-sand-100 dark:border-burgundy-800 flex items-center justify-between">
+                    <span className="font-mono font-bold text-sm text-burgundy-950 dark:text-creme-100">
                       ${piece.price.toFixed(2)}
                     </span>
                     <a

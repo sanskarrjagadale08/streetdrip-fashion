@@ -42,6 +42,19 @@ html[data-theme="rose"] {
   --border-primary: #C8A49F;
 }
 
+/* 4. Playful Y2K Pop (Vibrant Dopamine Streetwear Theme) */
+html[data-theme="playful"] {
+  --theme-creme: #FFF0F6;
+  --theme-sand: #FFE494;
+  --theme-dusty: #FF4D8D;
+  --theme-burgundy: #2B0938;
+  --bg-primary: #FFF2F7;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --text-primary: #2B0938;
+  --border-primary: #FF4D8D;
+}
+
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
@@ -83,6 +96,10 @@ html[data-theme="rose"] ::-webkit-scrollbar-track {
   background: #1C1315;
 }
 
+html[data-theme="playful"] ::-webkit-scrollbar-track {
+  background: #FFF0F6;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #D8C4AC;
   border-radius: 9999px;
@@ -95,6 +112,11 @@ html[data-theme="burgundy"] ::-webkit-scrollbar-thumb, html.dark ::-webkit-scrol
 
 html[data-theme="rose"] ::-webkit-scrollbar-thumb {
   background: #C8A49F;
+  border-radius: 9999px;
+}
+
+html[data-theme="playful"] ::-webkit-scrollbar-thumb {
+  background: #FF4D8D;
   border-radius: 9999px;
 }
 

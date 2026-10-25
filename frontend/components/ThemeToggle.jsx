@@ -30,6 +30,15 @@ export const THEMES = [
     bg: '#1C1315',
     swatches: ['#C8A49F', '#380A0E', '#FAF5F4'],
     badge: 'Editorial Modern'
+  },
+  {
+    id: 'playful',
+    name: 'Playful Y2K 🍭',
+    subtitle: 'Bubblegum & Acid Pop',
+    mode: 'light',
+    bg: '#FFF0F5',
+    swatches: ['#FF4D8D', '#CCFF00', '#2B0938'],
+    badge: 'Playful Fun ⚡'
   }
 ];
 
@@ -123,26 +132,26 @@ export default function ThemeToggle({ className = '', showLabel = false }) {
             ))}
           </div>
 
-          <span className="text-[11px] font-bold uppercase tracking-wider hidden sm:inline">
+          <span className="text-xs font-bold uppercase tracking-wider hidden sm:inline">
             {activeThemeObj.name}
           </span>
 
-          <ChevronDown className={`w-3 h-3 transition-transform duration-200 opacity-60 group-hover:opacity-100 ${isOpen ? 'rotate-180' : ''}`} />
+          <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 opacity-60 group-hover:opacity-100 ${isOpen ? 'rotate-180' : ''}`} />
         </button>
       </div>
 
-      {/* Dropdown Menu for 1-3 Themes */}
+      {/* Dropdown Menu for 4 Themes */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 rounded-sm bg-white dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-500 shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150">
-          <div className="px-2.5 py-1.5 border-b border-sand-200 dark:border-burgundy-800/80 mb-1.5 flex items-center justify-between">
-            <span className="text-[10px] text-burgundy-700 dark:text-sand-300 font-bold uppercase tracking-widest flex items-center gap-1.5">
-              <Palette className="w-3 h-3 text-dusty-400" />
+        <div className="absolute right-0 mt-2 w-72 rounded-sm bg-white dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-500 shadow-2xl p-2.5 z-50 animate-in fade-in zoom-in-95 duration-150">
+          <div className="px-2.5 py-1.5 border-b border-sand-200 dark:border-burgundy-800/80 mb-2 flex items-center justify-between">
+            <span className="text-xs text-burgundy-700 dark:text-sand-300 font-bold uppercase tracking-widest flex items-center gap-1.5">
+              <Palette className="w-3.5 h-3.5 text-dusty-400" />
               <span>COLLECTION PALETTES</span>
             </span>
-            <span className="text-[9px] text-zinc-400">3 Themes</span>
+            <span className="text-[10px] text-zinc-400 font-mono">4 Themes</span>
           </div>
 
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             {THEMES.map((theme) => {
               const isSelected = currentTheme === theme.id;
               return (
@@ -162,26 +171,26 @@ export default function ThemeToggle({ className = '', showLabel = false }) {
                       {theme.swatches.map((c, i) => (
                         <span
                           key={i}
-                          className="w-3.5 h-3.5 rounded-full border border-white dark:border-burgundy-950 shadow-xs"
+                          className="w-4 h-4 rounded-full border border-white dark:border-burgundy-950 shadow-xs"
                           style={{ backgroundColor: c }}
                         />
                       ))}
                     </div>
 
                     <div>
-                      <div className="text-xs font-bold text-burgundy-950 dark:text-creme-100 uppercase tracking-tight flex items-center gap-1.5">
+                      <div className="text-sm font-bold text-burgundy-950 dark:text-creme-100 uppercase tracking-tight flex items-center gap-1.5">
                         <span>{theme.name}</span>
                         {isSelected && (
-                          <Check className="w-3 h-3 text-burgundy-600 dark:text-dusty-400 stroke-[3]" />
+                          <Check className="w-3.5 h-3.5 text-burgundy-600 dark:text-dusty-400 stroke-[3]" />
                         )}
                       </div>
-                      <div className="text-[10px] text-zinc-500 dark:text-sand-400/80 font-sans">
+                      <div className="text-xs text-zinc-500 dark:text-sand-400/80 font-sans">
                         {theme.subtitle}
                       </div>
                     </div>
                   </div>
 
-                  <span className={`text-[9px] uppercase px-1.5 py-0.5 rounded-xs font-bold tracking-wider ${
+                  <span className={`text-[10px] uppercase px-2 py-0.5 rounded-xs font-bold tracking-wider ${
                     isSelected 
                       ? 'bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950' 
                       : 'bg-sand-100 text-burgundy-800 dark:bg-burgundy-900 dark:text-sand-300'
@@ -193,12 +202,12 @@ export default function ThemeToggle({ className = '', showLabel = false }) {
             })}
           </div>
 
-          <div className="mt-2 pt-2 border-t border-sand-200 dark:border-burgundy-800/80 px-2 py-1 text-[9px] text-zinc-400 dark:text-sand-400/60 flex items-center justify-between font-sans">
-            <span>Nomiki Palette • 4 Hex Tones</span>
+          <div className="mt-2.5 pt-2 border-t border-sand-200 dark:border-burgundy-800/80 px-2 py-1 text-[10px] text-zinc-500 dark:text-sand-400/60 flex items-center justify-between font-sans">
+            <span>Nomiki &amp; Y2K Pop Palettes</span>
             <button
               type="button"
               onClick={handleQuickToggle}
-              className="text-burgundy-700 dark:text-dusty-400 hover:underline uppercase font-mono font-bold text-[9px]"
+              className="text-burgundy-700 dark:text-dusty-400 hover:underline uppercase font-mono font-bold text-[10px]"
             >
               Next Theme ➔
             </button>

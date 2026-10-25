@@ -50,6 +50,17 @@ module.exports = {
           900: '#1F0406',
           950: '#140204',
         },
+        // Playful Dopamine & Y2K Harajuku Palette
+        playful: {
+          pink: '#FF4D8D',
+          hotpink: '#FF1493',
+          lime: '#CCFF00',
+          purple: '#2B0938',
+          lilac: '#E8D5FF',
+          candy: '#FFF0F5',
+          cream: '#FFF9F0',
+          yellow: '#FFE600',
+        },
         // Deep Midnight Forest & Jade Undertones for Dark Mode
         void: {
           950: '#030b06', // Primary midnight emerald dark canvas

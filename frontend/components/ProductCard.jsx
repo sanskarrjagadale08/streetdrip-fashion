@@ -81,7 +81,7 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
         {/* Top Badges Overlay */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
           {/* Drop Status Tag */}
-          <span className={`px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider border rounded-none shadow-sm ${getDropTagBadge(product.drop_status)}`}>
+          <span className={`px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border rounded-none shadow-sm font-bold ${getDropTagBadge(product.drop_status)}`}>
             {product.drop_status || 'COLLECTION'}
           </span>
 
@@ -93,10 +93,10 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
                 e.stopPropagation();
                 onPreview3D?.(product);
               }}
-              className="pointer-events-auto flex items-center gap-1.5 bg-white/95 dark:bg-burgundy-950/90 text-burgundy-950 dark:text-sand-200 border border-sand-300 dark:border-burgundy-700 hover:bg-burgundy-600 hover:text-creme-100 dark:hover:bg-dusty-400 dark:hover:text-burgundy-950 px-2.5 py-1 text-[9px] font-mono font-bold tracking-wider backdrop-blur-md transition-all shadow-sm"
+              className="pointer-events-auto flex items-center gap-1.5 bg-white/95 dark:bg-burgundy-950/90 text-burgundy-950 dark:text-sand-200 border border-sand-300 dark:border-burgundy-700 hover:bg-burgundy-600 hover:text-creme-100 dark:hover:bg-dusty-400 dark:hover:text-burgundy-950 px-3 py-1 text-[11px] font-mono font-bold tracking-wider backdrop-blur-md transition-all shadow-sm"
               title="Inspect in 3D WebGL Canvas"
             >
-              <Box className="w-3 h-3 text-burgundy-700 dark:text-dusty-400 group-hover:text-current" />
+              <Box className="w-3.5 h-3.5 text-burgundy-700 dark:text-dusty-400 group-hover:text-current" />
               <span>3D ROTATE</span>
             </button>
           )}
@@ -106,64 +106,64 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
         <div className="absolute bottom-3 right-3 flex flex-col gap-1.5 z-10">
           <button
             onClick={handleLike}
-            className={`p-2 backdrop-blur-md transition-all shadow-sm ${
+            className={`p-2.5 backdrop-blur-md transition-all shadow-sm ${
               hasLiked
                 ? 'bg-burgundy-600 text-creme-100 scale-105'
                 : 'bg-white/90 dark:bg-burgundy-950/80 text-burgundy-800 dark:text-sand-200 border border-sand-200 dark:border-burgundy-700/60 hover:text-burgundy-600 dark:hover:text-dusty-400 hover:border-burgundy-300'
             }`}
             title="Like piece"
           >
-            <Heart className={`w-3.5 h-3.5 ${hasLiked ? 'fill-current' : ''}`} />
+            <Heart className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
           </button>
           <button
             onClick={handleShare}
-            className="p-2 bg-white/90 dark:bg-burgundy-950/80 text-burgundy-800 dark:text-sand-200 border border-sand-200 dark:border-burgundy-700/60 hover:text-burgundy-950 dark:hover:text-creme-100 backdrop-blur-md transition-all shadow-sm"
+            className="p-2.5 bg-white/90 dark:bg-burgundy-950/80 text-burgundy-800 dark:text-sand-200 border border-sand-200 dark:border-burgundy-700/60 hover:text-burgundy-950 dark:hover:text-creme-100 backdrop-blur-md transition-all shadow-sm"
             title="Share or copy link"
           >
-            <Share2 className="w-3.5 h-3.5" />
+            <Share2 className="w-4 h-4" />
           </button>
         </div>
 
         {/* Share Copied Notification */}
         {copiedLink && (
-          <div className="absolute inset-0 bg-burgundy-950/95 backdrop-blur-sm flex items-center justify-center text-creme-100 text-xs font-mono font-bold uppercase tracking-widest z-20">
+          <div className="absolute inset-0 bg-burgundy-950/95 backdrop-blur-sm flex items-center justify-center text-creme-100 text-sm font-mono font-bold uppercase tracking-widest z-20">
             LINK COPIED TO CLIPBOARD
           </div>
         )}
       </div>
 
       {/* Card Content & Details */}
-      <div className="p-4 flex flex-col flex-1 justify-between bg-white dark:bg-burgundy-900/90">
+      <div className="p-4 md:p-5 flex flex-col flex-1 justify-between bg-white dark:bg-burgundy-900/90">
         <div>
           {/* Brand & Category Breadcrumb */}
-          <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider mb-2">
-            <span className="font-bold text-burgundy-950 dark:text-creme-100 bg-creme-100 dark:bg-burgundy-950/90 px-2 py-0.5 border border-sand-200 dark:border-burgundy-800">
+          <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider mb-2.5">
+            <span className="font-bold text-burgundy-950 dark:text-creme-100 bg-creme-100 dark:bg-burgundy-950/90 px-2.5 py-0.5 border border-sand-200 dark:border-burgundy-800">
               {product.brand}
             </span>
-            <span className={`font-semibold ${getCategoryColor(product.main_category)}`}>
+            <span className={`font-bold ${getCategoryColor(product.main_category)}`}>
               {product.sub_category || product.category}
             </span>
           </div>
 
           {/* Product Name */}
-          <h3 className="font-serif font-semibold text-base text-burgundy-950 dark:text-creme-100 line-clamp-1 group-hover:text-burgundy-600 dark:group-hover:text-dusty-300 transition-colors">
+          <h3 className="font-serif font-semibold text-lg md:text-xl text-burgundy-950 dark:text-creme-100 line-clamp-1 group-hover:text-burgundy-600 dark:group-hover:text-dusty-300 transition-colors">
             {product.name}
           </h3>
 
           {/* Description snippet */}
           {product.description && (
-            <p className="text-[11px] text-burgundy-900/70 dark:text-sand-300/70 font-sans line-clamp-2 mt-1 leading-snug font-light">
+            <p className="text-xs md:text-sm text-burgundy-900/80 dark:text-sand-300/80 font-sans line-clamp-2 mt-1.5 leading-relaxed font-light">
               {product.description}
             </p>
           )}
 
           {/* Vibe Tags Pills */}
-          <div className="flex flex-wrap gap-1 mt-2.5">
+          <div className="flex flex-wrap gap-1.5 mt-3">
             {product.vibe_tags?.slice(0, 3).map((vibe) => (
               <button
                 key={vibe}
                 onClick={() => onSelectVibe?.(vibe)}
-                className="text-[9px] font-mono uppercase bg-creme-100/80 dark:bg-burgundy-950/80 border border-sand-200 dark:border-burgundy-800 text-burgundy-800 dark:text-sand-300 px-1.5 py-0.5 hover:border-burgundy-600 dark:hover:border-dusty-400 hover:text-burgundy-950 dark:hover:text-creme-100 transition-colors"
+                className="text-[11px] font-mono font-medium uppercase bg-creme-100/90 dark:bg-burgundy-950/90 border border-sand-200 dark:border-burgundy-800 text-burgundy-800 dark:text-sand-300 px-2 py-0.5 hover:border-burgundy-600 dark:hover:border-dusty-400 hover:text-burgundy-950 dark:hover:text-creme-100 transition-colors"
               >
                 #{vibe}
               </button>
@@ -172,18 +172,18 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
         </div>
 
         {/* Bottom Price & Actionable Affiliate Redirect */}
-        <div className="mt-4 pt-3 border-t border-sand-200/80 dark:border-burgundy-800/80">
+        <div className="mt-5 pt-3.5 border-t border-sand-200/80 dark:border-burgundy-800/80">
           <div className="flex items-baseline justify-between mb-3 font-mono">
             <div>
-              <span className="text-xl font-bold text-burgundy-950 dark:text-creme-100 tracking-tight">
+              <span className="text-2xl md:text-3xl font-bold text-burgundy-950 dark:text-creme-100 tracking-tight">
                 ${product.price?.toFixed(2)}
               </span>
-              <span className="text-[10px] text-sand-500 dark:text-sand-400/60 line-through ml-2">
+              <span className="text-xs text-sand-500 dark:text-sand-400/70 line-through ml-2">
                 ${(product.price * 1.25).toFixed(2)}
               </span>
             </div>
-            <div className="text-[10px] text-sand-600 dark:text-sand-400/60 flex items-center gap-1 font-sans">
-              <Heart className="w-3 h-3 text-burgundy-400 fill-current dark:text-dusty-400" />
+            <div className="text-xs text-sand-600 dark:text-sand-400 flex items-center gap-1.5 font-sans font-medium">
+              <Heart className="w-3.5 h-3.5 text-burgundy-400 fill-current dark:text-dusty-400" />
               <span>{likes}</span>
             </div>
           </div>
@@ -193,10 +193,10 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
             href={product.affiliate_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group/btn w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-burgundy-600 text-creme-100 hover:bg-burgundy-700 dark:bg-dusty-400 dark:text-burgundy-950 dark:hover:bg-dusty-300 font-mono font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-sm border border-burgundy-600 dark:border-dusty-400"
+            className="group/btn w-full flex items-center justify-center gap-2 py-3 px-4 bg-burgundy-600 text-creme-100 hover:bg-burgundy-700 dark:bg-dusty-400 dark:text-burgundy-950 dark:hover:bg-dusty-300 font-mono font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-sm border border-burgundy-600 dark:border-dusty-400"
           >
             <span>COP THIS LOOK</span>
-            <ExternalLink className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+            <ExternalLink className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
           </a>
         </div>
       </div>

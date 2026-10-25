@@ -59,39 +59,39 @@ export default function BlogSection() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-sand-300/80 dark:border-burgundy-800/60">
           <div>
-            <div className="inline-flex items-center gap-2 text-burgundy-700 dark:text-dusty-400 text-xs font-mono uppercase tracking-widest mb-2 font-bold">
-              <BookOpen className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 text-burgundy-700 dark:text-dusty-400 text-xs md:text-sm font-mono uppercase tracking-widest mb-2 font-bold">
+              <BookOpen className="w-4 h-4" />
               <span>THE STREET JOURNAL // EDITORIAL</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-serif font-medium italic text-burgundy-950 dark:text-creme-100 tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-serif font-medium italic text-burgundy-950 dark:text-creme-100 tracking-tight">
               Style Guides &amp; Fit Breakdowns
             </h2>
-            <p className="text-xs md:text-sm text-burgundy-900/70 dark:text-sand-300/70 mt-2 max-w-xl leading-relaxed font-light">
+            <p className="text-sm md:text-base text-burgundy-900/70 dark:text-sand-300/70 mt-2.5 max-w-xl leading-relaxed font-light">
               Curated breakdowns matching our 6 core sections: Lowers &amp; Denims, Boxy Shirts, Drop-Shoulder Tees, Leather &amp; Denim Jackets, Bulky Footwear, and Architectural Eyewear.
             </p>
           </div>
 
-          <div className="relative min-w-[260px] font-mono">
-            <Search className="w-4 h-4 text-sand-500 dark:text-dusty-400/60 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <div className="relative min-w-[280px] font-mono">
+            <Search className="w-4 h-4 text-sand-500 dark:text-dusty-400/60 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search essays, fits, fabrics..."
-              className="w-full bg-white dark:bg-burgundy-900/90 border border-sand-300 dark:border-burgundy-800 pl-9 pr-3 py-2.5 text-xs text-burgundy-950 dark:text-creme-100 placeholder-sand-500 dark:placeholder-sand-400/40 focus:outline-none focus:border-burgundy-600 dark:focus:border-dusty-400 shadow-sm"
+              className="w-full bg-white dark:bg-burgundy-900/90 border border-sand-300 dark:border-burgundy-800 pl-10 pr-4 py-2.5 text-sm text-burgundy-950 dark:text-creme-100 placeholder-sand-500 dark:placeholder-sand-400/50 focus:outline-none focus:border-burgundy-600 dark:focus:border-dusty-400 shadow-sm"
             />
           </div>
         </div>
 
         {/* Category Pills matching the 6 sections */}
-        <div className="flex flex-wrap gap-2 py-6 font-mono text-xs border-b border-sand-200/80 dark:border-burgundy-800/50">
+        <div className="flex flex-wrap gap-2.5 py-6 font-mono text-xs md:text-sm border-b border-sand-200/80 dark:border-burgundy-800/50">
           {FASHION_BLOG_PILLARS.map((cat) => {
             const isSelected = selectedCategory.toLowerCase() === cat.toLowerCase();
             return (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 uppercase transition-all shadow-sm ${
+                className={`px-5 py-2.5 uppercase font-bold transition-all shadow-sm ${
                   isSelected
                     ? 'bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950 dark:border-dusty-300 font-bold dark:shadow-[0_0_12px_rgba(200,164,159,0.25)]'
                     : 'bg-white dark:bg-burgundy-900/80 border border-sand-300 dark:border-burgundy-800 text-burgundy-900/80 dark:text-sand-300/80 hover:text-burgundy-950 dark:hover:text-creme-100 hover:border-burgundy-500 dark:hover:border-dusty-400'
@@ -119,31 +119,31 @@ export default function BlogSection() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                     loading="lazy"
                   />
-                  <span className="absolute top-3 left-3 bg-burgundy-950/85 text-creme-100 dark:bg-burgundy-950/90 dark:text-dusty-300 text-[10px] font-mono uppercase px-2.5 py-1 font-bold backdrop-blur-md shadow-sm border border-sand-300/20">
+                  <span className="absolute top-3 left-3 bg-burgundy-950/85 text-creme-100 dark:bg-burgundy-950/90 dark:text-dusty-300 text-xs font-mono uppercase px-3 py-1 font-bold backdrop-blur-md shadow-sm border border-sand-300/20">
                     {article.category}
                   </span>
                 </div>
 
-                <div className="p-5">
-                  <div className="flex items-center gap-3 text-[10px] font-mono text-sand-700 dark:text-dusty-300/70 mb-2">
+                <div className="p-5 md:p-6">
+                  <div className="flex items-center gap-3 text-xs font-mono text-sand-700 dark:text-dusty-300/80 mb-2 font-medium">
                     <span>{article.read_time}</span>
                     <span>•</span>
                     <span>{article.date}</span>
                   </div>
 
-                  <h3 className="font-serif font-bold text-lg text-burgundy-950 dark:text-creme-100 group-hover:text-burgundy-600 dark:group-hover:text-dusty-300 transition-colors leading-snug line-clamp-2">
+                  <h3 className="font-serif font-bold text-xl md:text-2xl text-burgundy-950 dark:text-creme-100 group-hover:text-burgundy-600 dark:group-hover:text-dusty-300 transition-colors leading-snug line-clamp-2">
                     {article.title}
                   </h3>
 
-                  <p className="text-xs text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-2.5 line-clamp-3 leading-relaxed font-light">
+                  <p className="text-xs md:text-sm text-burgundy-900/80 dark:text-sand-300/80 font-sans mt-3 line-clamp-3 leading-relaxed font-light">
                     {article.excerpt}
                   </p>
                 </div>
               </div>
 
-              <div className="p-5 pt-0 flex items-center justify-between border-t border-sand-200/60 dark:border-burgundy-800/80 mt-4 text-xs font-mono text-sand-600 dark:text-dusty-400/80 group-hover:text-burgundy-950 dark:group-hover:text-dusty-300">
-                <span className="text-[10px] uppercase font-bold tracking-wider">Read Full Article</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:text-burgundy-700 dark:group-hover:text-dusty-300 transition-all" />
+              <div className="p-5 md:p-6 pt-0 flex items-center justify-between border-t border-sand-200/60 dark:border-burgundy-800/80 mt-4 text-xs md:text-sm font-mono text-sand-600 dark:text-dusty-400 group-hover:text-burgundy-950 dark:group-hover:text-dusty-300">
+                <span className="text-xs uppercase font-bold tracking-wider">Read Full Article</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-hover:text-burgundy-700 dark:group-hover:text-dusty-300 transition-all" />
               </div>
             </article>
           ))}
@@ -178,7 +178,7 @@ export default function BlogSection() {
               <span className="text-sand-700 dark:text-dusty-300/80">By {activeArticle.author}</span>
             </div>
 
-            <h1 className="text-2xl md:text-4xl font-serif font-medium text-burgundy-950 dark:text-creme-100 tracking-tight leading-tight mb-6">
+            <h1 className="text-3xl md:text-5xl font-serif font-medium text-burgundy-950 dark:text-creme-100 tracking-tight leading-tight mb-6">
               {activeArticle.title}
             </h1>
 
