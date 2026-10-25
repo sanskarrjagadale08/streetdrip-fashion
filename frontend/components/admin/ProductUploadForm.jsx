@@ -5,20 +5,23 @@ import { PlusCircle, Upload, CheckCircle, AlertCircle, Box, ExternalLink, Loader
 import { createProduct, FASHION_HIERARCHY } from '../../lib/adminApi';
 
 const AVAILABLE_BRANDS = [
-  "None",
-  "Nike",
-  "Supreme",
-  "Stüssy",
-  "Balenciaga",
-  "Fear of God",
-  "Carhartt WIP",
-  "Levi's",
-  "Zara",
+  "General",
   "H&M",
+  "Zara",
+  "Bonkers",
+  "Vastrado",
+  "Souled Store",
+  "Snitch",
   "Bewakoof",
-  "Casio",
-  "Crocs",
-  "Dr. Martens"
+  "Roadster",
+  "Wrogn",
+  "Peter England",
+  "US Polo",
+  "Urban Monkey",
+  "Highlander",
+  "Nike",
+  "Adidas",
+  "None"
 ];
 
 const DROP_STATUSES = [
@@ -36,7 +39,7 @@ export default function ProductUploadForm({ onSuccess }) {
     name: '',
     main_category: 'Lowers',
     sub_category: FASHION_HIERARCHY['Lowers'][0],
-    brand: 'None',
+    brand: 'General',
     price: '',
     image_url: '',
     model_3d_url: '',

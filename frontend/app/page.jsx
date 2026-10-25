@@ -35,19 +35,22 @@ const MAIN_PILLARS = [
 
 const CURATED_BRANDS = [
   "All",
-  "None",
-  "Nike",
-  "Supreme",
-  "Stüssy",
-  "Balenciaga",
-  "Fear of God",
-  "Carhartt WIP",
-  "Zara",
-  "Levi's",
+  "General",
   "H&M",
+  "Zara",
+  "Bonkers",
+  "Vastrado",
+  "Souled Store",
+  "Snitch",
   "Bewakoof",
-  "Crocs",
-  "Dr. Martens"
+  "Roadster",
+  "Wrogn",
+  "Peter England",
+  "US Polo",
+  "Urban Monkey",
+  "Highlander",
+  "Nike",
+  "Adidas"
 ];
 
 export default function StreetwearLandingPage() {
@@ -141,7 +144,17 @@ export default function StreetwearLandingPage() {
 
       // Brand filter
       if (selectedBrand !== "All") {
-        if (item.brand?.toLowerCase() !== selectedBrand.toLowerCase()) {
+        const itemBrand = (item.brand || "").toLowerCase().trim();
+        const selBrand = selectedBrand.toLowerCase().trim();
+        const matchesBrand =
+          itemBrand === selBrand ||
+          (selBrand === "general" && (itemBrand === "none" || itemBrand === "general" || !itemBrand || itemBrand === "unbranded")) ||
+          (selBrand === "h&m" && (itemBrand === "hnm" || itemBrand === "h&m")) ||
+          (selBrand === "us polo" && itemBrand.includes("polo")) ||
+          (selBrand === "souled store" && itemBrand.includes("souled")) ||
+          (selBrand === "bonkers" && itemBrand.includes("bonkers")) ||
+          (selBrand === "urban monkey" && itemBrand.includes("monkey"));
+        if (!matchesBrand) {
           return false;
         }
       }
@@ -546,10 +559,10 @@ export default function StreetwearLandingPage() {
               Direct Affiliates
             </h4>
             <ul className="space-y-2 text-sm text-burgundy-800/80 dark:text-sand-300/80 font-sans">
-              <li><a href="https://nike.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Nike Official Store</a></li>
+              <li><a href="https://nike.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Nike Official</a></li>
               <li><a href="https://zara.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Zara Atelier</a></li>
-              <li><a href="https://bewakoof.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Bewakoof Streetwear</a></li>
-              <li><a href="https://levi.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Levi's Red Tab</a></li>
+              <li><a href="https://snitch.co.in" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Snitch Streetwear</a></li>
+              <li><a href="https://thesouledstore.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">The Souled Store</a></li>
               <li className="pt-2">
                 <a href="/admin" className="text-burgundy-700 dark:text-dusty-400 font-mono text-sm font-bold underline">
                   Admin Vault Portal →

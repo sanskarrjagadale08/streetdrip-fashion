@@ -166,7 +166,7 @@ export default function FilterSidebar({
 
       {/* Gen Z Drop Disclaimer */}
       <div className="mt-6 pt-4 border-t border-white/10 text-[9px] text-zinc-400 leading-tight">
-        ⚡ ALL AFFILIATE REDIRECTS POINT DIRECTLY TO VERIFIED OFFICIAL BRAND VAULTS (NIKE, BEWAKOOF, ZARA, LEVI'S, CASIO).
+        ⚡ ALL AFFILIATE REDIRECTS POINT DIRECTLY TO VERIFIED OFFICIAL BRAND VAULTS (NIKE, ADIDAS, ZARA, SNITCH, SOULED STORE).
       </div>
     </aside>
   );

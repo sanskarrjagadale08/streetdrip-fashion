@@ -378,7 +378,7 @@ export default function AdminDashboardPage() {
                     <Flame className="w-4 h-4 text-neon-orange" />
                   </div>
                   <div className="text-3xl font-black text-white">{stats?.total_brands || 6}</div>
-                  <div className="text-[10px] text-zinc-400 mt-1">Nike, Zara, Bewakoof, Levi's</div>
+                  <div className="text-[10px] text-zinc-400 mt-1">General, Snitch, Zara, H&M, Nike...</div>
                 </div>
 
                 <div className="bg-void-950 border border-white/10 p-5">
