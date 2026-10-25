@@ -89,7 +89,7 @@ export default function BlogSection() {
         {/* Category Pills matching the 6 sections */}
         <div className="flex flex-wrap gap-2.5 py-6 font-mono text-xs md:text-sm border-b border-sand-200/80 dark:border-burgundy-800/50">
           {FASHION_BLOG_PILLARS.map((cat) => {
-            const isSelected = selectedCategory.toLowerCase() === cat.toLowerCase();
+            const isSelected = String(selectedCategory || '').toLowerCase() === String(cat || '').toLowerCase();
             return (
               <button
                 key={cat}

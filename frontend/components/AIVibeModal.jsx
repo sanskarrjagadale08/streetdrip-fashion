@@ -218,34 +218,34 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
 
             {/* 4-Piece Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {Object.entries(outfitResult.outfit_pieces).map(([role, piece]) => (
+              {Object.entries(outfitResult.outfit_pieces || {}).map(([role, piece = {}]) => (
                 <div key={role} className="bg-white dark:bg-burgundy-900 border border-sand-300 dark:border-burgundy-800 p-3.5 flex flex-col justify-between shadow-sm">
                   <div>
                     <div className="relative aspect-square w-full overflow-hidden bg-creme-100 dark:bg-burgundy-950 mb-2">
                       <img
-                        src={piece.image_url}
-                        alt={piece.name}
+                        src={piece?.image_url || 'https://images.unsplash.com/photo-1542272604-780c96856592'}
+                        alt={piece?.name || 'Piece'}
                         className="w-full h-full object-cover"
                       />
                       <span className="absolute top-1 left-1 bg-burgundy-950/90 text-creme-100 text-[9px] font-mono font-bold uppercase px-1.5 py-0.5">
-                        {role.toUpperCase()}
+                        {String(role).toUpperCase()}
                       </span>
                     </div>
 
                     <div className="text-[10px] font-mono text-sand-600 dark:text-sand-400 uppercase font-bold">
-                      {piece.brand}
+                      {piece?.brand || 'General'}
                     </div>
                     <div className="font-serif font-semibold text-sm text-burgundy-950 dark:text-creme-100 line-clamp-2 mt-1 leading-snug">
-                      {piece.name}
+                      {piece?.name || 'Curated Piece'}
                     </div>
                   </div>
 
                   <div className="mt-3 pt-2.5 border-t border-sand-100 dark:border-burgundy-800 flex items-center justify-between">
                     <span className="font-mono font-bold text-sm text-burgundy-950 dark:text-creme-100">
-                      ₹{Number(piece.price || 0).toLocaleString('en-IN')}
+                      ₹{Number(piece?.price || 0).toLocaleString('en-IN')}
                     </span>
                     <a
-                      href={piece.affiliate_link}
+                      href={piece?.affiliate_link || '#'}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-1 text-burgundy-700 hover:text-burgundy-950 dark:text-sand-300 dark:hover:text-dusty-300 transition-colors"
@@ -265,7 +265,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
                   PRO STYLING ADVICE:
                 </span>
                 <ul className="text-xs text-burgundy-900/80 dark:text-sand-200/90 font-sans space-y-0.5 list-disc list-inside">
-                  {outfitResult.styling_tips.map((tip, idx) => (
+                  {(outfitResult.styling_tips || []).map((tip, idx) => (
                     <li key={idx}>{tip}</li>
                   ))}
                 </ul>
