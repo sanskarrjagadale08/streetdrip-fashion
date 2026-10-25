@@ -661,7 +661,11 @@ def load_db():
         return INITIAL_PRODUCTS
     try:
         with open(DATA_FILE, "r") as f:
-            return json.load(f)
+            data = json.load(f)
+            if not data or len(data) == 0:
+                save_db(INITIAL_PRODUCTS)
+                return INITIAL_PRODUCTS
+            return data
     except Exception:
         return INITIAL_PRODUCTS
 
@@ -677,7 +681,11 @@ def load_blogs():
         return INITIAL_BLOGS
     try:
         with open(BLOG_FILE, "r") as f:
-            return json.load(f)
+            data = json.load(f)
+            if not data or len(data) == 0:
+                save_blogs(INITIAL_BLOGS)
+                return INITIAL_BLOGS
+            return data
     except Exception:
         return INITIAL_BLOGS
 

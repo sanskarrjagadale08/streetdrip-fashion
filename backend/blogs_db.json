@@ -1,1 +1,104 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "Lowers Architecture: Why Baggy, Korean Slacks and Cargos Took Over Men's Fashion",
+    "category": "Lowers",
+    "read_time": "4 min",
+    "author": "Drip Editorial",
+    "date": "Oct 24, 2026",
+    "cover_image": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=1200&q=80",
+    "excerpt": "A deep dive into how trousers evolved from constricting slim cuts to wide Korean pleats, parachute nylon, and carpenter denim.",
+    "content": "The bottom half of an outfit establishes its foundation. When you switch from slim jeans to wide-leg Korean trousers or baggy carpenter denim, the entire silhouette feels grounded and relaxed.\n\n### The Proportions Breakdown\n- **Baggy Jeans**: Best paired with cropped or boxy tops so the waistline is clearly defined.\n- **Korean Pleated Slacks**: Combine tailored formal elegance with a flowing drape over chunky loafers or sneakers.\n- **Parachute Cargos**: Add tactile industrial texture with 3D pockets and adjustable bungee ankles.",
+    "tags": [
+      "Lowers",
+      "Jeans",
+      "Cargos",
+      "KoreanFashion"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "The Shirt Hierarchy: When to Choose Boxy Camp Collars vs Formal Poplin vs Overshirts",
+    "category": "Shirts",
+    "read_time": "5 min",
+    "author": "Tailoring Lead",
+    "date": "Oct 22, 2026",
+    "cover_image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=1200&q=80",
+    "excerpt": "How to style boxy camp shirts, casual flannels, and formal poplin without looking stiff or underdressed.",
+    "content": "The shirt is the most versatile piece in modern men's wardrobes. Moving beyond basic button-downs, boxy camp collar shirts provide a relaxed retro drape, while heavy canvas overshirts serve as lightweight jackets.\n\n### Styling Rules\n1. Leave boxy camp shirts unbuttoned with a ribbed tank top underneath.\n2. Layer heavy cotton flannels over vintage graphic tees.\n3. Tuck formal poplin shirts into wide Korean trousers for an effortless runway proportion.",
+    "tags": [
+      "Shirts",
+      "BoxyFit",
+      "Overshirts",
+      "Layering"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "T-Shirt Anatomy: Boxy Cuts vs Drop Shoulders vs Henleys & Heavyweight GSM",
+    "category": "T-Shirts",
+    "read_time": "4 min",
+    "author": "Fabric Specialist",
+    "date": "Oct 20, 2026",
+    "cover_image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80",
+    "excerpt": "Why 280 GSM combed jersey changed everyday t-shirts, and which neckline (crew, henley, or polo) matches your build.",
+    "content": "A high-quality T-shirt is defined by GSM (Grams per Square Meter). Flimsy 140 GSM tees cling to the body, whereas 280 GSM heavyweight cotton holds a boxy, sculptural shape that flatters all shoulder widths.\n\n### Neckline Comparison\n- **Boxy Crewneck**: The streetwear standard. Tight 1-inch rib collar that never sags.\n- **Drop Shoulder**: Sloped seam construction giving effortless relaxed volume.\n- **Henley Placket**: Adds rugged vintage character to layering.",
+    "tags": [
+      "TShirts",
+      "GSM",
+      "BoxyTee",
+      "Henley"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Outerwear Grails: The Eternal Rivalry Between Leather Bikers and Denim Truckers",
+    "category": "Jackets",
+    "read_time": "6 min",
+    "author": "Archive Collector",
+    "date": "Oct 18, 2026",
+    "cover_image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1200&q=80",
+    "excerpt": "Analyzing the enduring cultural status of distressed biker leather, raw denim truckers, and military MA-1 bombers.",
+    "content": "Jackets are investment pieces. A heavy distressed leather jacket breaks in with time, moulding to its wearer. Meanwhile, a raw trucker denim jacket develops personalized fades and honeycomb creasing unique to your lifestyle.",
+    "tags": [
+      "Jackets",
+      "Leather",
+      "DenimTrucker",
+      "Outerwear"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Footwear Silhouettes: Why Bulky Caged Runners and Foam Clogs Dominate",
+    "category": "Shoes",
+    "read_time": "4 min",
+    "author": "Sole Analyst",
+    "date": "Oct 15, 2026",
+    "cover_image": "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=80",
+    "excerpt": "How wide pant leg stacking made chunky soles, Tuned Air units, and recovery clogs a necessity.",
+    "content": "As trousers became baggier, thin canvas sneakers started getting swallowed by wide hems. Enter chunky silhouette runners with prominent heel bumpers and exaggerated platform clogs that hold trouser pools cleanly off the pavement.",
+    "tags": [
+      "Shoes",
+      "ChunkySneakers",
+      "Crocs",
+      "Footwear"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Face Framing: How Y2K Shield Shades & Minimalist Wireframes Elevate Every Fit",
+    "category": "Glasses",
+    "read_time": "3 min",
+    "author": "Optic Curator",
+    "date": "Oct 12, 2026",
+    "cover_image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1200&q=80",
+    "excerpt": "Selecting the right eyewear shape for your outfit frequency: aggressive wrap lenses vs subtle architectural wireframes.",
+    "content": "Eyewear is the punctuation mark of an outfit. Aerodynamic wrap-around mirror lenses inject instantaneous cyber energy into a dark hoodie, while geometric wireframe glasses add intellectual luxury to tailored trousers.",
+    "tags": [
+      "Glasses",
+      "Y2KShades",
+      "Wireframe",
+      "Accessories"
+    ]
+  }
+]

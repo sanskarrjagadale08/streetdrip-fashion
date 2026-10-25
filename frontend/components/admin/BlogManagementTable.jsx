@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Search, Edit3, Trash2, BookOpen, AlertTriangle, Check, X, Loader2, RefreshCw } from 'lucide-react';
 import { updateBlog, deleteBlog } from '../../lib/adminApi';
+import BlogContentEditor from './BlogContentEditor';
 
 export default function BlogManagementTable({ blogs, onBlogUpdated, onBlogDeleted, onRefresh }) {
   const [search, setSearch] = useState('');
@@ -17,8 +18,9 @@ export default function BlogManagementTable({ blogs, onBlogUpdated, onBlogDelete
   const [editCategory, setEditCategory] = useState('');
   const [editExcerpt, setEditExcerpt] = useState('');
   const [editReadTime, setEditReadTime] = useState('');
+  const [editContent, setEditContent] = useState('');
 
-  const categories = ['All', 'Style Guides', 'Drop Alerts', 'Sneaker Culture', 'Techwear & Aesthetics'];
+  const categories = ['All', 'Lowers', 'Shirts', 'T-Shirts', 'Jackets', 'Shoes', 'Glasses'];
 
   const filtered = blogs.filter(b => {
     if (categoryFilter !== 'All' && b.category !== categoryFilter) return false;
@@ -31,10 +33,11 @@ export default function BlogManagementTable({ blogs, onBlogUpdated, onBlogDelete
 
   const handleStartEdit = (b) => {
     setEditingBlog(b);
-    setEditTitle(b.title);
-    setEditCategory(b.category);
-    setEditExcerpt(b.excerpt);
-    setEditReadTime(b.read_time);
+    setEditTitle(b.title || '');
+    setEditCategory(b.category || 'Lowers');
+    setEditExcerpt(b.excerpt || '');
+    setEditReadTime(b.read_time || '4 min');
+    setEditContent(b.content || '');
   };
 
   const handleSaveEdit = async () => {
@@ -46,6 +49,7 @@ export default function BlogManagementTable({ blogs, onBlogUpdated, onBlogDelete
         category: editCategory,
         excerpt: editExcerpt,
         read_time: editReadTime,
+        content: editContent,
       });
 
       setFeedback({ type: 'success', text: `Article #${updated.id} successfully updated.` });
@@ -203,24 +207,24 @@ export default function BlogManagementTable({ blogs, onBlogUpdated, onBlogDelete
 
       {/* EDIT MODAL */}
       {editingBlog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="w-full max-w-lg bg-void-950 border border-neon-lime p-6 shadow-2xl font-mono text-xs">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
+          <div className="w-full max-w-4xl bg-void-950 border border-neon-lime p-6 shadow-2xl font-mono text-xs my-auto max-h-[92vh] overflow-y-auto">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4 sticky top-0 bg-void-950 z-10">
               <div className="font-bold text-white uppercase flex items-center gap-2">
                 <Edit3 className="w-4 h-4 text-neon-lime" />
-                <span>EDIT ARTICLE #{editingBlog.id}</span>
+                <span>EDIT &amp; STYLE ARTICLE #{editingBlog.id}</span>
               </div>
-              <button onClick={() => setEditingBlog(null)}><X className="w-4 h-4 text-zinc-400" /></button>
+              <button onClick={() => setEditingBlog(null)}><X className="w-4 h-4 text-zinc-400 hover:text-white" /></button>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div>
-                <label className="block text-zinc-300 uppercase font-bold mb-1">Title</label>
+                <label className="block text-zinc-300 uppercase font-bold mb-1">Headline</label>
                 <input
                   type="text"
                   value={editTitle}
                   onChange={(e) => setEditTitle(e.target.value)}
-                  className="w-full bg-void-900 border border-white/15 p-2 text-white focus:outline-none focus:border-neon-lime"
+                  className="w-full bg-void-900 border border-white/15 p-2 text-white focus:outline-none focus:border-neon-lime font-bold"
                 />
               </div>
 
@@ -256,17 +260,31 @@ export default function BlogManagementTable({ blogs, onBlogUpdated, onBlogDelete
                 />
               </div>
 
-              <div className="pt-3 flex gap-2">
+              <div>
+                <label className="block text-zinc-300 uppercase font-bold mb-1.5 flex items-center justify-between">
+                  <span>Article Content &amp; Styling Suite</span>
+                  <span className="text-[10px] text-neon-lime">Apply Fonts, Colors, Quotes &amp; Badges</span>
+                </label>
+                <BlogContentEditor
+                  value={editContent}
+                  onChange={setEditContent}
+                  placeholder="Article content..."
+                />
+              </div>
+
+              <div className="pt-3 flex gap-2 border-t border-white/10">
                 <button
+                  type="button"
                   onClick={() => setEditingBlog(null)}
-                  className="flex-1 py-2 bg-void-900 border border-white/10 text-zinc-300 uppercase"
+                  className="flex-1 py-2.5 bg-void-900 border border-white/10 text-zinc-300 hover:text-white uppercase font-bold"
                 >
                   Cancel
                 </button>
                 <button
+                  type="button"
                   onClick={handleSaveEdit}
                   disabled={actionLoading}
-                  className="flex-1 py-2 bg-neon-lime text-black font-black uppercase flex items-center justify-center gap-1.5"
+                  className="flex-1 py-2.5 bg-neon-lime text-black font-black uppercase flex items-center justify-center gap-1.5 hover:bg-black hover:text-neon-lime border border-neon-lime transition-all"
                 >
                   {actionLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
                   <span>Save Changes</span>

@@ -114,3 +114,93 @@ html.dark .bg-cyber-grid {
 .card-luxury:hover {
   transform: translateY(-3px);
 }
+
+/* ------------------------------------------------------------- */
+/* Editorial & Streetwear Typography & Rich Blog Styling Suite    */
+/* ------------------------------------------------------------- */
+.font-editorial {
+  font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+}
+
+.font-streetwear-display {
+  font-family: Impact, 'Arial Black', -apple-system, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-streetwear-mono {
+  font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
+}
+
+.font-modern-sans {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Fashion Advice Callout Card */
+.fit-advice-box {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  border-left: 4px solid #00F0FF;
+  background: rgba(0, 240, 255, 0.08);
+  border-top: 1px solid rgba(0, 240, 255, 0.2);
+  border-right: 1px solid rgba(0, 240, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+html.dark .fit-advice-box {
+  background: rgba(0, 240, 255, 0.06);
+  border-left-color: #00F0FF;
+}
+
+/* Editorial Pull Quote */
+.drip-quote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #CCFF00;
+  background: rgba(204, 255, 0, 0.06);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Fashion Highlights */
+.fashion-highlight-lime {
+  background-color: #CCFF00;
+  color: #000000;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+}
+
+.fashion-highlight-cyan {
+  background-color: #00F0FF;
+  color: #000000;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+}
+
+.fashion-highlight-orange {
+  background-color: #FF5500;
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+}
+
+.fashion-highlight-pink {
+  background-color: #FF007F;
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+}
+
+.fashion-highlight-gold {
+  background-color: #EAB308;
+  color: #000000;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+}
+

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Clock, Tag, ArrowRight, X, Share2, Search, Sparkles } from 'lucide-react';
 import { fetchAllBlogs } from '../lib/adminApi';
+import BlogContentRenderer from './BlogContentRenderer';
 
 const FASHION_BLOG_PILLARS = [
   'All',
@@ -189,8 +190,8 @@ export default function BlogSection() {
               />
             </div>
 
-            <div className="prose dark:prose-invert max-w-none text-sm text-neutral-800 dark:text-emerald-50/90 leading-relaxed font-sans space-y-4 whitespace-pre-line">
-              {activeArticle.content}
+            <div className="prose dark:prose-invert max-w-none">
+              <BlogContentRenderer content={activeArticle.content} />
             </div>
 
             {/* Footer with tags and share */}
