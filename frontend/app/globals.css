@@ -2,23 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --neon-emerald: #00FF88;
-  --neon-lime: #CCFF00;
-  --neon-cyan: #00F0FF;
-  --neon-orange: #FF5500;
-  --neon-purple: #A855F7;
-  --neon-pink: #FF007F;
-  --bg-primary: #FAFAFB;
-  --text-primary: #0A0A0B;
+:root, html[data-theme="creme"] {
+  --theme-creme: #EEE4DA;
+  --theme-sand: #D8C4AC;
+  --theme-dusty: #C8A49F;
+  --theme-burgundy: #4D0E13;
+  --bg-primary: #FAF8F5;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --text-primary: #1C0507;
+  --border-primary: #D8C4AC;
 }
 
-/* Luxury Midnight Forest & Jade Cyber Dark Theme */
-html.dark {
-  --bg-primary: #030b06;
-  --bg-surface: #07160d;
-  --bg-card: #0b1f13;
-  --text-primary: #F0FDF4;
+/* 2. Velvet Burgundy Noir (Dark Theme) */
+html[data-theme="burgundy"], html.dark:not([data-theme="rose"]) {
+  --theme-creme: #EEE4DA;
+  --theme-sand: #D8C4AC;
+  --theme-dusty: #C8A49F;
+  --theme-burgundy: #4D0E13;
+  --bg-primary: #140204;
+  --bg-surface: #1F0406;
+  --bg-card: #2B090E;
+  --text-primary: #EEE4DA;
+  --border-primary: #4D0E13;
+}
+
+/* 3. Dusty Rose Atelier (Editorial Dark Theme) */
+html[data-theme="rose"] {
+  --theme-creme: #EEE4DA;
+  --theme-sand: #D8C4AC;
+  --theme-dusty: #C8A49F;
+  --theme-burgundy: #4D0E13;
+  --bg-primary: #1C1315;
+  --bg-surface: #26191C;
+  --bg-card: #302024;
+  --text-primary: #FAF5F4;
+  --border-primary: #C8A49F;
 }
 
 body {
@@ -34,77 +53,82 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f4;
+  background: #F3EDE2;
 }
 
-html.dark ::-webkit-scrollbar-track {
-  background: #020905;
+html[data-theme="burgundy"] ::-webkit-scrollbar-track, html.dark ::-webkit-scrollbar-track {
+  background: #140204;
+}
+
+html[data-theme="rose"] ::-webkit-scrollbar-track {
+  background: #1C1315;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #D8C4AC;
   border-radius: 9999px;
 }
 
-html.dark ::-webkit-scrollbar-thumb {
-  background: #163825;
+html[data-theme="burgundy"] ::-webkit-scrollbar-thumb, html.dark ::-webkit-scrollbar-thumb {
+  background: #4D0E13;
+  border-radius: 9999px;
+}
+
+html[data-theme="rose"] ::-webkit-scrollbar-thumb {
+  background: #C8A49F;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0f172a;
+  background: #4D0E13;
 }
 
 html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #00FF88;
+  background: #C8A49F;
 }
 
-/* Architectural Luxury Grid Backdrop Pattern */
+/* Architectural Luxury Grid Backdrop Pattern (Tinted with Sand / Burgundy) */
 .bg-fashion-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(216, 196, 172, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(216, 196, 172, 0.28) 1px, transparent 1px);
 }
 
 html.dark .bg-fashion-grid {
   background-image: 
-    linear-gradient(to right, rgba(0, 255, 136, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 255, 136, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, rgba(200, 164, 159, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(200, 164, 159, 0.08) 1px, transparent 1px);
 }
 
 .bg-cyber-grid {
   background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(216, 196, 172, 0.22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(216, 196, 172, 0.22) 1px, transparent 1px);
 }
 
 html.dark .bg-cyber-grid {
   background-image: 
-    linear-gradient(to right, rgba(0, 255, 136, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 255, 136, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(77, 14, 19, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(77, 14, 19, 0.35) 1px, transparent 1px);
 }
 
-/* Multi-Color Streetwear Glows in Dark Mode */
+/* Luxury Glows for Nomiki Palette */
+.burgundy-glow {
+  box-shadow: 0 0 25px rgba(77, 14, 19, 0.35);
+}
+
+.rose-glow {
+  box-shadow: 0 0 25px rgba(200, 164, 159, 0.28);
+}
+
+.sand-glow {
+  box-shadow: 0 0 25px rgba(216, 196, 172, 0.30);
+}
+
 .emerald-glow {
-  box-shadow: 0 0 25px rgba(0, 255, 136, 0.22);
-}
-
-.lime-glow {
-  box-shadow: 0 0 25px rgba(204, 255, 0, 0.22);
-}
-
-.cyan-glow {
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.22);
-}
-
-.orange-glow {
-  box-shadow: 0 0 25px rgba(255, 85, 0, 0.22);
-}
-
-.purple-glow {
-  box-shadow: 0 0 25px rgba(168, 85, 247, 0.22);
+  box-shadow: 0 0 25px rgba(200, 164, 159, 0.22);
 }
 
 .card-luxury {

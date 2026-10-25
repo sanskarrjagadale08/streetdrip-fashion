@@ -78,27 +78,27 @@ export default function StreetwearLandingPage() {
     loadData();
   }, []);
 
-  // Distinct multi-color active pill styles for dark mode
+  // Distinct Nomiki palette active pill styles for light and dark themes
   const getPillarActiveStyle = (pillar, isActive) => {
     if (!isActive) {
-      return 'text-neutral-600 dark:text-emerald-100/60 hover:text-neutral-950 dark:hover:text-white hover:bg-white/80 dark:hover:bg-forest-800/60';
+      return 'text-burgundy-900/70 dark:text-sand-200/70 hover:text-burgundy-950 dark:hover:text-creme-100 hover:bg-sand-200/50 dark:hover:bg-burgundy-900/60';
     }
-    // Light mode: solid black. Dark mode: distinct electric color accents
+    // Nomiki Palette: Deep Burgundy in Light Mode, Dusty Pink & Sand Accents in Dark Themes
     switch (pillar.toLowerCase()) {
       case 'lowers':
-        return 'bg-neutral-950 text-white dark:bg-emerald-400 dark:text-black font-bold dark:shadow-[0_0_15px_rgba(16,185,129,0.35)]';
+        return 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-400 dark:text-burgundy-950 font-bold dark:border-dusty-300 dark:shadow-[0_0_15px_rgba(200,164,159,0.35)]';
       case 'shirts':
-        return 'bg-neutral-950 text-white dark:bg-cyan-400 dark:text-black font-bold dark:shadow-[0_0_15px_rgba(0,240,255,0.35)]';
+        return 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-sand-300 dark:text-burgundy-950 font-bold dark:border-sand-200 dark:shadow-[0_0_15px_rgba(216,196,172,0.35)]';
       case 't-shirts':
-        return 'bg-neutral-950 text-white dark:bg-lime-400 dark:text-black font-bold dark:shadow-[0_0_15px_rgba(204,255,0,0.35)]';
+        return 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-creme-200 dark:text-burgundy-950 font-bold dark:border-creme-100 dark:shadow-[0_0_15px_rgba(238,228,218,0.35)]';
       case 'jackets':
-        return 'bg-neutral-950 text-white dark:bg-orange-500 dark:text-black font-bold dark:shadow-[0_0_15px_rgba(255,85,0,0.35)]';
+        return 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-burgundy-500 dark:text-creme-100 font-bold dark:border-burgundy-400 dark:shadow-[0_0_15px_rgba(107,20,28,0.45)]';
       case 'shoes':
-        return 'bg-neutral-950 text-white dark:bg-emerald-300 dark:text-black font-bold dark:shadow-[0_0_15px_rgba(0,255,136,0.35)]';
+        return 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-300 dark:text-burgundy-950 font-bold dark:border-dusty-200 dark:shadow-[0_0_15px_rgba(200,164,159,0.35)]';
       case 'glasses':
-        return 'bg-neutral-950 text-white dark:bg-purple-400 dark:text-black font-bold dark:shadow-[0_0_15px_rgba(168,85,247,0.35)]';
+        return 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-sand-200 dark:text-burgundy-950 font-bold dark:border-sand-100 dark:shadow-[0_0_15px_rgba(216,196,172,0.35)]';
       default:
-        return 'bg-neutral-950 text-white dark:bg-emerald-400 dark:text-black font-bold dark:shadow-[0_0_15px_rgba(0,255,136,0.35)]';
+        return 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-400 dark:text-burgundy-950 font-bold dark:border-dusty-300 dark:shadow-[0_0_15px_rgba(200,164,159,0.35)]';
     }
   };
 
@@ -160,27 +160,27 @@ export default function StreetwearLandingPage() {
   }, [products, activeMainCategory, activeSubCategory, selectedBrand, searchQuery, sortBy]);
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-void-950 text-neutral-900 dark:text-neutral-100 font-sans transition-colors duration-200">
+    <div className="min-h-screen bg-creme-50 dark:bg-burgundy-950 text-burgundy-950 dark:text-creme-100 font-sans transition-colors duration-200">
       {/* 0. EDITORIAL TOP TICKER */}
-      <div className="bg-neutral-950 text-white dark:bg-forest-950 dark:text-emerald-300 py-1.5 px-4 text-center text-[10px] font-mono tracking-widest uppercase border-b border-neutral-800 dark:border-forest-800 flex items-center justify-between">
+      <div className="bg-burgundy-950 text-sand-200 dark:bg-burgundy-950 dark:text-sand-300 py-1.5 px-4 text-center text-[10px] font-mono tracking-widest uppercase border-b border-burgundy-900/80 flex items-center justify-between">
         <span className="hidden sm:inline">PARIS • TOKYO • NEW YORK</span>
-        <span className="mx-auto sm:mx-0 font-medium">CURATED MENSWEAR ARCHIVE // S/S 2026 DROP</span>
-        <span className="hidden sm:inline text-neutral-400 dark:text-emerald-400/70">VERIFIED DIRECT AFFILIATE LABELS</span>
+        <span className="mx-auto sm:mx-0 font-medium">CURATED MENSWEAR ARCHIVE // NOMIKI S/S 2026 DROP</span>
+        <span className="hidden sm:inline text-sand-400/80">VERIFIED DIRECT AFFILIATE LABELS</span>
       </div>
 
       {/* 1. TOP MINIMALIST HEADER */}
-      <header className="sticky top-0 z-40 bg-white/90 dark:bg-void-950/90 backdrop-blur-md border-b border-neutral-200 dark:border-forest-800/80 transition-colors duration-200">
+      <header className="sticky top-0 z-40 bg-creme-50/90 dark:bg-burgundy-950/90 backdrop-blur-md border-b border-sand-300/70 dark:border-burgundy-800/80 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 bg-neutral-950 text-white dark:bg-emerald-400 dark:text-black flex items-center justify-center font-mono font-black text-sm tracking-tighter shadow-sm">
+            <div className="w-8 h-8 bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950 flex items-center justify-center font-mono font-black text-sm tracking-tighter shadow-sm">
               SD
             </div>
             <div>
-              <span className="text-xl md:text-2xl font-black uppercase tracking-tighter text-neutral-950 dark:text-white">
-                STREET<span className="text-neutral-500 dark:text-emerald-400">DRIP</span>
+              <span className="text-xl md:text-2xl font-black uppercase tracking-tighter text-burgundy-950 dark:text-creme-100">
+                STREET<span className="text-burgundy-600 dark:text-dusty-400">DRIP</span>
               </span>
-              <span className="block text-[8px] font-mono tracking-widest text-neutral-400 dark:text-emerald-400/60 uppercase -mt-1">
+              <span className="block text-[8px] font-mono tracking-widest text-burgundy-700/60 dark:text-dusty-400/70 uppercase -mt-1">
                 ATELIER &amp; ARCHIVE
               </span>
             </div>
@@ -188,18 +188,18 @@ export default function StreetwearLandingPage() {
 
           {/* Center Navigation Links (Desktop) */}
           <nav className="hidden lg:flex items-center gap-6 font-mono text-xs uppercase tracking-wider">
-            <a href="#catalog" className="text-neutral-800 dark:text-neutral-200 hover:text-black dark:hover:text-emerald-400 transition-colors">
+            <a href="#catalog" className="text-burgundy-900 dark:text-sand-200 hover:text-burgundy-600 dark:hover:text-dusty-400 transition-colors">
               Collection
             </a>
-            <a href="#street-journal" className="text-neutral-500 dark:text-emerald-200/60 hover:text-black dark:hover:text-emerald-400 transition-colors">
+            <a href="#street-journal" className="text-burgundy-800/70 dark:text-sand-300/70 hover:text-burgundy-600 dark:hover:text-dusty-400 transition-colors">
               Journal
             </a>
             <button 
               onClick={() => setIs3DViewerOpen(!is3DViewerOpen)}
-              className="text-neutral-500 dark:text-emerald-200/60 hover:text-black dark:hover:text-emerald-400 transition-colors flex items-center gap-1"
+              className="text-burgundy-800/70 dark:text-sand-300/70 hover:text-burgundy-600 dark:hover:text-dusty-400 transition-colors flex items-center gap-1"
             >
               <span>3D Atelier</span>
-              {is3DViewerOpen && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
+              {is3DViewerOpen && <span className="w-1.5 h-1.5 rounded-full bg-dusty-400 animate-pulse" />}
             </button>
           </nav>
 
@@ -210,32 +210,32 @@ export default function StreetwearLandingPage() {
               onClick={() => setIs3DViewerOpen(!is3DViewerOpen)}
               className={`flex items-center gap-1.5 px-3 py-1.5 border text-xs font-mono uppercase tracking-wider transition-all shadow-sm ${
                 is3DViewerOpen 
-                  ? 'bg-neutral-950 text-white border-neutral-950 dark:bg-emerald-400 dark:text-black dark:border-emerald-400 font-bold'
-                  : 'bg-white dark:bg-forest-900 border-neutral-300 dark:border-forest-700/60 text-neutral-700 dark:text-emerald-200 hover:border-neutral-900 dark:hover:border-emerald-400'
+                  ? 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-400 dark:text-burgundy-950 dark:border-dusty-400 font-bold'
+                  : 'bg-white dark:bg-burgundy-900 border-sand-300 dark:border-burgundy-800 text-burgundy-900 dark:text-sand-200 hover:border-burgundy-600 dark:hover:border-dusty-400'
               }`}
               title="Toggle interactive 3D product showcase"
             >
-              <Box className="w-3.5 h-3.5 text-neutral-900 dark:text-emerald-400 group-hover:text-black" />
+              <Box className="w-3.5 h-3.5 text-burgundy-700 dark:text-dusty-400 group-hover:text-current" />
               <span className="hidden sm:inline">3D View</span>
             </button>
 
             {/* AI Vibe Stylist Button */}
             <button
               onClick={() => setIsVibeModalOpen(true)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-neutral-950 text-white dark:bg-emerald-400 dark:text-black font-mono font-bold uppercase text-xs tracking-wider border border-neutral-950 dark:border-emerald-300 hover:bg-neutral-800 dark:hover:bg-emerald-300 dark:hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] transition-all shadow-sm"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950 font-mono font-bold uppercase text-xs tracking-wider border border-burgundy-600 dark:border-dusty-300 hover:bg-burgundy-700 dark:hover:bg-dusty-300 dark:hover:shadow-[0_0_15px_rgba(200,164,159,0.3)] transition-all shadow-sm"
               title="Generate a curated 4-piece outfit matching any vibe"
             >
               <Sparkles className="w-3.5 h-3.5 fill-current" />
               <span className="hidden sm:inline">AI Stylist</span>
             </button>
 
-            {/* LIGHT / DARK MODE TOGGLE */}
+            {/* 3-THEME SELECTOR DROPDOWN */}
             <ThemeToggle className="ml-1" />
 
             {/* Admin Vault Link */}
             <a
               href="/admin"
-              className="flex items-center gap-1 p-2 rounded-full border border-neutral-200 dark:border-forest-700/60 text-neutral-500 dark:text-emerald-300 hover:text-neutral-950 dark:hover:text-white hover:border-neutral-400 dark:hover:border-emerald-400 transition-all"
+              className="flex items-center gap-1 p-2 rounded-full border border-sand-300 dark:border-burgundy-800 text-burgundy-700 dark:text-sand-300 hover:text-burgundy-950 dark:hover:text-white hover:border-burgundy-600 dark:hover:border-dusty-400 transition-all"
               title="Admin Vault Dashboard"
               aria-label="Admin Dashboard"
             >
@@ -245,7 +245,7 @@ export default function StreetwearLandingPage() {
         </div>
 
         {/* 2. THE 6 PRIMARY SECTION PILLARS NAVIGATION */}
-        <div className="border-t border-neutral-200/80 dark:border-forest-800/60 bg-neutral-100/70 dark:bg-forest-950/70 overflow-x-auto scrollbar-none">
+        <div className="border-t border-sand-300/60 dark:border-burgundy-800/60 bg-creme-100/70 dark:bg-burgundy-950/70 overflow-x-auto scrollbar-none">
           <div className="max-w-7xl mx-auto px-4 flex items-center gap-1.5 py-2">
             {MAIN_PILLARS.map((pillar) => {
               const isActive = activeMainCategory.toLowerCase() === pillar.toLowerCase();
@@ -265,9 +265,9 @@ export default function StreetwearLandingPage() {
 
       {/* 3. DYNAMIC SUBCATEGORY SECONDARY BAR */}
       {availableSubCategories.length > 0 && (
-        <div className="bg-white/60 dark:bg-forest-950/50 border-b border-neutral-200 dark:border-forest-800/40 overflow-x-auto py-2.5">
+        <div className="bg-creme-100/60 dark:bg-burgundy-950/50 border-b border-sand-200 dark:border-burgundy-800/60 overflow-x-auto py-2.5">
           <div className="max-w-7xl mx-auto px-4 flex items-center gap-2">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 dark:text-emerald-400/60 flex items-center gap-1 mr-1">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-burgundy-700/70 dark:text-dusty-400/80 flex items-center gap-1 mr-1">
               <Layers className="w-3 h-3" />
               <span>{activeMainCategory}:</span>
             </span>
@@ -277,8 +277,8 @@ export default function StreetwearLandingPage() {
               onClick={() => setActiveSubCategory("All")}
               className={`px-3 py-1 text-[11px] font-mono uppercase tracking-wider transition-all whitespace-nowrap border ${
                 activeSubCategory === "All"
-                  ? 'bg-neutral-950 text-white border-neutral-950 dark:bg-emerald-400 dark:text-black dark:border-emerald-300 font-bold dark:shadow-[0_0_12px_rgba(0,255,136,0.25)]'
-                  : 'bg-neutral-50 dark:bg-forest-900/80 border-neutral-200 dark:border-forest-700/60 text-neutral-600 dark:text-emerald-200/70 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-emerald-400'
+                  ? 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-400 dark:text-burgundy-950 dark:border-dusty-300 font-bold dark:shadow-[0_0_12px_rgba(200,164,159,0.25)]'
+                  : 'bg-white/80 dark:bg-burgundy-900/80 border-sand-300 dark:border-burgundy-800 text-burgundy-900/80 dark:text-sand-300/80 hover:text-burgundy-950 dark:hover:text-white hover:border-burgundy-500 dark:hover:border-dusty-400'
               }`}
             >
               All {activeMainCategory}
@@ -293,8 +293,8 @@ export default function StreetwearLandingPage() {
                   onClick={() => setActiveSubCategory(sub)}
                   className={`px-3 py-1 text-[11px] font-mono uppercase tracking-wider transition-all whitespace-nowrap border ${
                     isSubActive
-                      ? 'bg-neutral-950 text-white border-neutral-950 dark:bg-emerald-400 dark:text-black dark:border-emerald-300 font-bold dark:shadow-[0_0_12px_rgba(0,255,136,0.25)]'
-                      : 'bg-neutral-50 dark:bg-forest-900/80 border-neutral-200 dark:border-forest-700/60 text-neutral-600 dark:text-emerald-200/70 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-emerald-400'
+                      ? 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-400 dark:text-burgundy-950 dark:border-dusty-300 font-bold dark:shadow-[0_0_12px_rgba(200,164,159,0.25)]'
+                      : 'bg-white/80 dark:bg-burgundy-900/80 border-sand-300 dark:border-burgundy-800 text-burgundy-900/80 dark:text-sand-300/80 hover:text-burgundy-950 dark:hover:text-white hover:border-burgundy-500 dark:hover:border-dusty-400'
                   }`}
                 >
                   {sub}
@@ -307,7 +307,7 @@ export default function StreetwearLandingPage() {
 
       {/* 4. EXPANDABLE 3D PRODUCT SHOWCASE */}
       {is3DViewerOpen && (
-        <section className="border-b border-neutral-200 dark:border-white/10 bg-neutral-100 dark:bg-void-950 transition-all">
+        <section className="border-b border-sand-300 dark:border-burgundy-800 bg-creme-100/90 dark:bg-burgundy-950 transition-all">
           <div className="max-w-7xl mx-auto">
             <Product3DViewer initialProduct={preview3DItem} />
           </div>
@@ -317,19 +317,19 @@ export default function StreetwearLandingPage() {
       {/* 5. EDITORIAL HERO & CATALOG SECTION */}
       <main id="catalog" className="max-w-7xl mx-auto px-4 py-8 md:py-12">
         {/* Section Headline & Editorial Info */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-neutral-200 dark:border-forest-800/70">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-sand-300/80 dark:border-burgundy-800/80">
           <div>
-            <div className="flex items-center gap-2 text-neutral-500 dark:text-emerald-300/80 text-xs font-mono uppercase tracking-widest mb-1.5">
+            <div className="flex items-center gap-2 text-sand-700 dark:text-dusty-300/90 text-xs font-mono uppercase tracking-widest mb-1.5">
               <span>ARCHIVE COLLECTION</span>
               <span>//</span>
-              <span className="text-neutral-950 dark:text-emerald-400 font-bold">
+              <span className="text-burgundy-800 dark:text-creme-200 font-bold">
                 {activeMainCategory.toUpperCase()} {activeSubCategory !== "All" && `> ${activeSubCategory.toUpperCase()}`}
               </span>
             </div>
-            <h1 className="text-3xl md:text-5xl font-black uppercase text-neutral-950 dark:text-white tracking-tight">
+            <h1 className="text-3xl md:text-5xl font-black uppercase text-burgundy-950 dark:text-creme-100 tracking-tight">
               {activeMainCategory === "All" ? "THE STREETWEAR ARCHIVE" : activeMainCategory}
             </h1>
-            <p className="text-xs md:text-sm text-neutral-600 dark:text-emerald-100/60 font-sans mt-1.5 max-w-xl">
+            <p className="text-xs md:text-sm text-burgundy-900/70 dark:text-sand-300/70 font-sans mt-1.5 max-w-xl">
               Curated silhouettes with direct brand affiliate links. Click '3D Rotate' on high-ticket grails to inspect textures and volume before copping.
             </p>
           </div>
@@ -338,36 +338,36 @@ export default function StreetwearLandingPage() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             {/* Search Input */}
             <div className="relative min-w-[220px]">
-              <Search className="w-4 h-4 text-neutral-400 dark:text-emerald-400/60 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Search className="w-4 h-4 text-sand-500 dark:text-dusty-400/60 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search pieces, brands..."
-                className="w-full bg-white dark:bg-forest-900/90 border border-neutral-200 dark:border-forest-700/60 pl-9 pr-3 py-2 text-xs text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-emerald-400/40 focus:outline-none focus:border-neutral-900 dark:focus:border-emerald-400 font-mono shadow-sm"
+                className="w-full bg-white dark:bg-burgundy-900/90 border border-sand-300 dark:border-burgundy-800 pl-9 pr-3 py-2 text-xs text-burgundy-950 dark:text-creme-100 placeholder-sand-500 dark:placeholder-sand-400/50 focus:outline-none focus:border-burgundy-600 dark:focus:border-dusty-400 font-mono shadow-sm"
               />
             </div>
 
             {/* Sorting Dropdown */}
-            <div className="flex items-center gap-1.5 bg-white dark:bg-forest-900/90 border border-neutral-200 dark:border-forest-700/60 px-3 py-2 text-xs shadow-sm">
-              <ArrowUpDown className="w-3.5 h-3.5 text-neutral-400 dark:text-emerald-400/60" />
+            <div className="flex items-center gap-1.5 bg-white dark:bg-burgundy-900/90 border border-sand-300 dark:border-burgundy-800 px-3 py-2 text-xs shadow-sm">
+              <ArrowUpDown className="w-3.5 h-3.5 text-sand-500 dark:text-dusty-400/60" />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-transparent text-neutral-900 dark:text-emerald-200 font-mono text-xs focus:outline-none cursor-pointer uppercase"
+                className="bg-transparent text-burgundy-950 dark:text-sand-200 font-mono text-xs focus:outline-none cursor-pointer uppercase"
               >
-                <option value="popular" className="bg-white dark:bg-forest-950 text-neutral-900 dark:text-white">Most Hyped</option>
-                <option value="newest" className="bg-white dark:bg-forest-950 text-neutral-900 dark:text-white">Newest Additions</option>
-                <option value="price_asc" className="bg-white dark:bg-forest-950 text-neutral-900 dark:text-white">Price: Low to High</option>
-                <option value="price_desc" className="bg-white dark:bg-forest-950 text-neutral-900 dark:text-white">Price: High to Low</option>
+                <option value="popular" className="bg-white dark:bg-burgundy-950 text-burgundy-950 dark:text-creme-100">Most Hyped</option>
+                <option value="newest" className="bg-white dark:bg-burgundy-950 text-burgundy-950 dark:text-creme-100">Newest Additions</option>
+                <option value="price_asc" className="bg-white dark:bg-burgundy-950 text-burgundy-950 dark:text-creme-100">Price: Low to High</option>
+                <option value="price_desc" className="bg-white dark:bg-burgundy-950 text-burgundy-950 dark:text-creme-100">Price: High to Low</option>
               </select>
             </div>
           </div>
         </div>
 
         {/* Brand Dropdown / Quick Filter Bar */}
-        <div className="flex items-center gap-2 overflow-x-auto py-4 text-xs font-mono border-b border-neutral-200/60 dark:border-forest-800/60 scrollbar-none">
-          <span className="text-[10px] text-neutral-400 dark:text-emerald-400/70 uppercase whitespace-nowrap">
+        <div className="flex items-center gap-2 overflow-x-auto py-4 text-xs font-mono border-b border-sand-200 dark:border-burgundy-800/60 scrollbar-none">
+          <span className="text-[10px] text-sand-600 dark:text-dusty-400/80 uppercase whitespace-nowrap">
             Brand Label:
           </span>
           {CURATED_BRANDS.map((b) => {
@@ -378,8 +378,8 @@ export default function StreetwearLandingPage() {
                 onClick={() => setSelectedBrand(b)}
                 className={`px-3 py-1 text-[11px] uppercase transition-all whitespace-nowrap border ${
                   isSelected
-                    ? 'bg-neutral-900 text-white border-neutral-900 dark:bg-emerald-400 dark:text-black dark:border-emerald-300 font-bold shadow-sm'
-                    : 'bg-white dark:bg-forest-900/80 border-neutral-200 dark:border-forest-700/60 text-neutral-600 dark:text-emerald-200/70 hover:text-black dark:hover:text-white hover:border-neutral-400 dark:hover:border-emerald-400'
+                    ? 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-400 dark:text-burgundy-950 dark:border-dusty-300 font-bold shadow-sm'
+                    : 'bg-white dark:bg-burgundy-900/80 border-sand-300 dark:border-burgundy-800 text-burgundy-900/80 dark:text-sand-300/80 hover:text-burgundy-950 dark:hover:text-white hover:border-burgundy-500 dark:hover:border-dusty-400'
                 }`}
               >
                 {b}
@@ -409,11 +409,11 @@ export default function StreetwearLandingPage() {
               ))}
             </div>
           ) : (
-            <div className="p-16 text-center bg-white dark:bg-void-900/40 border border-neutral-200 dark:border-white/10 font-mono shadow-sm">
-              <h3 className="text-base font-bold uppercase text-neutral-900 dark:text-white mb-2">
+            <div className="p-16 text-center bg-white dark:bg-burgundy-900/40 border border-sand-300 dark:border-burgundy-800 font-mono shadow-sm">
+              <h3 className="text-base font-bold uppercase text-burgundy-950 dark:text-creme-100 mb-2">
                 NO PIECES FOUND FOR THIS FILTER
               </h3>
-              <p className="text-xs text-neutral-500 dark:text-zinc-400 mb-6">
+              <p className="text-xs text-burgundy-800/70 dark:text-sand-400 mb-6">
                 Try selecting "All" or upload new items directly from your Admin Dashboard.
               </p>
               <div className="flex items-center justify-center gap-3">
@@ -423,13 +423,13 @@ export default function StreetwearLandingPage() {
                     setSelectedBrand("All");
                     setSearchQuery("");
                   }}
-                  className="px-4 py-2 bg-neutral-100 dark:bg-void-800 border border-neutral-300 dark:border-white/20 text-neutral-900 dark:text-white font-bold text-xs uppercase"
+                  className="px-4 py-2 bg-creme-100 dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-700 text-burgundy-950 dark:text-creme-100 font-bold text-xs uppercase"
                 >
                   Clear Filters
                 </button>
                 <a
                   href="/admin"
-                  className="px-4 py-2 bg-neutral-950 text-white dark:bg-emerald-400 dark:text-black font-bold text-xs uppercase shadow-sm"
+                  className="px-4 py-2 bg-burgundy-600 text-creme-100 hover:bg-burgundy-700 dark:bg-dusty-400 dark:text-burgundy-950 font-bold text-xs uppercase shadow-sm"
                 >
                   Open Admin
                 </a>
@@ -443,19 +443,19 @@ export default function StreetwearLandingPage() {
       <BlogSection />
 
       {/* 7. HIGH-FASHION MINIMALIST FOOTER */}
-      <footer className="border-t border-neutral-200 dark:border-forest-800/80 bg-white dark:bg-forest-950 py-16 font-sans transition-colors duration-200">
+      <footer className="border-t border-sand-300/80 dark:border-burgundy-800/80 bg-white dark:bg-burgundy-950 py-16 font-sans transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand Manifesto */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-6 h-6 bg-neutral-950 text-white dark:bg-emerald-400 dark:text-black font-mono font-bold text-xs flex items-center justify-center shadow-sm">
+              <div className="w-6 h-6 bg-burgundy-600 text-creme-100 dark:bg-dusty-400 dark:text-burgundy-950 font-mono font-bold text-xs flex items-center justify-center shadow-sm">
                 SD
               </div>
-              <span className="font-black text-xl tracking-tighter uppercase text-neutral-950 dark:text-white">
-                STREET<span className="text-neutral-500 dark:text-emerald-400">DRIP</span>
+              <span className="font-black text-xl tracking-tighter uppercase text-burgundy-950 dark:text-creme-100">
+                STREET<span className="text-burgundy-600 dark:text-dusty-400">DRIP</span>
               </span>
             </div>
-            <p className="text-xs text-neutral-600 dark:text-emerald-100/60 font-sans max-w-md leading-relaxed">
+            <p className="text-xs text-burgundy-900/70 dark:text-sand-300/70 font-sans max-w-md leading-relaxed">
               Curated menswear platform engineered for the new generation of streetwear purists. Real-time 3D WebGL rendering, generative vibe styling, and direct affiliate access to official global drops.
             </p>
             <div className="mt-4 flex items-center gap-3">
@@ -465,15 +465,15 @@ export default function StreetwearLandingPage() {
 
           {/* Quick Pillars */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-wider text-neutral-950 dark:text-white font-bold mb-3">
+            <h4 className="font-mono text-xs uppercase tracking-wider text-burgundy-950 dark:text-creme-100 font-bold mb-3">
               Fashion Pillars
             </h4>
-            <ul className="space-y-1.5 text-xs text-neutral-600 dark:text-emerald-200/70 font-sans">
+            <ul className="space-y-1.5 text-xs text-burgundy-800/80 dark:text-sand-300/80 font-sans">
               {MAIN_PILLARS.filter(p => p !== "All").map((p) => (
                 <li key={p}>
                   <button
                     onClick={() => handleMainCategorySelect(p)}
-                    className="hover:text-neutral-950 dark:hover:text-emerald-300 transition-colors"
+                    className="hover:text-burgundy-950 dark:hover:text-dusty-300 transition-colors"
                   >
                     {p}
                   </button>
@@ -484,16 +484,16 @@ export default function StreetwearLandingPage() {
 
           {/* Official Affiliates & Admin */}
           <div>
-            <h4 className="font-mono text-xs uppercase tracking-wider text-neutral-950 dark:text-white font-bold mb-3">
+            <h4 className="font-mono text-xs uppercase tracking-wider text-burgundy-950 dark:text-creme-100 font-bold mb-3">
               Direct Affiliates
             </h4>
-            <ul className="space-y-1.5 text-xs text-neutral-600 dark:text-emerald-200/70 font-sans">
-              <li><a href="https://nike.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white">Nike Official Store</a></li>
-              <li><a href="https://zara.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white">Zara Atelier</a></li>
-              <li><a href="https://bewakoof.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white">Bewakoof Streetwear</a></li>
-              <li><a href="https://levi.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white">Levi's Red Tab</a></li>
+            <ul className="space-y-1.5 text-xs text-burgundy-800/80 dark:text-sand-300/80 font-sans">
+              <li><a href="https://nike.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Nike Official Store</a></li>
+              <li><a href="https://zara.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Zara Atelier</a></li>
+              <li><a href="https://bewakoof.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Bewakoof Streetwear</a></li>
+              <li><a href="https://levi.com" target="_blank" rel="noopener noreferrer" className="hover:text-burgundy-950 dark:hover:text-white">Levi's Red Tab</a></li>
               <li className="pt-2">
-                <a href="/admin" className="text-neutral-900 dark:text-emerald-400 font-mono text-xs font-bold underline">
+                <a href="/admin" className="text-burgundy-700 dark:text-dusty-400 font-mono text-xs font-bold underline">
                   Admin Vault Portal →
                 </a>
               </li>
@@ -501,7 +501,7 @@ export default function StreetwearLandingPage() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-neutral-100 dark:border-forest-800/50 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-neutral-500 dark:text-emerald-400/50 gap-3">
+        <div className="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-sand-200/80 dark:border-burgundy-900/60 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-sand-600 dark:text-sand-400/60 gap-3">
           <div>© 2026 STREETDRIP PLATFORM. ALL RIGHTS RESERVED.</div>
           <div className="flex items-center gap-4">
             <span>TERMS</span>

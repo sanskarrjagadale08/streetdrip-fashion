@@ -23,7 +23,7 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
   const [activeModelType, setActiveModelType] = useState(initialProduct?.model_type || 'sneaker');
   const [autoRotate, setAutoRotate] = useState(true);
   const [isWireframe, setIsWireframe] = useState(false);
-  const [selectedColor, setSelectedColor] = useState('#CCFF00'); // Neon Lime default
+  const [selectedColor, setSelectedColor] = useState('#4D0E13'); // Velvet Burgundy default
   const [isDragging, setIsDragging] = useState(false);
 
   // Active showcase item details
@@ -56,15 +56,15 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
 
   const currentItem = showcaseItems[activeModelType] || showcaseItems.sneaker;
 
-  // Colorways for real-time 3D material customization
+  // Colorways for real-time 3D material customization (Pinterest Nomiki Luxury Palette)
   const colorways = [
-    { name: 'Electric Emerald', hex: '#00FF88' },
-    { name: 'Bottega Green', hex: '#10B981' },
-    { name: 'Acid Lime', hex: '#CCFF00' },
-    { name: 'Cyber Cyan', hex: '#00F0FF' },
-    { name: 'Hazard Orange', hex: '#FF5500' },
-    { name: 'Royal Violet', hex: '#A855F7' },
-    { name: 'Obsidian Pine', hex: '#0a160f' },
+    { name: 'Velvet Burgundy', hex: '#4D0E13' },
+    { name: 'Atelier Creme', hex: '#EEE4DA' },
+    { name: 'Desert Sand', hex: '#D8C4AC' },
+    { name: 'Dusty Rose', hex: '#C8A49F' },
+    { name: 'Rich Wine', hex: '#6B141C' },
+    { name: 'Obsidian Noir', hex: '#140204' },
+    { name: 'Warm Cashmere', hex: '#DEC3BF' },
   ];
 
   useEffect(() => {
@@ -474,27 +474,27 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
   };
 
   return (
-    <div className="relative w-full h-[580px] bg-neutral-100 dark:bg-void-950 border border-neutral-200 dark:border-white/10 overflow-hidden rounded-none flex flex-col justify-between select-none">
+    <div className="relative w-full h-[580px] bg-creme-100/40 dark:bg-burgundy-950/70 border border-sand-300/70 dark:border-burgundy-800/60 overflow-hidden rounded-none flex flex-col justify-between select-none">
       {/* Top Streetwear Meta Banner */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex flex-wrap items-center justify-between p-4 bg-white/80 dark:bg-void-950/80 backdrop-blur-md border-b border-neutral-200 dark:border-white/10 text-xs font-mono">
+      <div className="absolute top-0 left-0 right-0 z-20 flex flex-wrap items-center justify-between p-4 bg-creme-50/85 dark:bg-burgundy-950/85 backdrop-blur-md border-b border-sand-300/70 dark:border-burgundy-800/60 text-xs font-mono">
         <div className="flex items-center gap-2">
-          <span className="inline-block w-2.5 h-2.5 rounded-full bg-neutral-900 dark:bg-neon-lime animate-pulse"></span>
-          <span className="font-bold text-neutral-900 dark:text-white tracking-widest uppercase">
+          <span className="inline-block w-2.5 h-2.5 rounded-full bg-burgundy-800 dark:bg-dusty-400 animate-pulse"></span>
+          <span className="font-bold text-burgundy-950 dark:text-creme-100 tracking-widest uppercase">
             3D ATELIER // {activeModelType.toUpperCase()}
           </span>
-          <span className="hidden sm:inline bg-neutral-200 dark:bg-neon-lime/10 text-neutral-900 dark:text-neon-lime border border-neutral-300 dark:border-neon-lime/40 px-2 py-0.5 text-[10px] font-bold">
+          <span className="hidden sm:inline bg-sand-200/60 dark:bg-burgundy-900/60 text-burgundy-900 dark:text-dusty-300 border border-sand-400/40 dark:border-dusty-400/30 px-2 py-0.5 text-[10px] font-bold">
             {currentItem.dropTag}
           </span>
         </div>
 
         {/* 3D Item Switcher Tabs */}
-        <div className="flex items-center gap-1 bg-neutral-200 dark:bg-void-900 border border-neutral-300 dark:border-white/10 p-0.5 mt-2 sm:mt-0">
+        <div className="flex items-center gap-1 bg-creme-200/60 dark:bg-burgundy-900/50 border border-sand-300 dark:border-burgundy-800/60 p-0.5 mt-2 sm:mt-0">
           <button
             onClick={() => setActiveModelType('sneaker')}
             className={`px-3 py-1 font-mono text-[11px] transition-all uppercase ${
               activeModelType === 'sneaker'
-                ? 'bg-neutral-950 text-white dark:bg-neon-lime dark:text-black font-bold'
-                : 'text-neutral-600 dark:text-zinc-400 hover:text-black dark:hover:text-white'
+                ? 'bg-burgundy-900 text-creme-100 dark:bg-burgundy-800 dark:text-creme-100 font-bold shadow-sm'
+                : 'text-neutral-600 dark:text-creme-200/60 hover:text-burgundy-900 dark:hover:text-creme-100'
             }`}
           >
             Sneaker
@@ -503,8 +503,8 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
             onClick={() => setActiveModelType('watch')}
             className={`px-3 py-1 font-mono text-[11px] transition-all uppercase ${
               activeModelType === 'watch'
-                ? 'bg-neutral-950 text-white dark:bg-neon-lime dark:text-black font-bold'
-                : 'text-neutral-600 dark:text-zinc-400 hover:text-black dark:hover:text-white'
+                ? 'bg-burgundy-900 text-creme-100 dark:bg-burgundy-800 dark:text-creme-100 font-bold shadow-sm'
+                : 'text-neutral-600 dark:text-creme-200/60 hover:text-burgundy-900 dark:hover:text-creme-100'
             }`}
           >
             G-Shock
@@ -513,8 +513,8 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
             onClick={() => setActiveModelType('glasses')}
             className={`px-3 py-1 font-mono text-[11px] transition-all uppercase ${
               activeModelType === 'glasses'
-                ? 'bg-neutral-950 text-white dark:bg-neon-lime dark:text-black font-bold'
-                : 'text-neutral-600 dark:text-zinc-400 hover:text-black dark:hover:text-white'
+                ? 'bg-burgundy-900 text-creme-100 dark:bg-burgundy-800 dark:text-creme-100 font-bold shadow-sm'
+                : 'text-neutral-600 dark:text-creme-200/60 hover:text-burgundy-900 dark:hover:text-creme-100'
             }`}
           >
             Shades
@@ -535,8 +535,8 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
           onClick={() => setAutoRotate(!autoRotate)}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono border backdrop-blur-md transition-all shadow-sm ${
             autoRotate
-              ? 'bg-neutral-950 text-white border-neutral-900 dark:bg-white/10 dark:text-neon-lime dark:border-neon-lime/50'
-              : 'bg-white/80 dark:bg-void-900/80 text-neutral-600 dark:text-zinc-400 border-neutral-300 dark:border-white/10 hover:text-black dark:hover:text-white'
+              ? 'bg-burgundy-900 text-creme-100 border-burgundy-900 dark:bg-burgundy-900/90 dark:text-dusty-300 dark:border-dusty-400/50'
+              : 'bg-creme-50/90 dark:bg-burgundy-950/90 text-neutral-600 dark:text-creme-200/70 border-sand-300 dark:border-burgundy-800/60 hover:text-burgundy-950 dark:hover:text-creme-100'
           }`}
           title="Toggle Turntable Rotation"
         >
@@ -549,10 +549,10 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
           onClick={() => setIsWireframe(!isWireframe)}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono border backdrop-blur-md transition-all shadow-sm ${
             isWireframe
-              ? 'bg-neutral-950 text-cyan-400 border-cyan-500 dark:bg-neon-cyan/20 dark:text-neon-cyan dark:border-neon-cyan/70'
-              : 'bg-white/80 dark:bg-void-900/80 text-neutral-600 dark:text-zinc-400 border-neutral-300 dark:border-white/10 hover:text-black dark:hover:text-white'
+              ? 'bg-burgundy-900 text-dusty-300 border-dusty-400 dark:bg-dusty-500/20 dark:text-dusty-300 dark:border-dusty-400/70'
+              : 'bg-creme-50/90 dark:bg-burgundy-950/90 text-neutral-600 dark:text-creme-200/70 border-sand-300 dark:border-burgundy-800/60 hover:text-burgundy-950 dark:hover:text-creme-100'
           }`}
-          title="Toggle Cyber Wireframe"
+          title="Toggle Wireframe Architecture"
         >
           <Box className="w-3.5 h-3.5" />
           <span className="text-[10px] uppercase font-bold">Wireframe</span>
@@ -561,7 +561,7 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
         {/* Reset Camera View */}
         <button
           onClick={resetCamera}
-          className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono bg-white/80 dark:bg-void-900/80 text-neutral-600 dark:text-zinc-400 border border-neutral-300 dark:border-white/10 hover:text-black dark:hover:text-white backdrop-blur-md transition-all shadow-sm"
+          className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono bg-creme-50/90 dark:bg-burgundy-950/90 text-neutral-600 dark:text-creme-200/70 border border-sand-300 dark:border-burgundy-800/60 hover:text-burgundy-950 dark:hover:text-creme-100 backdrop-blur-md transition-all shadow-sm"
         >
           <Eye className="w-3.5 h-3.5" />
           <span className="text-[10px] uppercase font-bold">Reset 3D</span>
@@ -569,48 +569,48 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
       </div>
 
       {/* Interactive Helper Indicator (Center Top) */}
-      <div className="absolute top-16 left-1/2 -translate-x-1/2 pointer-events-none z-10 hidden md:flex items-center gap-2 px-3 py-1 bg-white/80 dark:bg-void-950/70 border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-zinc-400 text-[10px] font-mono tracking-widest uppercase backdrop-blur-sm shadow-sm">
-        <Sparkles className="w-3 h-3 text-neutral-900 dark:text-neon-lime" />
+      <div className="absolute top-16 left-1/2 -translate-x-1/2 pointer-events-none z-10 hidden md:flex items-center gap-2 px-3 py-1 bg-creme-50/80 dark:bg-burgundy-950/80 border border-sand-300/70 dark:border-burgundy-800/60 text-neutral-600 dark:text-creme-200/80 text-[10px] font-mono tracking-widest uppercase backdrop-blur-sm shadow-sm">
+        <Sparkles className="w-3 h-3 text-burgundy-800 dark:text-dusty-300" />
         <span>Click & Drag to Rotate // Scroll to Zoom</span>
       </div>
 
       {/* Bottom Floating Card: Product Specs & Actionable Affiliate Cop */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-white via-white/95 to-transparent dark:from-void-950 dark:via-void-950/95 dark:to-transparent border-t border-neutral-200 dark:border-white/10">
+      <div className="absolute bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-creme-50 via-creme-50/95 to-transparent dark:from-burgundy-950 dark:via-burgundy-950/95 dark:to-transparent border-t border-sand-300/70 dark:border-burgundy-800/60">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-mono tracking-widest text-neutral-500 dark:text-zinc-400 uppercase">
+              <span className="text-xs font-mono tracking-widest text-neutral-500 dark:text-creme-200/60 uppercase">
                 {currentItem.brand} // {currentItem.category}
               </span>
-              <span className="text-[10px] font-mono text-neutral-900 dark:text-neon-lime bg-neutral-100 dark:bg-neon-lime/10 px-1.5 py-0.5 border border-neutral-300 dark:border-neon-lime/30 font-bold">
+              <span className="text-[10px] font-mono text-burgundy-900 dark:text-dusty-300 bg-sand-200/60 dark:bg-burgundy-900/60 px-1.5 py-0.5 border border-sand-400/40 dark:border-dusty-400/30 font-bold">
                 VERIFIED AUTHENTIC
               </span>
             </div>
-            <h2 className="text-xl md:text-2xl font-bold uppercase text-neutral-900 dark:text-white tracking-tight leading-none">
+            <h2 className="text-xl md:text-2xl font-bold uppercase text-burgundy-950 dark:text-creme-100 tracking-tight leading-none">
               {currentItem.name}
             </h2>
             <div className="flex items-baseline gap-3 mt-1.5">
-              <span className="text-2xl md:text-3xl font-mono font-bold text-neutral-950 dark:text-neon-lime">
+              <span className="text-2xl md:text-3xl font-mono font-bold text-burgundy-950 dark:text-creme-100">
                 {currentItem.price}
               </span>
-              <span className="text-xs font-mono text-neutral-400 dark:text-zinc-400 line-through">
+              <span className="text-xs font-mono text-neutral-400 dark:text-creme-200/50 line-through">
                 ${(parseFloat(currentItem.price.replace('$', '')) * 1.25).toFixed(2)}
               </span>
-              <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-medium">Save 20% with code [DRIP20]</span>
+              <span className="text-xs font-mono text-dusty-600 dark:text-dusty-300 font-medium">Save 20% with code [DRIP20]</span>
             </div>
           </div>
 
           {/* Colorway Switcher & Direct Cop Action */}
           <div className="flex flex-wrap items-center gap-3">
             {/* Colorway Pills */}
-            <div className="flex items-center gap-1.5 bg-neutral-100 dark:bg-void-900 border border-neutral-200 dark:border-white/15 p-1.5">
-              <span className="text-[10px] font-mono text-neutral-600 dark:text-zinc-400 uppercase mr-1">Shade:</span>
+            <div className="flex items-center gap-1.5 bg-creme-100 dark:bg-burgundy-900/70 border border-sand-300 dark:border-burgundy-800/60 p-1.5">
+              <span className="text-[10px] font-mono text-neutral-600 dark:text-creme-200/70 uppercase mr-1">Shade:</span>
               {colorways.map((col) => (
                 <button
                   key={col.hex}
                   onClick={() => setSelectedColor(col.hex)}
                   className={`w-5 h-5 rounded-none border transition-all ${
-                    selectedColor === col.hex ? 'border-neutral-900 dark:border-white scale-110 shadow-md' : 'border-neutral-400 dark:border-black/50 opacity-60 hover:opacity-100'
+                    selectedColor === col.hex ? 'border-burgundy-950 dark:border-creme-100 scale-110 shadow-md ring-1 ring-burgundy-800' : 'border-sand-400/60 dark:border-burgundy-700/60 opacity-60 hover:opacity-100'
                   }`}
                   style={{ backgroundColor: col.hex }}
                   title={col.name}
@@ -623,7 +623,7 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
               href={currentItem.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-neutral-950 text-white dark:bg-emerald-400 dark:text-black font-bold uppercase font-mono text-xs tracking-wider border-2 border-neutral-950 dark:border-emerald-400 hover:bg-neutral-800 dark:hover:bg-emerald-300 dark:hover:shadow-[0_0_20px_rgba(0,255,136,0.4)] transition-all shadow-md"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-burgundy-900 text-creme-100 dark:bg-burgundy-700 dark:text-creme-100 font-bold uppercase font-mono text-xs tracking-wider border-2 border-burgundy-900 dark:border-dusty-400/60 hover:bg-burgundy-800 dark:hover:bg-burgundy-600 hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(200,164,159,0.3)] transition-all shadow-md"
             >
               <span>COP THIS DROP</span>
               <ExternalLink className="w-3.5 h-3.5" />

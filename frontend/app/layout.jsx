@@ -14,20 +14,25 @@ export default function RootLayout({ children }) {
             __html: `
               (function() {
                 try {
-                  var saved = localStorage.getItem('streetdrip_theme');
-                  // Light is the default primary theme. Only activate dark if user specifically chose 'dark'.
-                  if (saved === 'dark') {
+                  var saved = localStorage.getItem('streetdrip_theme') || 'creme';
+                  if (saved === 'dark') saved = 'burgundy';
+                  if (saved === 'light') saved = 'creme';
+
+                  document.documentElement.setAttribute('data-theme', saved);
+                  if (saved === 'burgundy' || saved === 'rose') {
                     document.documentElement.classList.add('dark');
                   } else {
                     document.documentElement.classList.remove('dark');
                   }
-                } catch (e) {}
+                } catch (e) {
+                  document.documentElement.setAttribute('data-theme', 'creme');
+                }
               })();
             `,
           }}
         />
       </head>
-      <body className="bg-neutral-50 text-neutral-900 dark:bg-void-950 dark:text-neutral-100 min-h-screen antialiased transition-colors duration-200 selection:bg-neutral-900 selection:text-white dark:selection:bg-emerald-400 dark:selection:text-black">
+      <body className="bg-creme-50 text-burgundy-950 dark:bg-burgundy-950 dark:text-creme-100 min-h-screen antialiased transition-colors duration-300 selection:bg-burgundy-600 selection:text-creme-100 dark:selection:bg-dusty-400 dark:selection:text-burgundy-950 font-sans">
         {children}
       </body>
     </html>
