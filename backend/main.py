@@ -13,7 +13,7 @@ import os
 import re
 from datetime import datetime, timedelta
 
-from fastapi import FastAPI, Query, HTTPException, Depends, status, Request
+from fastapi import FastAPI, Query, HTTPException, Depends, status, Request, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel, Field
@@ -434,6 +434,33 @@ def admin_delete_blog(blog_id: int, db: Session = Depends(get_db), admin: AdminU
     return {"success": True, "deleted_id": blog_id}
 
 
+@app.post("/admin/blogs/bulk-delete")
+def admin_bulk_delete_blogs(data: dict = Body(...), db: Session = Depends(get_db), admin: AdminUserModel = Depends(get_current_admin)):
+    ids = data.get("ids", [])
+    if not ids:
+        return {"success": True, "deleted_count": 0}
+    deleted = db.query(BlogModel).filter(BlogModel.id.in_(ids)).delete(synchronize_session=False)
+    db.commit()
+    return {"success": True, "deleted_count": deleted}
+
+
+@app.post("/admin/blogs/bulk-update")
+def admin_bulk_update_blogs(data: dict = Body(...), db: Session = Depends(get_db), admin: AdminUserModel = Depends(get_current_admin)):
+    ids = data.get("ids", [])
+    fields = data.get("fields", {})
+    if not ids or not fields:
+        return {"success": True, "updated_count": 0}
+    updated = 0
+    blogs = db.query(BlogModel).filter(BlogModel.id.in_(ids)).all()
+    for b in blogs:
+        for k, v in fields.items():
+            if hasattr(b, k) and v is not None:
+                setattr(b, k, sanitize_input(v) if isinstance(v, str) else v)
+        updated += 1
+    db.commit()
+    return {"success": True, "updated_count": updated}
+
+
 # ---------------------------------------------------------
 # PRODUCT ENDPOINTS (PUBLIC & ADMIN PROTECTED)
 # ---------------------------------------------------------
@@ -602,6 +629,33 @@ def admin_delete_product(product_id: int, db: Session = Depends(get_db), admin: 
     db.delete(prod)
     db.commit()
     return {"success": True, "deleted_id": product_id}
+
+
+@app.post("/admin/products/bulk-delete")
+def admin_bulk_delete_products(data: dict = Body(...), db: Session = Depends(get_db), admin: AdminUserModel = Depends(get_current_admin)):
+    ids = data.get("ids", [])
+    if not ids:
+        return {"success": True, "deleted_count": 0}
+    deleted = db.query(ProductModel).filter(ProductModel.id.in_(ids)).delete(synchronize_session=False)
+    db.commit()
+    return {"success": True, "deleted_count": deleted}
+
+
+@app.post("/admin/products/bulk-update")
+def admin_bulk_update_products(data: dict = Body(...), db: Session = Depends(get_db), admin: AdminUserModel = Depends(get_current_admin)):
+    ids = data.get("ids", [])
+    fields = data.get("fields", {})
+    if not ids or not fields:
+        return {"success": True, "updated_count": 0}
+    updated = 0
+    prods = db.query(ProductModel).filter(ProductModel.id.in_(ids)).all()
+    for p in prods:
+        for k, v in fields.items():
+            if hasattr(p, k) and v is not None:
+                setattr(p, k, sanitize_input(v) if isinstance(v, str) else v)
+        updated += 1
+    db.commit()
+    return {"success": True, "updated_count": updated}
 
 
 @app.get("/admin/stats")

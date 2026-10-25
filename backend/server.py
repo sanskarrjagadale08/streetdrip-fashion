@@ -372,6 +372,64 @@ class StreetDripHandler(http.server.BaseHTTPRequestHandler):
             save_blogs(blogs)
             return self.send_json(201, new_blog)
 
+        # POST /admin/products/bulk-delete
+        if path in ["/admin/products/bulk-delete", "/api/admin/products/bulk-delete"]:
+            if not self.is_authenticated_admin():
+                return self.send_json(401, {"detail": "Admin authorization required"})
+            ids_to_del = set(body.get("ids", []))
+            products = load_db()
+            new_p = [p for p in products if p["id"] not in ids_to_del]
+            deleted_count = len(products) - len(new_p)
+            save_db(new_p)
+            return self.send_json(200, {"success": True, "deleted_count": deleted_count, "remaining": len(new_p)})
+
+        # POST /admin/products/bulk-update
+        if path in ["/admin/products/bulk-update", "/api/admin/products/bulk-update"]:
+            if not self.is_authenticated_admin():
+                return self.send_json(401, {"detail": "Admin authorization required"})
+            ids_to_update = set(body.get("ids", []))
+            fields = body.get("fields", {})
+            products = load_db()
+            updated_count = 0
+            for p in products:
+                if p["id"] in ids_to_update:
+                    for k, v in fields.items():
+                        if v is not None:
+                            p[k] = sanitize_input(v) if isinstance(v, str) else v
+                    updated_count += 1
+            if updated_count > 0:
+                save_db(products)
+            return self.send_json(200, {"success": True, "updated_count": updated_count})
+
+        # POST /admin/blogs/bulk-delete
+        if path in ["/admin/blogs/bulk-delete", "/api/admin/blogs/bulk-delete"]:
+            if not self.is_authenticated_admin():
+                return self.send_json(401, {"detail": "Admin authorization required"})
+            ids_to_del = set(body.get("ids", []))
+            blogs = load_blogs()
+            new_b = [b for b in blogs if b["id"] not in ids_to_del]
+            deleted_count = len(blogs) - len(new_b)
+            save_blogs(new_b)
+            return self.send_json(200, {"success": True, "deleted_count": deleted_count, "remaining": len(new_b)})
+
+        # POST /admin/blogs/bulk-update
+        if path in ["/admin/blogs/bulk-update", "/api/admin/blogs/bulk-update"]:
+            if not self.is_authenticated_admin():
+                return self.send_json(401, {"detail": "Admin authorization required"})
+            ids_to_update = set(body.get("ids", []))
+            fields = body.get("fields", {})
+            blogs = load_blogs()
+            updated_count = 0
+            for b in blogs:
+                if b["id"] in ids_to_update:
+                    for k, v in fields.items():
+                        if v is not None:
+                            b[k] = sanitize_input(v) if isinstance(v, str) else v
+                    updated_count += 1
+            if updated_count > 0:
+                save_blogs(blogs)
+            return self.send_json(200, {"success": True, "updated_count": updated_count})
+
         # POST /recommend/vibe
         if path in ["/recommend/vibe", "/api/recommend/vibe"]:
             products = load_db()
@@ -467,6 +525,28 @@ class StreetDripHandler(http.server.BaseHTTPRequestHandler):
 
     def do_DELETE(self):
         path = urllib.parse.urlparse(self.path).path
+        if path in ["/admin/products/bulk", "/api/admin/products/bulk"]:
+            if not self.is_authenticated_admin():
+                return self.send_json(401, {"detail": "Unauthorized"})
+            body = self.read_json_body()
+            ids_to_del = set(body.get("ids", []))
+            products = load_db()
+            new_p = [p for p in products if p["id"] not in ids_to_del]
+            deleted_count = len(products) - len(new_p)
+            save_db(new_p)
+            return self.send_json(200, {"success": True, "deleted_count": deleted_count})
+
+        if path in ["/admin/blogs/bulk", "/api/admin/blogs/bulk"]:
+            if not self.is_authenticated_admin():
+                return self.send_json(401, {"detail": "Unauthorized"})
+            body = self.read_json_body()
+            ids_to_del = set(body.get("ids", []))
+            blogs = load_blogs()
+            new_b = [b for b in blogs if b["id"] not in ids_to_del]
+            deleted_count = len(blogs) - len(new_b)
+            save_blogs(new_b)
+            return self.send_json(200, {"success": True, "deleted_count": deleted_count})
+
         if path.startswith("/admin/products/"):
             if not self.is_authenticated_admin():
                 return self.send_json(401, {"detail": "Unauthorized"})

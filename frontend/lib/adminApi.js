@@ -154,6 +154,46 @@ export async function deleteProduct(productId) {
   return await res.json();
 }
 
+export async function bulkDeleteProducts(ids) {
+  if (!ids || ids.length === 0) return { success: true, deleted_count: 0 };
+  try {
+    const res = await authFetch('/admin/products/bulk-delete', {
+      method: 'POST',
+      body: JSON.stringify({ ids }),
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (e) {
+    console.warn('Bulk delete endpoint failed, falling back to concurrent single deletes:', e);
+  }
+  // Fallback
+  await Promise.all(ids.map(id => deleteProduct(id).catch(err => {
+    console.warn(`Failed to delete item #${id}`, err);
+  })));
+  return { success: true, deleted_count: ids.length };
+}
+
+export async function bulkUpdateProducts(ids, fields) {
+  if (!ids || ids.length === 0) return { success: true, updated_count: 0 };
+  try {
+    const res = await authFetch('/admin/products/bulk-update', {
+      method: 'POST',
+      body: JSON.stringify({ ids, fields }),
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (e) {
+    console.warn('Bulk update endpoint failed, falling back to concurrent single updates:', e);
+  }
+  // Fallback
+  await Promise.all(ids.map(id => updateProduct(id, fields).catch(err => {
+    console.warn(`Failed to update item #${id}`, err);
+  })));
+  return { success: true, updated_count: ids.length };
+}
+
 export async function fetchAllBlogs(params = {}) {
   const query = new URLSearchParams(params).toString();
   const res = await fetch(`${API_BASE_URL}/api/blogs${query ? `?${query}` : ''}`);
@@ -194,4 +234,44 @@ export async function deleteBlog(blogId) {
     throw new Error(err.detail || 'Failed to delete blog');
   }
   return await res.json();
+}
+
+export async function bulkDeleteBlogs(ids) {
+  if (!ids || ids.length === 0) return { success: true, deleted_count: 0 };
+  try {
+    const res = await authFetch('/admin/blogs/bulk-delete', {
+      method: 'POST',
+      body: JSON.stringify({ ids }),
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (e) {
+    console.warn('Bulk blog delete endpoint failed, falling back to concurrent single deletes:', e);
+  }
+  // Fallback
+  await Promise.all(ids.map(id => deleteBlog(id).catch(err => {
+    console.warn(`Failed to delete blog #${id}`, err);
+  })));
+  return { success: true, deleted_count: ids.length };
+}
+
+export async function bulkUpdateBlogs(ids, fields) {
+  if (!ids || ids.length === 0) return { success: true, updated_count: 0 };
+  try {
+    const res = await authFetch('/admin/blogs/bulk-update', {
+      method: 'POST',
+      body: JSON.stringify({ ids, fields }),
+    });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (e) {
+    console.warn('Bulk blog update endpoint failed, falling back to concurrent single updates:', e);
+  }
+  // Fallback
+  await Promise.all(ids.map(id => updateBlog(id, fields).catch(err => {
+    console.warn(`Failed to update blog #${id}`, err);
+  })));
+  return { success: true, updated_count: ids.length };
 }
