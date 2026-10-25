@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <radialGradient id="hDrop" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#240B12" />
+      <stop offset="100%" stop-color="#08070A" />
+    </radialGradient>
+  </defs>
+  <rect width="500" height="500" fill="url(#hDrop)" />
+  <circle cx="250" cy="250" r="210" fill="none" stroke="#D4FF00" stroke-width="2.5" stroke-dasharray="8 6" opacity="0.6" />
+  <circle cx="250" cy="250" r="190" fill="#14060B" stroke="#4A121A" stroke-width="3" />
+  <!-- Flame / Drop Icon -->
+  <path d="M250 140 C265 185 305 215 305 260 C305 295 280 325 250 325 C220 325 195 295 195 260 C195 225 220 200 230 180 C235 210 255 225 255 245 C255 260 245 270 235 270 C245 285 265 285 270 270 C275 250 255 225 250 200 Z" fill="#D4FF00" />
+  <text x="250" y="375" font-family="'Courier New', monospace" font-size="18" fill="#EADBCE" text-anchor="middle" letter-spacing="4" font-weight="bold">DROPS</text>
+</svg>
