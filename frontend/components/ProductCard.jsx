@@ -3,10 +3,31 @@
 import React, { useState } from 'react';
 import { Heart, ExternalLink, Box, Share2, Sparkles } from 'lucide-react';
 
-export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
-  const [likes, setLikes] = useState(product.likes || 120);
+export default function ProductCard({ product = {}, onSelectVibe, onPreview3D }) {
+  const [likes, setLikes] = useState(product?.likes || 120);
   const [hasLiked, setHasLiked] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+
+  // Safe tag extraction (handles Array, comma-separated string, or null)
+  const rawVibe = product?.vibe_tags;
+  const tags = Array.isArray(rawVibe)
+    ? rawVibe
+    : typeof rawVibe === 'string'
+    ? rawVibe.split(',').map(t => t.trim()).filter(Boolean)
+    : [];
+
+  // Safe price extraction & INR formatting (handles number, numeric string, or null)
+  const rawPrice = typeof product?.price === 'number'
+    ? product.price
+    : parseFloat(String(product?.price || '0').replace(/[^0-9.]/g, '')) || 0;
+  const formattedPrice = rawPrice.toLocaleString('en-IN');
+  const originalPrice = Math.round(rawPrice * 1.25).toLocaleString('en-IN');
+
+  const brandName = String(product?.brand || 'General');
+  const categoryLabel = String(product?.sub_category || product?.category || product?.main_category || 'Streetwear');
+  const dropStatus = String(product?.drop_status || 'HOT DROP');
+  const imageUrl = product?.image_url || 'https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=800&q=80';
+  const affiliateLink = product?.affiliate_link || '#';
 
   const handleLike = (e) => {
     e.preventDefault();
@@ -72,8 +93,8 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-creme-100 dark:bg-burgundy-950">
         {/* Product Image */}
         <img
-          src={product.image_url}
-          alt={product.name}
+          src={imageUrl}
+          alt={product?.name || 'Streetwear Piece'}
           className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
         />
@@ -81,12 +102,12 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
         {/* Top Badges Overlay */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
           {/* Drop Status Tag */}
-          <span className={`px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border rounded-none shadow-sm font-bold ${getDropTagBadge(product.drop_status)}`}>
-            {product.drop_status || 'COLLECTION'}
+          <span className={`px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider border rounded-none shadow-sm font-bold ${getDropTagBadge(dropStatus)}`}>
+            {dropStatus}
           </span>
 
           {/* 3D Available Badge */}
-          {product.model_3d_url && (
+          {product?.model_3d_url && (
             <button
               onClick={(e) => {
                 e.preventDefault();
@@ -138,37 +159,39 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
           {/* Brand & Category Breadcrumb */}
           <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider mb-2.5">
             <span className="font-bold text-burgundy-950 dark:text-creme-100 bg-creme-100 dark:bg-burgundy-950/90 px-2.5 py-0.5 border border-sand-200 dark:border-burgundy-800">
-              {product.brand}
+              {brandName}
             </span>
-            <span className={`font-bold ${getCategoryColor(product.main_category)}`}>
-              {product.sub_category || product.category}
+            <span className={`font-bold ${getCategoryColor(product?.main_category)}`}>
+              {categoryLabel}
             </span>
           </div>
 
           {/* Product Name */}
           <h3 className="font-serif font-semibold text-lg md:text-xl text-burgundy-950 dark:text-creme-100 line-clamp-1 group-hover:text-burgundy-600 dark:group-hover:text-dusty-300 transition-colors">
-            {product.name}
+            {product?.name || 'Untitled Piece'}
           </h3>
 
           {/* Description snippet */}
-          {product.description && (
+          {product?.description && (
             <p className="text-xs md:text-sm text-burgundy-900/80 dark:text-sand-300/80 font-sans line-clamp-2 mt-1.5 leading-relaxed font-light">
               {product.description}
             </p>
           )}
 
           {/* Vibe Tags Pills */}
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            {product.vibe_tags?.slice(0, 3).map((vibe) => (
-              <button
-                key={vibe}
-                onClick={() => onSelectVibe?.(vibe)}
-                className="text-[11px] font-mono font-medium uppercase bg-creme-100/90 dark:bg-burgundy-950/90 border border-sand-200 dark:border-burgundy-800 text-burgundy-800 dark:text-sand-300 px-2 py-0.5 hover:border-burgundy-600 dark:hover:border-dusty-400 hover:text-burgundy-950 dark:hover:text-creme-100 transition-colors"
-              >
-                #{vibe}
-              </button>
-            ))}
-          </div>
+          {tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mt-3">
+              {tags.slice(0, 3).map((vibe) => (
+                <button
+                  key={vibe}
+                  onClick={() => onSelectVibe?.(vibe)}
+                  className="text-[11px] font-mono font-medium uppercase bg-creme-100/90 dark:bg-burgundy-950/90 border border-sand-200 dark:border-burgundy-800 text-burgundy-800 dark:text-sand-300 px-2 py-0.5 hover:border-burgundy-600 dark:hover:border-dusty-400 hover:text-burgundy-950 dark:hover:text-creme-100 transition-colors"
+                >
+                  #{vibe}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Bottom Price & Actionable Affiliate Redirect */}
@@ -176,11 +199,13 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
           <div className="flex items-baseline justify-between mb-3 font-mono">
             <div>
               <span className="text-2xl md:text-3xl font-bold text-burgundy-950 dark:text-creme-100 tracking-tight">
-                ₹{product.price?.toLocaleString('en-IN')}
+                ₹{formattedPrice}
               </span>
-              <span className="text-xs text-sand-500 dark:text-sand-400/70 line-through ml-2">
-                ₹{Math.round(product.price * 1.25).toLocaleString('en-IN')}
-              </span>
+              {rawPrice > 0 && (
+                <span className="text-xs text-sand-500 dark:text-sand-400/70 line-through ml-2">
+                  ₹{originalPrice}
+                </span>
+              )}
             </div>
             <div className="text-xs text-sand-600 dark:text-sand-400 flex items-center gap-1.5 font-sans font-medium">
               <Heart className="w-3.5 h-3.5 text-burgundy-400 fill-current dark:text-dusty-400" />
@@ -190,7 +215,7 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
 
           {/* Actionable Button: "Cop this look" */}
           <a
-            href={product.affiliate_link}
+            href={affiliateLink}
             target="_blank"
             rel="noopener noreferrer"
             className="group/btn w-full flex items-center justify-center gap-2 py-3 px-4 bg-burgundy-600 text-creme-100 hover:bg-burgundy-700 dark:bg-dusty-400 dark:text-burgundy-950 dark:hover:bg-dusty-300 font-mono font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-sm border border-burgundy-600 dark:border-dusty-400"

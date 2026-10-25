@@ -341,7 +341,7 @@ class StreetDripHandler(http.server.BaseHTTPRequestHandler):
                 "model_3d_url": sanitize_input(body.get("model_3d_url") or ""),
                 "model_type": sanitize_input(body.get("model_type", "sneaker")),
                 "affiliate_link": sanitize_input(body.get("affiliate_link", "https://brand.com")),
-                "vibe_tags": [sanitize_input(t) for t in body.get("vibe_tags", ["Streetwear"])],
+                "vibe_tags": [sanitize_input(t.strip()) for t in (body.get("vibe_tags").split(",") if isinstance(body.get("vibe_tags"), str) else (body.get("vibe_tags") or ["Streetwear"])) if str(t).strip()],
                 "likes": random.randint(50, 150),
                 "drop_status": sanitize_input(body.get("drop_status", "HOT DROP")),
                 "description": sanitize_input(body.get("description", ""))

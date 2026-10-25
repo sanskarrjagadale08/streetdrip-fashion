@@ -36,13 +36,16 @@ export default function BlogSection() {
     loadBlogs();
   }, []);
 
-  const filteredBlogs = blogs.filter(b => {
-    if (selectedCategory !== 'All' && b.category?.toLowerCase() !== selectedCategory.toLowerCase()) {
+  const filteredBlogs = (Array.isArray(blogs) ? blogs : []).filter(b => {
+    if (!b || typeof b !== 'object') return false;
+    if (selectedCategory !== 'All' && String(b.category || '').toLowerCase() !== String(selectedCategory || '').toLowerCase()) {
       return false;
     }
     if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      return b.title?.toLowerCase().includes(q) || b.excerpt?.toLowerCase().includes(q);
+      const q = searchQuery.toLowerCase().trim();
+      const titleMatches = String(b.title || '').toLowerCase().includes(q);
+      const excerptMatches = String(b.excerpt || '').toLowerCase().includes(q);
+      return titleMatches || excerptMatches;
     }
     return true;
   });

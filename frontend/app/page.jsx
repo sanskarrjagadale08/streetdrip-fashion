@@ -58,7 +58,7 @@ export default function StreetwearLandingPage() {
   const [loading, setLoading] = useState(true);
 
   // Active Navigation
-  const [activeMainCategory, setActiveMainCategory] = useState("Lowers");
+  const [activeMainCategory, setActiveMainCategory] = useState("All");
   const [activeSubCategory, setActiveSubCategory] = useState("All");
   const [selectedBrand, setSelectedBrand] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -93,7 +93,7 @@ export default function StreetwearLandingPage() {
       return 'text-burgundy-900/70 dark:text-sand-200/70 hover:text-burgundy-950 dark:hover:text-creme-100 hover:bg-sand-200/50 dark:hover:bg-burgundy-900/60';
     }
     // Nomiki Palette: Deep Burgundy in Light Mode, Dusty Pink & Sand Accents in Dark Themes
-    switch (pillar.toLowerCase()) {
+    switch (String(pillar || '').toLowerCase()) {
       case 'lowers':
         return 'bg-burgundy-600 text-creme-100 border-burgundy-600 dark:bg-dusty-400 dark:text-burgundy-950 font-bold dark:border-dusty-300 dark:shadow-[0_0_15px_rgba(200,164,159,0.35)]';
       case 'shirts':
@@ -125,27 +125,30 @@ export default function StreetwearLandingPage() {
 
   // Filtered products based on Main Category + Subcategory + Brand + Search + Sort
   const filteredProducts = useMemo(() => {
+    if (!Array.isArray(products)) return [];
     return products.filter((item) => {
+      if (!item || typeof item !== 'object') return false;
+
       // Main category filter
-      if (activeMainCategory !== "All") {
-        const itemMain = item.main_category || item.category?.split(' - ')[0] || "";
-        if (itemMain.toLowerCase() !== activeMainCategory.toLowerCase()) {
+      if (activeMainCategory && activeMainCategory !== "All") {
+        const itemMain = String(item.main_category || item.category?.split(' - ')[0] || "").toLowerCase().trim();
+        if (itemMain !== String(activeMainCategory).toLowerCase().trim()) {
           return false;
         }
       }
 
       // Subcategory filter
-      if (activeSubCategory !== "All") {
-        const itemSub = item.sub_category || item.category?.split(' - ')[1] || "";
-        if (itemSub.toLowerCase() !== activeSubCategory.toLowerCase()) {
+      if (activeSubCategory && activeSubCategory !== "All") {
+        const itemSub = String(item.sub_category || item.category?.split(' - ')[1] || "").toLowerCase().trim();
+        if (itemSub !== String(activeSubCategory).toLowerCase().trim()) {
           return false;
         }
       }
 
       // Brand filter
-      if (selectedBrand !== "All") {
-        const itemBrand = (item.brand || "").toLowerCase().trim();
-        const selBrand = selectedBrand.toLowerCase().trim();
+      if (selectedBrand && selectedBrand !== "All") {
+        const itemBrand = String(item.brand || "").toLowerCase().trim();
+        const selBrand = String(selectedBrand).toLowerCase().trim();
         const matchesBrand =
           itemBrand === selBrand ||
           (selBrand === "general" && (itemBrand === "none" || itemBrand === "general" || !itemBrand || itemBrand === "unbranded")) ||
@@ -161,20 +164,28 @@ export default function StreetwearLandingPage() {
 
       // Search filter
       if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        const matchesName = item.name?.toLowerCase().includes(q);
-        const matchesBrand = item.brand?.toLowerCase().includes(q);
-        const matchesSub = item.sub_category?.toLowerCase().includes(q);
-        const matchesVibe = item.vibe_tags?.some(v => v.toLowerCase().includes(q));
+        const q = searchQuery.toLowerCase().trim();
+        const matchesName = String(item.name || '').toLowerCase().includes(q);
+        const matchesBrand = String(item.brand || '').toLowerCase().includes(q);
+        const matchesSub = String(item.sub_category || item.category || '').toLowerCase().includes(q);
+        const rawVibe = item.vibe_tags;
+        const vibeList = Array.isArray(rawVibe)
+          ? rawVibe
+          : typeof rawVibe === 'string'
+          ? rawVibe.split(',').map(t => t.trim()).filter(Boolean)
+          : [];
+        const matchesVibe = vibeList.some(v => String(v).toLowerCase().includes(q));
         if (!matchesName && !matchesBrand && !matchesSub && !matchesVibe) return false;
       }
 
       return true;
     }).sort((a, b) => {
-      if (sortBy === "price_asc") return a.price - b.price;
-      if (sortBy === "price_desc") return b.price - a.price;
-      if (sortBy === "newest") return b.id - a.id;
-      return (b.likes || 0) - (a.likes || 0);
+      const priceA = parseFloat(a?.price) || 0;
+      const priceB = parseFloat(b?.price) || 0;
+      if (sortBy === "price_asc") return priceA - priceB;
+      if (sortBy === "price_desc") return priceB - priceA;
+      if (sortBy === "newest") return (b?.id || 0) - (a?.id || 0);
+      return (b?.likes || 0) - (a?.likes || 0);
     });
   }, [products, activeMainCategory, activeSubCategory, selectedBrand, searchQuery, sortBy]);
 
@@ -267,7 +278,7 @@ export default function StreetwearLandingPage() {
         <div className="border-t border-sand-300/60 dark:border-burgundy-800/60 bg-creme-100/70 dark:bg-burgundy-950/70 overflow-x-auto scrollbar-none">
           <div className="max-w-7xl mx-auto px-4 flex items-center gap-2 py-2.5">
             {MAIN_PILLARS.map((pillar) => {
-              const isActive = activeMainCategory.toLowerCase() === pillar.toLowerCase();
+              const isActive = String(activeMainCategory || '').toLowerCase() === String(pillar || '').toLowerCase();
               return (
                 <button
                   key={pillar}
@@ -305,7 +316,7 @@ export default function StreetwearLandingPage() {
 
             {/* Subcategory Chips */}
             {availableSubCategories.map((sub) => {
-              const isSubActive = activeSubCategory.toLowerCase() === sub.toLowerCase();
+              const isSubActive = String(activeSubCategory || '').toLowerCase() === String(sub || '').toLowerCase();
               return (
                 <button
                   key={sub}
@@ -438,7 +449,7 @@ export default function StreetwearLandingPage() {
             Brand Label:
           </span>
           {CURATED_BRANDS.map((b) => {
-            const isSelected = selectedBrand.toLowerCase() === b.toLowerCase();
+            const isSelected = String(selectedBrand || '').toLowerCase() === String(b || '').toLowerCase();
             return (
               <button
                 key={b}
