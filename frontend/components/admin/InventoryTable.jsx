@@ -507,7 +507,7 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
 
                   <td className="p-3">
                     <span className="font-bold text-white text-sm">
-                      ${prod.price.toFixed(2)}
+                      ₹{prod.price?.toLocaleString('en-IN')}
                     </span>
                   </td>
 
@@ -579,7 +579,7 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
               </div>
 
               <div>
-                <label className="block text-zinc-300 uppercase font-bold mb-1">Price (USD $)</label>
+                <label className="block text-zinc-300 uppercase font-bold mb-1">Price (INR ₹)</label>
                 <input
                   type="number"
                   step="0.01"
@@ -657,22 +657,22 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
                   onChange={(e) => setBulkPriceType(e.target.value)}
                   className="w-full bg-void-900 border border-white/15 p-2 text-white focus:outline-none focus:border-neon-lime uppercase"
                 >
-                  <option value="set">Set Fixed Price ($ USD)</option>
+                  <option value="set">Set Fixed Price (₹ INR)</option>
                   <option value="discount_percent">Apply Discount (% Off)</option>
-                  <option value="discount_fixed">Reduce By Fixed Amount ($ Off)</option>
+                  <option value="discount_fixed">Reduce By Fixed Amount (₹ Off)</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-zinc-300 uppercase font-bold mb-1">
-                  {bulkPriceType === 'discount_percent' ? 'Discount Percentage (%)' : 'Amount ($ USD)'}
+                  {bulkPriceType === 'discount_percent' ? 'Discount Percentage (%)' : 'Amount (₹ INR)'}
                 </label>
                 <input
                   type="number"
-                  step="0.01"
+                  step="1"
                   value={bulkPriceValue}
                   onChange={(e) => setBulkPriceValue(e.target.value)}
-                  placeholder={bulkPriceType === 'discount_percent' ? 'e.g. 20' : 'e.g. 59.99'}
+                  placeholder={bulkPriceType === 'discount_percent' ? 'e.g. 20' : 'e.g. 1999'}
                   className="w-full bg-void-900 border border-white/15 p-2 text-white focus:outline-none focus:border-neon-lime"
                 />
               </div>

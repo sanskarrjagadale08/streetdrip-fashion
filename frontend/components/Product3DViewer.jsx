@@ -31,7 +31,7 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
     sneaker: {
       name: "Nike Air Max Plus Drift 'Acid Neon'",
       brand: "Nike",
-      price: "$185.00",
+      price: "₹14,999",
       dropTag: "HIGH VOLTAGE DROP",
       link: "https://nike.com/affiliate/air-max-plus-drift?ref=streetdrip",
       category: "Shoes"
@@ -39,7 +39,7 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
     watch: {
       name: "Casio G-Shock GA-2100 'CasiOak' Stealth",
       brand: "Casio",
-      price: "$99.00",
+      price: "₹7,995",
       dropTag: "CYBER TECH WEAR",
       link: "https://gshock.com/affiliate/ga2100-stealth?ref=streetdrip",
       category: "Watches"
@@ -47,7 +47,7 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
     glasses: {
       name: "CyberShield Y2K Matrix Wrap Sunglasses",
       brand: "Zara",
-      price: "$32.90",
+      price: "₹2,490",
       dropTag: "LIMITED FEST DROP",
       link: "https://zara.com/affiliate/cybershield-shades?ref=streetdrip",
       category: "Glasses"
@@ -594,7 +594,11 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
                 {currentItem.price}
               </span>
               <span className="text-xs sm:text-sm font-mono text-neutral-400 dark:text-creme-200/50 line-through">
-                ${(parseFloat(currentItem.price.replace('$', '')) * 1.25).toFixed(2)}
+                {(() => {
+                  const raw = String(currentItem.price || '').replace(/[^0-9.]/g, '');
+                  const num = parseFloat(raw) || 0;
+                  return `₹${Math.round(num * 1.25).toLocaleString('en-IN')}`;
+                })()}
               </span>
               <span className="text-xs font-mono text-dusty-600 dark:text-dusty-300 font-bold">Save 20% with [DRIP20]</span>
             </div>

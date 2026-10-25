@@ -35,6 +35,7 @@ const MAIN_PILLARS = [
 
 const CURATED_BRANDS = [
   "All",
+  "None",
   "Nike",
   "Zara",
   "Bewakoof",

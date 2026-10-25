@@ -384,10 +384,10 @@ export default function AdminDashboardPage() {
                 <div className="bg-void-950 border border-white/10 p-5">
                   <div className="flex items-center justify-between text-zinc-400 text-xs mb-2 uppercase">
                     <span>Avg Vault Price</span>
-                    <span className="text-neon-lime font-bold">$</span>
+                    <span className="text-neon-lime font-bold">₹</span>
                   </div>
                   <div className="text-3xl font-black text-neon-lime">
-                    ${stats?.avg_price ? stats.avg_price.toFixed(2) : '68.50'}
+                    ₹{stats?.avg_price ? Math.round(stats.avg_price).toLocaleString('en-IN') : '2,499'}
                   </div>
                   <div className="text-[10px] text-zinc-400 mt-1">Across all staples</div>
                 </div>
@@ -408,7 +408,7 @@ export default function AdminDashboardPage() {
                           <img src={p.image_url} alt="" className="w-8 h-8 object-cover bg-black" />
                           <div className="font-bold text-white uppercase truncate max-w-[200px]">{p.name}</div>
                         </div>
-                        <span className="font-bold text-neon-lime">${p.price.toFixed(2)}</span>
+                        <span className="font-bold text-neon-lime">₹{p.price?.toLocaleString('en-IN')}</span>
                       </div>
                     ))}
                   </div>

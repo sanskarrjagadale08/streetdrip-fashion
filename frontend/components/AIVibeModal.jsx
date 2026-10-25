@@ -51,8 +51,8 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
         vibe: vibeText,
         vibe_summary: "Nocturnal Cyber-Chic with high-vis accents and dark silhouette pooling.",
         aesthetic_quote: "3:00 AM empty flyover energy. Tuned Air bouncing off highway streetlights.",
-        total_price: 366.80,
-        currency: "USD",
+        total_price: 24487,
+        currency: "INR",
         styling_tips: [
           "Tuck the baggy cargos slightly into the high collar tongue of the sneakers.",
           "Wear the Y2K wrap shades pushed down the nose bridge or resting on your neck.",
@@ -63,7 +63,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
           top: {
             name: "Bewakoof 280 GSM Heavyweight Boxy T-Shirt",
             brand: "Bewakoof",
-            price: 28.00,
+            price: 1999,
             image_url: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
             affiliate_link: "https://bewakoof.com/affiliate/boxy-tee?ref=streetdrip",
             role: "Essential Base Layer"
@@ -71,7 +71,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
           bottom: {
             name: "Levi's 568 Loose Straight Carpenter Denim",
             brand: "Levi's",
-            price: 89.50,
+            price: 4999,
             image_url: "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80",
             affiliate_link: "https://levi.com/affiliate/568-loose?ref=streetdrip",
             role: "Grounding Silhouette"
@@ -79,7 +79,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
           shoes: {
             name: "Nike Air Max Plus Drift 'Acid Neon'",
             brand: "Nike",
-            price: 185.00,
+            price: 14999,
             image_url: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
             affiliate_link: "https://nike.com/affiliate/air-max-plus-drift?ref=streetdrip",
             role: "Aggressive Footwear"
@@ -87,7 +87,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
           accessory: {
             name: "CyberShield Y2K Matrix Aerodynamic Wrap Shades",
             brand: "Zara",
-            price: 32.90,
+            price: 2490,
             image_url: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
             affiliate_link: "https://zara.com/affiliate/cybershield-shades?ref=streetdrip",
             role: "Statement Accent"
@@ -211,7 +211,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
               <div className="text-right">
                 <div className="text-xs text-sand-600 dark:text-sand-400 uppercase font-mono font-bold">BUNDLE PRICE</div>
                 <div className="text-2xl font-bold text-burgundy-600 dark:text-dusty-400 font-mono">
-                  ${outfitResult.total_price.toFixed(2)}
+                  ₹{Number(outfitResult.total_price || 0).toLocaleString('en-IN')}
                 </div>
               </div>
             </div>
@@ -242,7 +242,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
 
                   <div className="mt-3 pt-2.5 border-t border-sand-100 dark:border-burgundy-800 flex items-center justify-between">
                     <span className="font-mono font-bold text-sm text-burgundy-950 dark:text-creme-100">
-                      ${piece.price.toFixed(2)}
+                      ₹{Number(piece.price || 0).toLocaleString('en-IN')}
                     </span>
                     <a
                       href={piece.affiliate_link}

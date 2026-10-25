@@ -176,10 +176,10 @@ export default function ProductCard({ product, onSelectVibe, onPreview3D }) {
           <div className="flex items-baseline justify-between mb-3 font-mono">
             <div>
               <span className="text-2xl md:text-3xl font-bold text-burgundy-950 dark:text-creme-100 tracking-tight">
-                ${product.price?.toFixed(2)}
+                ₹{product.price?.toLocaleString('en-IN')}
               </span>
               <span className="text-xs text-sand-500 dark:text-sand-400/70 line-through ml-2">
-                ${(product.price * 1.25).toFixed(2)}
+                ₹{Math.round(product.price * 1.25).toLocaleString('en-IN')}
               </span>
             </div>
             <div className="text-xs text-sand-600 dark:text-sand-400 flex items-center gap-1.5 font-sans font-medium">

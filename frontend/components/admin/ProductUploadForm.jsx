@@ -5,6 +5,7 @@ import { PlusCircle, Upload, CheckCircle, AlertCircle, Box, ExternalLink, Loader
 import { createProduct, FASHION_HIERARCHY } from '../../lib/adminApi';
 
 const AVAILABLE_BRANDS = [
+  "None",
   "Nike",
   "Levi's",
   "Zara",
@@ -31,7 +32,7 @@ export default function ProductUploadForm({ onSuccess }) {
     name: '',
     main_category: 'Lowers',
     sub_category: FASHION_HIERARCHY['Lowers'][0],
-    brand: 'Levi\'s',
+    brand: 'None',
     price: '',
     image_url: '',
     model_3d_url: '',
@@ -211,15 +212,15 @@ export default function ProductUploadForm({ onSuccess }) {
             </div>
 
             <div>
-              <label className="block text-zinc-300 uppercase font-bold mb-1">Price ($) *</label>
+              <label className="block text-zinc-300 uppercase font-bold mb-1">Price (INR ₹) *</label>
               <input
                 type="number"
-                step="0.01"
+                step="1"
                 name="price"
                 required
                 value={formData.price}
                 onChange={handleChange}
-                placeholder="79.90"
+                placeholder="2999"
                 className="w-full bg-void-900 border border-white/10 p-2.5 text-white focus:outline-none focus:border-neon-lime"
               />
             </div>
@@ -341,7 +342,7 @@ export default function ProductUploadForm({ onSuccess }) {
           </div>
 
           <div className="text-lg font-black text-neon-lime mt-1 font-mono">
-            ${previewPrice.toFixed(2)}
+            ₹{previewPrice.toLocaleString('en-IN')}
           </div>
 
           <div className="mt-3 py-2 bg-white text-black text-center font-bold text-xs uppercase flex items-center justify-center gap-1">

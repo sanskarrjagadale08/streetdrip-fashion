@@ -440,7 +440,7 @@ class StreetDripHandler(http.server.BaseHTTPRequestHandler):
                     "vibe_summary": f"Styling engine ready. Add pieces in the Admin Panel to generate full outfits for '{aesthetic}'.",
                     "aesthetic_quote": "Upload items to unlock automatic ensemble matching.",
                     "total_price": 0.0,
-                    "currency": "USD",
+                    "currency": "INR",
                     "outfit_pieces": {},
                     "styling_tips": [
                         "Add tops, bottoms, jackets, and footwear in Admin.",
@@ -459,7 +459,7 @@ class StreetDripHandler(http.server.BaseHTTPRequestHandler):
                 "vibe_summary": f"Curated complete outfit styled for '{aesthetic}'.",
                 "aesthetic_quote": "Clean architectural volume with sharp minimalist contrast.",
                 "total_price": tot,
-                "currency": "USD",
+                "currency": "INR",
                 "outfit_pieces": {
                     "top": top_p,
                     "bottom": btm_p,

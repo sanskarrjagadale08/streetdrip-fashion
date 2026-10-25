@@ -138,20 +138,20 @@ export default function FilterSidebar({
       <div className="mb-7">
         <div className="flex items-center justify-between text-[11px] uppercase font-bold text-white mb-2">
           <span>MAX PRICE CAP</span>
-          <span className="text-neon-lime font-mono">${priceRange}</span>
+          <span className="text-neon-lime font-mono">₹{priceRange?.toLocaleString('en-IN')}</span>
         </div>
         <input
           type="range"
-          min="20"
-          max="250"
-          step="5"
+          min="499"
+          max="25000"
+          step="100"
           value={priceRange}
           onChange={(e) => onPriceChange(Number(e.target.value))}
           className="w-full accent-neon-lime bg-void-800 cursor-pointer h-1.5 rounded-none"
         />
         <div className="flex justify-between text-[9px] text-zinc-400 mt-1">
-          <span>$20 (Staples)</span>
-          <span>$250 (High-Heat)</span>
+          <span>₹499 (Staples)</span>
+          <span>₹25,000+ (High-Heat)</span>
         </div>
       </div>
 
