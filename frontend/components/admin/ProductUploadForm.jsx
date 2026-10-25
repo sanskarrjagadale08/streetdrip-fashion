@@ -7,14 +7,18 @@ import { createProduct, FASHION_HIERARCHY } from '../../lib/adminApi';
 const AVAILABLE_BRANDS = [
   "None",
   "Nike",
+  "Supreme",
+  "Stüssy",
+  "Balenciaga",
+  "Fear of God",
+  "Carhartt WIP",
   "Levi's",
   "Zara",
-  "Bewakoof",
   "H&M",
+  "Bewakoof",
   "Casio",
   "Crocs",
-  "Stüssy",
-  "Balenciaga"
+  "Dr. Martens"
 ];
 
 const DROP_STATUSES = [

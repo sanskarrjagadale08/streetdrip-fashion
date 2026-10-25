@@ -37,12 +37,17 @@ const CURATED_BRANDS = [
   "All",
   "None",
   "Nike",
+  "Supreme",
+  "Stüssy",
+  "Balenciaga",
+  "Fear of God",
+  "Carhartt WIP",
   "Zara",
-  "Bewakoof",
   "Levi's",
+  "H&M",
+  "Bewakoof",
   "Crocs",
-  "Dr. Martens",
-  "H&M"
+  "Dr. Martens"
 ];
 
 export default function StreetwearLandingPage() {
