@@ -66,7 +66,7 @@ export default function StreetwearLandingPage() {
       try {
         setLoading(true);
         const data = await fetchAllProducts();
-        if (data && Array.isArray(data) && data.length > 0) {
+        if (data && Array.isArray(data)) {
           setProducts(data);
         }
       } catch (err) {
@@ -457,29 +457,33 @@ export default function StreetwearLandingPage() {
               ))}
             </div>
           ) : (
-            <div className="p-16 text-center bg-white dark:bg-burgundy-900/40 border border-sand-300 dark:border-burgundy-800 font-mono shadow-sm">
-              <h3 className="text-xl font-bold uppercase text-burgundy-950 dark:text-creme-100 mb-2.5">
-                NO PIECES FOUND FOR THIS FILTER
+            <div className="p-12 md:p-16 text-center bg-white dark:bg-burgundy-900/40 border border-sand-300 dark:border-burgundy-800 font-mono shadow-sm">
+              <h3 className="text-xl md:text-2xl font-bold uppercase text-burgundy-950 dark:text-creme-100 mb-2.5">
+                {products.length === 0 ? "CATALOG READY FOR YOUR FIRST DROP" : "NO PIECES MATCHING THIS FILTER"}
               </h3>
-              <p className="text-sm text-burgundy-800/80 dark:text-sand-300 mb-6">
-                Try selecting "All" or upload new items directly from your Admin Dashboard.
+              <p className="text-sm text-burgundy-800/80 dark:text-sand-300 mb-6 max-w-md mx-auto">
+                {products.length === 0
+                  ? "The store is clean with 0 items. Head to the Admin Dashboard to add your brand pieces, high-res photos, and affiliate links."
+                  : 'Try selecting "All" or add new items directly from your Admin Dashboard.'}
               </p>
-              <div className="flex items-center justify-center gap-3">
-                <button
-                  onClick={() => {
-                    setActiveSubCategory("All");
-                    setSelectedBrand("All");
-                    setSearchQuery("");
-                  }}
-                  className="px-5 py-2.5 bg-creme-100 dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-700 text-burgundy-950 dark:text-creme-100 font-bold text-sm uppercase"
-                >
-                  Clear Filters
-                </button>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                {products.length > 0 && (
+                  <button
+                    onClick={() => {
+                      setActiveSubCategory("All");
+                      setSelectedBrand("All");
+                      setSearchQuery("");
+                    }}
+                    className="px-5 py-2.5 bg-creme-100 dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-700 text-burgundy-950 dark:text-creme-100 font-bold text-sm uppercase"
+                  >
+                    Clear Filters
+                  </button>
+                )}
                 <a
                   href="/admin"
                   className="px-5 py-2.5 bg-burgundy-600 text-creme-100 hover:bg-burgundy-700 dark:bg-dusty-400 dark:text-burgundy-950 font-bold text-sm uppercase shadow-sm"
                 >
-                  Open Admin
+                  Open Admin Dashboard
                 </a>
               </div>
             </div>

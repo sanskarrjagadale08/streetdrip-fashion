@@ -147,55 +147,6 @@ def seed_database_if_empty():
             )
             db.add(admin1)
             db.commit()
-
-        # 2. Seed Products if empty
-        if db.query(ProductModel).count() == 0:
-            json_file = os.path.join(os.path.dirname(__file__), "streetwear_db.json")
-            if os.path.exists(json_file):
-                with open(json_file, "r") as f:
-                    products_data = json.load(f)
-                for p in products_data:
-                    prod = ProductModel(
-                        id=p["id"],
-                        name=p["name"],
-                        main_category=p.get("main_category", "Lowers"),
-                        sub_category=p.get("sub_category", "Baggy Jeans"),
-                        brand=p["brand"],
-                        category=p.get("category", f"{p.get('main_category', 'Lowers')} - {p.get('sub_category', 'Baggy Jeans')}"),
-                        price=p["price"],
-                        image_url=p["image_url"],
-                        model_3d_url=p.get("model_3d_url"),
-                        model_type=p.get("model_type", "sneaker"),
-                        affiliate_link=p["affiliate_link"],
-                        vibe_tags_raw=json.dumps(p.get("vibe_tags", [])),
-                        likes=p.get("likes", 100),
-                        drop_status=p.get("drop_status", "HOT DROP"),
-                        description=p.get("description", "")
-                    )
-                    db.add(prod)
-                db.commit()
-
-        # 3. Seed Blogs if empty
-        if db.query(BlogModel).count() == 0:
-            blog_file = os.path.join(os.path.dirname(__file__), "blogs_db.json")
-            if os.path.exists(blog_file):
-                with open(blog_file, "r") as f:
-                    blogs_data = json.load(f)
-                for b in blogs_data:
-                    blg = BlogModel(
-                        id=b["id"],
-                        title=b["title"],
-                        category=b.get("category", "Lowers"),
-                        read_time=b.get("read_time", "4 min"),
-                        author=b.get("author", "Drip Editorial"),
-                        date=b.get("date", "Oct 24, 2026"),
-                        cover_image=b.get("cover_image", ""),
-                        excerpt=b.get("excerpt", ""),
-                        content=b.get("content", ""),
-                        tags_raw=json.dumps(b.get("tags", []))
-                    )
-                    db.add(blg)
-                db.commit()
     except Exception as e:
         print(f"Auto-seed note: {e}")
     finally:

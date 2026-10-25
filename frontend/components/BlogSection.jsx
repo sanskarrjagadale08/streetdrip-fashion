@@ -26,7 +26,7 @@ export default function BlogSection() {
     async function loadBlogs() {
       try {
         const data = await fetchAllBlogs();
-        if (data && Array.isArray(data) && data.length > 0) {
+        if (data && Array.isArray(data)) {
           setBlogs(data);
         }
       } catch (err) {
@@ -150,8 +150,19 @@ export default function BlogSection() {
         </div>
 
         {filteredBlogs.length === 0 && (
-          <div className="p-16 text-center text-sand-700 dark:text-sand-400 font-mono text-xs">
-            No essays found for "{selectedCategory}". Add new essays using the Admin Panel.
+          <div className="p-12 md:p-16 text-center bg-white dark:bg-burgundy-900/40 border border-sand-300 dark:border-burgundy-800 font-mono shadow-sm my-6">
+            <h3 className="text-xl font-bold uppercase text-burgundy-950 dark:text-creme-100 mb-2.5">
+              JOURNAL ARCHIVE READY
+            </h3>
+            <p className="text-sm text-burgundy-800/80 dark:text-sand-300 mb-6 max-w-md mx-auto">
+              No essays published yet. Write and publish your first editorial drops directly from the Admin Panel.
+            </p>
+            <a
+              href="/admin"
+              className="inline-block px-5 py-2.5 bg-burgundy-600 text-creme-100 hover:bg-burgundy-700 dark:bg-dusty-400 dark:text-burgundy-950 font-bold text-sm uppercase shadow-sm"
+            >
+              Open Admin to Write Essay
+            </a>
           </div>
         )}
       </div>
