@@ -103,7 +103,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-black/60 dark:bg-black/90 backdrop-blur-md overflow-y-auto font-sans transition-colors duration-200">
-      <div className="relative w-full max-w-4xl bg-white dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-600 p-6 md:p-8 my-auto shadow-2xl">
+      <div className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-white dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-600 p-4 sm:p-6 md:p-8 my-auto shadow-2xl">
         {/* Close Button */}
         <button
           onClick={onClose}

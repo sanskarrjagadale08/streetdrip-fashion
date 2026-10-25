@@ -5,6 +5,13 @@ export const metadata = {
   description: 'Curated menswear recommendation platform with heavy streetwear aesthetics, 3D WebGL product inspection, and AI vibe-based styling in both Light and Dark modes.',
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>

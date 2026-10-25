@@ -474,12 +474,12 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
   };
 
   return (
-    <div className="relative w-full h-[580px] bg-creme-100/40 dark:bg-burgundy-950/70 border border-sand-300/70 dark:border-burgundy-800/60 overflow-hidden rounded-none flex flex-col justify-between select-none">
+    <div className="relative w-full h-[460px] sm:h-[520px] md:h-[580px] bg-creme-100/40 dark:bg-burgundy-950/70 border border-sand-300/70 dark:border-burgundy-800/60 overflow-hidden rounded-none flex flex-col justify-between select-none">
       {/* Top Streetwear Meta Banner */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex flex-wrap items-center justify-between p-4 bg-creme-50/85 dark:bg-burgundy-950/85 backdrop-blur-md border-b border-sand-300/70 dark:border-burgundy-800/60 text-sm font-mono">
+      <div className="absolute top-0 left-0 right-0 z-20 flex flex-wrap items-center justify-between p-3 sm:p-4 bg-creme-50/85 dark:bg-burgundy-950/85 backdrop-blur-md border-b border-sand-300/70 dark:border-burgundy-800/60 text-xs sm:text-sm font-mono">
         <div className="flex items-center gap-2">
-          <span className="inline-block w-2.5 h-2.5 rounded-full bg-burgundy-800 dark:bg-dusty-400 animate-pulse"></span>
-          <span className="font-bold text-burgundy-950 dark:text-creme-100 tracking-widest uppercase">
+          <span className="inline-block w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-burgundy-800 dark:bg-dusty-400 animate-pulse"></span>
+          <span className="font-bold text-burgundy-950 dark:text-creme-100 tracking-wider sm:tracking-widest uppercase text-xs sm:text-sm">
             3D ATELIER // {activeModelType.toUpperCase()}
           </span>
           <span className="hidden sm:inline bg-sand-200/60 dark:bg-burgundy-900/60 text-burgundy-900 dark:text-dusty-300 border border-sand-400/40 dark:border-dusty-400/30 px-2.5 py-0.5 text-xs font-bold">
@@ -488,10 +488,10 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
         </div>
 
         {/* 3D Item Switcher Tabs */}
-        <div className="flex items-center gap-1.5 bg-creme-200/60 dark:bg-burgundy-900/50 border border-sand-300 dark:border-burgundy-800/60 p-1 mt-2 sm:mt-0">
+        <div className="flex items-center gap-1 sm:gap-1.5 bg-creme-200/60 dark:bg-burgundy-900/50 border border-sand-300 dark:border-burgundy-800/60 p-0.5 sm:p-1 mt-1 sm:mt-0">
           <button
             onClick={() => setActiveModelType('sneaker')}
-            className={`px-4 py-1.5 font-mono text-xs md:text-sm transition-all uppercase ${
+            className={`px-2.5 sm:px-4 py-1 sm:py-1.5 font-mono text-xs sm:text-sm transition-all uppercase ${
               activeModelType === 'sneaker'
                 ? 'bg-burgundy-900 text-creme-100 dark:bg-burgundy-800 dark:text-creme-100 font-bold shadow-sm'
                 : 'text-neutral-600 dark:text-creme-200/60 hover:text-burgundy-900 dark:hover:text-creme-100'
@@ -501,7 +501,7 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
           </button>
           <button
             onClick={() => setActiveModelType('watch')}
-            className={`px-4 py-1.5 font-mono text-xs md:text-sm transition-all uppercase ${
+            className={`px-2.5 sm:px-4 py-1 sm:py-1.5 font-mono text-xs sm:text-sm transition-all uppercase ${
               activeModelType === 'watch'
                 ? 'bg-burgundy-900 text-creme-100 dark:bg-burgundy-800 dark:text-creme-100 font-bold shadow-sm'
                 : 'text-neutral-600 dark:text-creme-200/60 hover:text-burgundy-900 dark:hover:text-creme-100'
@@ -511,7 +511,7 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
           </button>
           <button
             onClick={() => setActiveModelType('glasses')}
-            className={`px-4 py-1.5 font-mono text-xs md:text-sm transition-all uppercase ${
+            className={`px-2.5 sm:px-4 py-1 sm:py-1.5 font-mono text-xs sm:text-sm transition-all uppercase ${
               activeModelType === 'glasses'
                 ? 'bg-burgundy-900 text-creme-100 dark:bg-burgundy-800 dark:text-creme-100 font-bold shadow-sm'
                 : 'text-neutral-600 dark:text-creme-200/60 hover:text-burgundy-900 dark:hover:text-creme-100'
@@ -529,87 +529,87 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
       />
 
       {/* Floating Canvas UI Controls (Left Side) */}
-      <div className="absolute left-4 top-20 z-20 flex flex-col gap-2">
+      <div className="absolute left-2.5 sm:left-4 top-14 sm:top-20 z-20 flex flex-col gap-1.5 sm:gap-2">
         {/* Auto Rotate Toggle */}
         <button
           onClick={() => setAutoRotate(!autoRotate)}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono border backdrop-blur-md transition-all shadow-sm ${
+          className={`flex items-center gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs font-mono border backdrop-blur-md transition-all shadow-sm ${
             autoRotate
               ? 'bg-burgundy-900 text-creme-100 border-burgundy-900 dark:bg-burgundy-900/90 dark:text-dusty-300 dark:border-dusty-400/50'
               : 'bg-creme-50/90 dark:bg-burgundy-950/90 text-neutral-600 dark:text-creme-200/70 border-sand-300 dark:border-burgundy-800/60 hover:text-burgundy-950 dark:hover:text-creme-100'
           }`}
           title="Toggle Turntable Rotation"
         >
-          <RotateCw className={`w-3.5 h-3.5 ${autoRotate ? 'animate-spin' : ''}`} />
-          <span className="text-[10px] uppercase font-bold">{autoRotate ? 'Spin ON' : 'Spin OFF'}</span>
+          <RotateCw className={`w-3 sm:w-3.5 h-3 sm:h-3.5 ${autoRotate ? 'animate-spin' : ''}`} />
+          <span className="text-[9px] sm:text-[10px] uppercase font-bold">{autoRotate ? 'Spin ON' : 'Spin OFF'}</span>
         </button>
 
         {/* Wireframe Mode Toggle */}
         <button
           onClick={() => setIsWireframe(!isWireframe)}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono border backdrop-blur-md transition-all shadow-sm ${
+          className={`flex items-center gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs font-mono border backdrop-blur-md transition-all shadow-sm ${
             isWireframe
               ? 'bg-burgundy-900 text-dusty-300 border-dusty-400 dark:bg-dusty-500/20 dark:text-dusty-300 dark:border-dusty-400/70'
               : 'bg-creme-50/90 dark:bg-burgundy-950/90 text-neutral-600 dark:text-creme-200/70 border-sand-300 dark:border-burgundy-800/60 hover:text-burgundy-950 dark:hover:text-creme-100'
           }`}
           title="Toggle Wireframe Architecture"
         >
-          <Box className="w-3.5 h-3.5" />
-          <span className="text-[10px] uppercase font-bold">Wireframe</span>
+          <Box className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+          <span className="text-[9px] sm:text-[10px] uppercase font-bold">Wireframe</span>
         </button>
 
         {/* Reset Camera View */}
         <button
           onClick={resetCamera}
-          className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono bg-creme-50/90 dark:bg-burgundy-950/90 text-neutral-600 dark:text-creme-200/70 border border-sand-300 dark:border-burgundy-800/60 hover:text-burgundy-950 dark:hover:text-creme-100 backdrop-blur-md transition-all shadow-sm"
+          className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs font-mono bg-creme-50/90 dark:bg-burgundy-950/90 text-neutral-600 dark:text-creme-200/70 border border-sand-300 dark:border-burgundy-800/60 hover:text-burgundy-950 dark:hover:text-creme-100 backdrop-blur-md transition-all shadow-sm"
         >
-          <Eye className="w-3.5 h-3.5" />
-          <span className="text-[10px] uppercase font-bold">Reset 3D</span>
+          <Eye className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
+          <span className="text-[9px] sm:text-[10px] uppercase font-bold">Reset 3D</span>
         </button>
       </div>
 
       {/* Interactive Helper Indicator (Center Top) */}
       <div className="absolute top-16 left-1/2 -translate-x-1/2 pointer-events-none z-10 hidden md:flex items-center gap-2 px-3 py-1 bg-creme-50/80 dark:bg-burgundy-950/80 border border-sand-300/70 dark:border-burgundy-800/60 text-neutral-600 dark:text-creme-200/80 text-[10px] font-mono tracking-widest uppercase backdrop-blur-sm shadow-sm">
         <Sparkles className="w-3 h-3 text-burgundy-800 dark:text-dusty-300" />
-        <span>Click & Drag to Rotate // Scroll to Zoom</span>
+        <span>Click &amp; Drag to Rotate // Scroll to Zoom</span>
       </div>
 
       {/* Bottom Floating Card: Product Specs & Actionable Affiliate Cop */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 p-4 bg-gradient-to-t from-creme-50 via-creme-50/95 to-transparent dark:from-burgundy-950 dark:via-burgundy-950/95 dark:to-transparent border-t border-sand-300/70 dark:border-burgundy-800/60">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div className="absolute bottom-0 left-0 right-0 z-20 p-3 sm:p-4 bg-gradient-to-t from-creme-50 via-creme-50/95 to-transparent dark:from-burgundy-950 dark:via-burgundy-950/95 dark:to-transparent border-t border-sand-300/70 dark:border-burgundy-800/60">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-1.5">
-              <span className="text-xs md:text-sm font-mono tracking-widest text-neutral-500 dark:text-creme-200/70 uppercase font-semibold">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-xs font-mono tracking-widest text-neutral-500 dark:text-creme-200/70 uppercase font-semibold">
                 {currentItem.brand} // {currentItem.category}
               </span>
-              <span className="text-xs font-mono text-burgundy-900 dark:text-dusty-300 bg-sand-200/60 dark:bg-burgundy-900/60 px-2 py-0.5 border border-sand-400/40 dark:border-dusty-400/30 font-bold">
+              <span className="text-[10px] sm:text-xs font-mono text-burgundy-900 dark:text-dusty-300 bg-sand-200/60 dark:bg-burgundy-900/60 px-2 py-0.5 border border-sand-400/40 dark:border-dusty-400/30 font-bold">
                 VERIFIED AUTHENTIC
               </span>
             </div>
-            <h2 className="text-2xl md:text-4xl font-serif font-medium text-burgundy-950 dark:text-creme-100 tracking-tight leading-none">
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-serif font-medium text-burgundy-950 dark:text-creme-100 tracking-tight leading-tight">
               {currentItem.name}
             </h2>
-            <div className="flex items-baseline gap-3 mt-2">
-              <span className="text-3xl md:text-4xl font-mono font-bold text-burgundy-950 dark:text-creme-100">
+            <div className="flex items-baseline gap-2.5 sm:gap-3 mt-1 sm:mt-1.5">
+              <span className="text-2xl sm:text-3xl md:text-4xl font-mono font-bold text-burgundy-950 dark:text-creme-100">
                 {currentItem.price}
               </span>
-              <span className="text-sm font-mono text-neutral-400 dark:text-creme-200/50 line-through">
+              <span className="text-xs sm:text-sm font-mono text-neutral-400 dark:text-creme-200/50 line-through">
                 ${(parseFloat(currentItem.price.replace('$', '')) * 1.25).toFixed(2)}
               </span>
-              <span className="text-xs font-mono text-dusty-600 dark:text-dusty-300 font-bold">Save 20% with code [DRIP20]</span>
+              <span className="text-xs font-mono text-dusty-600 dark:text-dusty-300 font-bold">Save 20% with [DRIP20]</span>
             </div>
           </div>
 
           {/* Colorway Switcher & Direct Cop Action */}
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             {/* Colorway Pills */}
-            <div className="flex items-center gap-2 bg-creme-100 dark:bg-burgundy-900/70 border border-sand-300 dark:border-burgundy-800/60 p-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 bg-creme-100 dark:bg-burgundy-900/70 border border-sand-300 dark:border-burgundy-800/60 p-1.5 sm:p-2">
               <span className="text-xs font-mono font-medium text-neutral-600 dark:text-creme-200/80 uppercase mr-1">Shade:</span>
               {colorways.map((col) => (
                 <button
                   key={col.hex}
                   onClick={() => setSelectedColor(col.hex)}
-                  className={`w-6 h-6 rounded-none border transition-all ${
+                  className={`w-5 sm:w-6 h-5 sm:h-6 rounded-none border transition-all ${
                     selectedColor === col.hex ? 'border-burgundy-950 dark:border-creme-100 scale-110 shadow-md ring-1 ring-burgundy-800' : 'border-sand-400/60 dark:border-burgundy-700/60 opacity-60 hover:opacity-100'
                   }`}
                   style={{ backgroundColor: col.hex }}
@@ -623,10 +623,10 @@ export default function Product3DViewer({ initialProduct, onCopLook }) {
               href={currentItem.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2.5 px-8 py-3.5 bg-burgundy-900 text-creme-100 dark:bg-burgundy-700 dark:text-creme-100 font-bold uppercase font-mono text-sm tracking-wider border-2 border-burgundy-900 dark:border-dusty-400/60 hover:bg-burgundy-800 dark:hover:bg-burgundy-600 hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(200,164,159,0.3)] transition-all shadow-md"
+              className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 sm:px-8 py-2.5 sm:py-3.5 bg-burgundy-900 text-creme-100 dark:bg-burgundy-700 dark:text-creme-100 font-bold uppercase font-mono text-xs sm:text-sm tracking-wider border-2 border-burgundy-900 dark:border-dusty-400/60 hover:bg-burgundy-800 dark:hover:bg-burgundy-600 hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(200,164,159,0.3)] transition-all shadow-md"
             >
               <span>COP THIS DROP</span>
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
             </a>
           </div>
         </div>

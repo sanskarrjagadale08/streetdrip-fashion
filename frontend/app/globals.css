@@ -55,13 +55,28 @@ html[data-theme="playful"] {
   --border-primary: #FF4D8D;
 }
 
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
+  width: 100%;
+  min-width: 320px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
   transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Touch Momentum Scrolling for Responsive Horizontal Bars */
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
 }
 
 /* Luxury Editorial & Brand Typography Helpers */

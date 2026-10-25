@@ -159,7 +159,7 @@ export default function BlogSection() {
       {/* READING MODAL */}
       {activeArticle && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-black/60 dark:bg-black/85 backdrop-blur-md overflow-y-auto">
-          <div className="relative w-full max-w-3xl bg-white dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-600 p-6 md:p-10 my-auto shadow-2xl">
+          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-600 p-5 sm:p-8 md:p-10 my-auto shadow-2xl">
             <button
               onClick={() => setActiveArticle(null)}
               className="absolute top-5 right-5 p-2 bg-creme-100 dark:bg-burgundy-900 border border-sand-300 dark:border-burgundy-700 hover:border-burgundy-600 dark:hover:border-dusty-400 text-burgundy-900 dark:text-creme-200 hover:text-black dark:hover:text-white transition-all"

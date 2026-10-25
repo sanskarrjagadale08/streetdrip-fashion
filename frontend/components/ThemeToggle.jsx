@@ -142,7 +142,7 @@ export default function ThemeToggle({ className = '', showLabel = false }) {
 
       {/* Dropdown Menu for 4 Themes */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-72 rounded-sm bg-white dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-500 shadow-2xl p-2.5 z-50 animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute right-0 mt-2 w-72 max-w-[calc(100vw-24px)] rounded-sm bg-white dark:bg-burgundy-950 border border-sand-300 dark:border-burgundy-500 shadow-2xl p-2.5 z-50 animate-in fade-in zoom-in-95 duration-150">
           <div className="px-2.5 py-1.5 border-b border-sand-200 dark:border-burgundy-800/80 mb-2 flex items-center justify-between">
             <span className="text-xs text-burgundy-700 dark:text-sand-300 font-bold uppercase tracking-widest flex items-center gap-1.5">
               <Palette className="w-3.5 h-3.5 text-dusty-400" />
