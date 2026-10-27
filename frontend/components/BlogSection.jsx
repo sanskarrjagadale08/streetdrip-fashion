@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Clock, Tag, ArrowRight, X, Share2, Search, Sparkles } from 'lucide-react';
-import { fetchAllBlogs } from '../lib/adminApi';
+import { fetchAllBlogs, getLocalBlogs } from '../lib/adminApi';
 import BlogContentRenderer from './BlogContentRenderer';
 
 const FASHION_BLOG_PILLARS = [
@@ -23,6 +23,12 @@ export default function BlogSection() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    // Instantly hydrate from local persistent vault on refresh
+    const cached = getLocalBlogs();
+    if (cached && cached.length > 0) {
+      setBlogs(cached);
+    }
+
     async function loadBlogs() {
       try {
         const data = await fetchAllBlogs();
@@ -198,8 +204,8 @@ export default function BlogSection() {
 
             <div className="relative aspect-[16/9] w-full overflow-hidden mb-8 bg-creme-100 dark:bg-burgundy-900">
               <img
-                src={article.cover_image || activeArticle.cover_image}
-                alt={activeArticle.title}
+                src={activeArticle.cover_image || 'https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=800&q=80'}
+                alt={activeArticle.title || 'Blog cover'}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -211,7 +217,12 @@ export default function BlogSection() {
             {/* Footer with tags and share */}
             <div className="mt-10 pt-6 border-t border-sand-200 dark:border-burgundy-800/80 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
               <div className="flex flex-wrap gap-1.5">
-                {activeArticle.tags?.map((t) => (
+                {(Array.isArray(activeArticle.tags)
+                  ? activeArticle.tags
+                  : typeof activeArticle.tags === 'string'
+                  ? activeArticle.tags.split(',').map(t => t.trim()).filter(Boolean)
+                  : []
+                ).map((t) => (
                   <span
                     key={t}
                     className="bg-creme-100 dark:bg-burgundy-900 border border-sand-200 dark:border-burgundy-700 px-2 py-0.5 text-burgundy-800 dark:text-dusty-300 text-[10px]"

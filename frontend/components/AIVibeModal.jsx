@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Sparkles, X, Flame, CheckCircle, ExternalLink, ArrowRight, Loader2, RefreshCw } from 'lucide-react';
+import { getApiBaseUrl } from '../lib/adminApi';
 
 export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night drive" }) {
   const [aesthetic, setAesthetic] = useState(initialVibe);
@@ -24,7 +25,7 @@ export default function AIVibeModal({ isOpen, onClose, initialVibe = "Late night
     setLoading(true);
     setError(null);
 
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    const apiBase = getApiBaseUrl();
 
     try {
       const response = await fetch(`${apiBase}/recommend/vibe`, {

@@ -24,7 +24,9 @@ import {
   verifyAdminSession, 
   fetchAllProducts, 
   fetchAdminStats,
-  fetchAllBlogs 
+  fetchAllBlogs,
+  getLocalProducts,
+  getLocalBlogs
 } from '../../lib/adminApi';
 import ProductUploadForm from '../../components/admin/ProductUploadForm';
 import InventoryTable from '../../components/admin/InventoryTable';
@@ -76,16 +78,22 @@ export default function AdminDashboardPage() {
   }, [isAuthenticated]);
 
   const loadDashboardData = async () => {
+    // Immediate hydration from local vault so items never disappear on refresh
+    const localProds = getLocalProducts();
+    const localBlogs = getLocalBlogs();
+    if (localProds.length > 0) setProducts(localProds);
+    if (localBlogs.length > 0) setBlogs(localBlogs);
+
     setLoadingData(true);
     try {
       const [statsData, prodsData, blogsData] = await Promise.all([
         fetchAdminStats().catch(() => null),
-        fetchAllProducts({ sort_by: 'newest' }).catch(() => []),
-        fetchAllBlogs().catch(() => [])
+        fetchAllProducts({ sort_by: 'newest' }).catch(() => localProds),
+        fetchAllBlogs().catch(() => localBlogs)
       ]);
       setStats(statsData);
-      setProducts(prodsData || []);
-      setBlogs(blogsData || []);
+      setProducts(prodsData || localProds);
+      setBlogs(blogsData || localBlogs);
     } catch (err) {
       console.warn('Error loading admin data:', err);
     } finally {

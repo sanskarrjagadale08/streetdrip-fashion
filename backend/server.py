@@ -22,10 +22,12 @@ import hmac
 import hashlib
 import random
 import re
+import sqlite3
 
 PORT = int(os.getenv("PORT", 8000))
 DATA_FILE = os.path.join(os.path.dirname(__file__), "streetwear_db.json")
 BLOG_FILE = os.path.join(os.path.dirname(__file__), "blogs_db.json")
+SQLITE_FILE = os.path.join(os.path.dirname(__file__), "streetwear.db")
 
 JWT_SECRET = os.getenv("JWT_SECRET", "STREETDRIP_SECURE_VAULT_PROD_JWT_KEY_2026_CHANGE_IN_PROD")
 ADMIN_USER = os.getenv("ADMIN_USERNAME", "anuja2007")
@@ -88,38 +90,226 @@ INITIAL_PRODUCTS = []
 INITIAL_BLOGS = []
 
 
-def load_db():
-    if not os.path.exists(DATA_FILE):
-        save_db([])
-        return []
+def init_sqlite():
     try:
-        with open(DATA_FILE, 'r') as f:
-            data = json.load(f)
-            return data if isinstance(data, list) else []
-    except Exception:
-        return []
+        conn = sqlite3.connect(SQLITE_FILE)
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS products (
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+                main_category TEXT,
+                sub_category TEXT,
+                brand TEXT,
+                category TEXT,
+                price REAL,
+                image_url TEXT,
+                model_3d_url TEXT,
+                model_type TEXT,
+                affiliate_link TEXT,
+                vibe_tags_raw TEXT,
+                likes INTEGER,
+                drop_status TEXT,
+                description TEXT
+            )
+        ''')
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS blogs (
+                id INTEGER PRIMARY KEY,
+                title TEXT NOT NULL,
+                category TEXT,
+                read_time TEXT,
+                author TEXT,
+                date TEXT,
+                cover_image TEXT,
+                excerpt TEXT,
+                content TEXT,
+                tags_raw TEXT
+            )
+        ''')
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print(f"SQLite init error: {e}")
 
 
-def save_db(data):
-    with open(DATA_FILE, 'w') as f:
-        json.dump(data, f, indent=2)
+init_sqlite()
+
+
+def load_db():
+    data = []
+    if os.path.exists(DATA_FILE):
+        try:
+            with open(DATA_FILE, 'r') as f:
+                loaded = json.load(f)
+                if isinstance(loaded, list):
+                    data = loaded
+        except Exception:
+            pass
+
+    # Redundancy fallback: if JSON is empty, query SQLite
+    if not data and os.path.exists(SQLITE_FILE):
+        try:
+            conn = sqlite3.connect(SQLITE_FILE)
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM products ORDER BY id DESC")
+            rows = cursor.fetchall()
+            for r in rows:
+                tags = []
+                try:
+                    tags = json.loads(r["vibe_tags_raw"])
+                except Exception:
+                    tags = [t.strip() for t in (r["vibe_tags_raw"] or "").split(",") if t.strip()]
+                data.append({
+                    "id": r["id"],
+                    "name": r["name"],
+                    "main_category": r["main_category"] or "Lowers",
+                    "sub_category": r["sub_category"] or "Baggy Jeans",
+                    "brand": r["brand"] or "General",
+                    "category": r["category"] or "",
+                    "price": float(r["price"] or 0),
+                    "image_url": r["image_url"] or "",
+                    "model_3d_url": r["model_3d_url"] or "",
+                    "model_type": r["model_type"] or "hoodie",
+                    "affiliate_link": r["affiliate_link"] or "",
+                    "vibe_tags": tags,
+                    "likes": r["likes"] or 100,
+                    "drop_status": r["drop_status"] or "HOT DROP",
+                    "description": r["description"] or ""
+                })
+            conn.close()
+            if data:
+                save_db(data, sync_sqlite=False)
+        except Exception as e:
+            print(f"SQLite fallback load error: {e}")
+
+    return data
+
+
+def save_db(data, sync_sqlite=True):
+    try:
+        with open(DATA_FILE, 'w') as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        print(f"Error saving JSON DB: {e}")
+
+    if sync_sqlite and os.path.exists(SQLITE_FILE):
+        try:
+            conn = sqlite3.connect(SQLITE_FILE)
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM products")
+            for p in data:
+                v_tags = json.dumps(p.get("vibe_tags", [])) if isinstance(p.get("vibe_tags"), list) else str(p.get("vibe_tags", ""))
+                cursor.execute('''
+                    INSERT OR REPLACE INTO products (
+                        id, name, main_category, sub_category, brand, category,
+                        price, image_url, model_3d_url, model_type, affiliate_link,
+                        vibe_tags_raw, likes, drop_status, description
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    p.get("id"),
+                    p.get("name", "Untitled Piece"),
+                    p.get("main_category", "Lowers"),
+                    p.get("sub_category", "Baggy Jeans"),
+                    p.get("brand", "General"),
+                    p.get("category", ""),
+                    float(p.get("price", 0)),
+                    p.get("image_url", ""),
+                    p.get("model_3d_url", ""),
+                    p.get("model_type", "sneaker"),
+                    p.get("affiliate_link", ""),
+                    v_tags,
+                    int(p.get("likes", 100)),
+                    p.get("drop_status", "HOT DROP"),
+                    p.get("description", "")
+                ))
+            conn.commit()
+            conn.close()
+        except Exception as e:
+            print(f"Error saving SQLite: {e}")
 
 
 def load_blogs():
-    if not os.path.exists(BLOG_FILE):
-        save_blogs([])
-        return []
+    blogs = []
+    if os.path.exists(BLOG_FILE):
+        try:
+            with open(BLOG_FILE, 'r') as f:
+                loaded = json.load(f)
+                if isinstance(loaded, list):
+                    blogs = loaded
+        except Exception:
+            pass
+
+    # Redundancy fallback: query SQLite if JSON is empty
+    if not blogs and os.path.exists(SQLITE_FILE):
+        try:
+            conn = sqlite3.connect(SQLITE_FILE)
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM blogs ORDER BY id DESC")
+            rows = cursor.fetchall()
+            for r in rows:
+                tags = []
+                try:
+                    tags = json.loads(r["tags_raw"])
+                except Exception:
+                    tags = [t.strip() for t in (r["tags_raw"] or "").split(",") if t.strip()]
+                blogs.append({
+                    "id": r["id"],
+                    "title": r["title"],
+                    "category": r["category"] or "Lowers",
+                    "read_time": r["read_time"] or "4 min",
+                    "author": r["author"] or "Street Curator",
+                    "date": r["date"] or "",
+                    "cover_image": r["cover_image"] or "",
+                    "excerpt": r["excerpt"] or "",
+                    "content": r["content"] or "",
+                    "tags": tags
+                })
+            conn.close()
+            if blogs:
+                save_blogs(blogs, sync_sqlite=False)
+        except Exception as e:
+            print(f"SQLite blogs fallback error: {e}")
+
+    return blogs
+
+
+def save_blogs(data, sync_sqlite=True):
     try:
-        with open(BLOG_FILE, 'r') as f:
-            data = json.load(f)
-            return data if isinstance(data, list) else []
-    except Exception:
-        return []
+        with open(BLOG_FILE, 'w') as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        print(f"Error saving JSON blogs: {e}")
 
-
-def save_blogs(data):
-    with open(BLOG_FILE, 'w') as f:
-        json.dump(data, f, indent=2)
+    if sync_sqlite and os.path.exists(SQLITE_FILE):
+        try:
+            conn = sqlite3.connect(SQLITE_FILE)
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM blogs")
+            for b in data:
+                b_tags = json.dumps(b.get("tags", [])) if isinstance(b.get("tags"), list) else str(b.get("tags", ""))
+                cursor.execute('''
+                    INSERT OR REPLACE INTO blogs (
+                        id, title, category, read_time, author, date, cover_image, excerpt, content, tags_raw
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    b.get("id"),
+                    b.get("title", "Untitled Editorial"),
+                    b.get("category", "Lowers"),
+                    b.get("read_time", "4 min"),
+                    b.get("author", "Street Curator"),
+                    b.get("date", ""),
+                    b.get("cover_image", ""),
+                    b.get("excerpt", ""),
+                    b.get("content", ""),
+                    b_tags
+                ))
+            conn.commit()
+            conn.close()
+        except Exception as e:
+            print(f"Error saving blogs SQLite: {e}")
 
 
 # Initialize DBs
@@ -429,6 +619,50 @@ class StreetDripHandler(http.server.BaseHTTPRequestHandler):
             if updated_count > 0:
                 save_blogs(blogs)
             return self.send_json(200, {"success": True, "updated_count": updated_count})
+
+        # POST /api/products/sync or /admin/products/sync
+        if path in ["/api/products/sync", "/admin/products/sync"]:
+            incoming = body.get("products", [])
+            if isinstance(incoming, list) and incoming:
+                products = load_db()
+                existing_map = {p["id"]: i for i, p in enumerate(products)}
+                changed = False
+                for item in incoming:
+                    if not isinstance(item, dict) or "id" not in item:
+                        continue
+                    item_id = item["id"]
+                    if item_id in existing_map:
+                        idx = existing_map[item_id]
+                        products[idx].update(item)
+                        changed = True
+                    else:
+                        products.insert(0, item)
+                        changed = True
+                if changed:
+                    save_db(products)
+            return self.send_json(200, {"success": True, "count": len(load_db())})
+
+        # POST /api/blogs/sync or /admin/blogs/sync
+        if path in ["/api/blogs/sync", "/admin/blogs/sync"]:
+            incoming = body.get("blogs", [])
+            if isinstance(incoming, list) and incoming:
+                blogs = load_blogs()
+                existing_map = {b["id"]: i for i, b in enumerate(blogs)}
+                changed = False
+                for item in incoming:
+                    if not isinstance(item, dict) or "id" not in item:
+                        continue
+                    item_id = item["id"]
+                    if item_id in existing_map:
+                        idx = existing_map[item_id]
+                        blogs[idx].update(item)
+                        changed = True
+                    else:
+                        blogs.insert(0, item)
+                        changed = True
+                if changed:
+                    save_blogs(blogs)
+            return self.send_json(200, {"success": True, "count": len(load_blogs())})
 
         # POST /recommend/vibe
         if path in ["/recommend/vibe", "/api/recommend/vibe"]:

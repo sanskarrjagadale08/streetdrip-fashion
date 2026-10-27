@@ -21,7 +21,7 @@ import {
   Compass,
   Tag
 } from 'lucide-react';
-import { fetchAllProducts, FASHION_HIERARCHY } from '../lib/adminApi';
+import { fetchAllProducts, getLocalProducts, FASHION_HIERARCHY } from '../lib/adminApi';
 
 const MAIN_PILLARS = [
   "All",
@@ -71,15 +71,21 @@ export default function StreetwearLandingPage() {
   const [activeVibePrompt, setActiveVibePrompt] = useState("Late night drive");
 
   useEffect(() => {
+    // Instantly hydrate from local persistent vault on refresh
+    const cached = getLocalProducts();
+    if (cached && cached.length > 0) {
+      setProducts(cached);
+      setLoading(false);
+    }
+
     async function loadData() {
       try {
-        setLoading(true);
         const data = await fetchAllProducts();
         if (data && Array.isArray(data)) {
           setProducts(data);
         }
       } catch (err) {
-        console.warn('Backend unavailable, check server:', err);
+        console.warn('Backend unavailable, cached products active:', err);
       } finally {
         setLoading(false);
       }
