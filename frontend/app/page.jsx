@@ -135,6 +135,16 @@ export default function StreetwearLandingPage() {
     return products.filter((item) => {
       if (!item || typeof item !== 'object') return false;
 
+      // Filter out temporarily taken down pieces from the public storefront
+      if (
+        item.is_taken_down === true ||
+        item.status === 'taken_down' ||
+        String(item.drop_status || '').toUpperCase() === 'TAKEN DOWN' ||
+        String(item.drop_status || '').toUpperCase() === 'TAKEN DOWN (HIDDEN)'
+      ) {
+        return false;
+      }
+
       // Main category filter
       if (activeMainCategory && activeMainCategory !== "All") {
         const itemMain = String(item.main_category || item.category?.split(' - ')[0] || "").toLowerCase().trim();

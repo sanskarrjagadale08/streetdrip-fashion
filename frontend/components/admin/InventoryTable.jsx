@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import {
   Search, Edit3, Trash2, ExternalLink, Check, X, Box, Loader2, RefreshCw,
-  CheckSquare, Square, Layers, Tag, DollarSign, AlertCircle, ChevronDown, CheckCheck
+  CheckSquare, Square, Layers, Tag, DollarSign, AlertCircle, ChevronDown, CheckCheck,
+  Eye, EyeOff
 } from 'lucide-react';
 import {
   updateProduct, deleteProduct, bulkDeleteProducts, bulkUpdateProducts, FASHION_HIERARCHY
@@ -12,6 +13,7 @@ import {
 export default function InventoryTable({ products, onProductUpdated, onProductDeleted, onRefresh }) {
   const [search, setSearch] = useState('');
   const [mainCategoryFilter, setMainCategoryFilter] = useState('All');
+  const [statusVisibilityFilter, setStatusVisibilityFilter] = useState('All'); // 'All' | 'live' | 'taken_down'
   const [editingProduct, setEditingProduct] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
   const [actionLoading, setActionLoading] = useState(false);
@@ -30,11 +32,25 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
   const [editAffiliateLink, setEditAffiliateLink] = useState('');
   const [editDropStatus, setEditDropStatus] = useState('');
   const [editSubCategory, setEditSubCategory] = useState('');
+  const [editIsTakenDown, setEditIsTakenDown] = useState(false);
 
   const mainCategories = ['All', ...Object.keys(FASHION_HIERARCHY)];
 
+  const isProdTakenDown = (p) => Boolean(
+    p.is_taken_down === true ||
+    p.status === 'taken_down' ||
+    String(p.drop_status || '').toUpperCase() === 'TAKEN DOWN' ||
+    String(p.drop_status || '').toUpperCase() === 'TAKEN DOWN (HIDDEN)'
+  );
+
   const filtered = products.filter(p => {
     if (mainCategoryFilter !== 'All' && (p.main_category !== mainCategoryFilter && !p.category?.includes(mainCategoryFilter))) {
+      return false;
+    }
+    if (statusVisibilityFilter === 'live' && isProdTakenDown(p)) {
+      return false;
+    }
+    if (statusVisibilityFilter === 'taken_down' && !isProdTakenDown(p)) {
       return false;
     }
     if (search.trim()) {
@@ -106,6 +122,66 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
     setEditAffiliateLink(prod.affiliate_link);
     setEditDropStatus(prod.drop_status || 'HOT DROP');
     setEditSubCategory(prod.sub_category || '');
+    setEditIsTakenDown(isProdTakenDown(prod));
+  };
+
+  const handleToggleTakeDown = async (prod) => {
+    setActionLoading(true);
+    const currentlyDown = isProdTakenDown(prod);
+    const newTakenDown = !currentlyDown;
+    try {
+      const updated = await updateProduct(prod.id, {
+        is_taken_down: newTakenDown,
+        drop_status: newTakenDown ? 'TAKEN DOWN' : (prod.drop_status === 'TAKEN DOWN' ? 'HOT DROP' : prod.drop_status || 'HOT DROP')
+      });
+      setFeedback({
+        type: 'success',
+        text: newTakenDown
+          ? `Item #${prod.id} taken down temporarily (hidden from public store).`
+          : `Item #${prod.id} restored live to public store!`
+      });
+      if (onProductUpdated) onProductUpdated(updated);
+      if (onRefresh) onRefresh();
+    } catch (err) {
+      setFeedback({ type: 'error', text: err.message || 'Failed to update item visibility' });
+    } finally {
+      setActionLoading(false);
+      setTimeout(() => setFeedback(null), 3500);
+    }
+  };
+
+  const handleBulkTakeDown = async (takeDown = true) => {
+    if (selectedIds.length === 0) return;
+    setActionLoading(true);
+    try {
+      await bulkUpdateProducts(selectedIds, {
+        is_taken_down: takeDown,
+        drop_status: takeDown ? 'TAKEN DOWN' : 'HOT DROP'
+      });
+      setFeedback({
+        type: 'success',
+        text: takeDown
+          ? `Temporarily took down ${selectedIds.length} pieces (hidden from store).`
+          : `Restored ${selectedIds.length} pieces live to public store!`
+      });
+      if (onProductUpdated) {
+        products.forEach(p => {
+          if (selectedIds.includes(p.id)) {
+            onProductUpdated({
+              ...p,
+              is_taken_down: takeDown,
+              drop_status: takeDown ? 'TAKEN DOWN' : (p.drop_status === 'TAKEN DOWN' ? 'HOT DROP' : p.drop_status)
+            });
+          }
+        });
+      }
+      if (onRefresh) onRefresh();
+    } catch (err) {
+      setFeedback({ type: 'error', text: err.message || 'Failed to update items' });
+    } finally {
+      setActionLoading(false);
+      setTimeout(() => setFeedback(null), 3500);
+    }
   };
 
   const handleSaveEdit = async () => {
@@ -115,9 +191,10 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
       const updated = await updateProduct(editingProduct.id, {
         price: parseFloat(editPrice),
         affiliate_link: editAffiliateLink,
-        drop_status: editDropStatus,
+        drop_status: editIsTakenDown ? 'TAKEN DOWN' : (editDropStatus === 'TAKEN DOWN' ? 'HOT DROP' : editDropStatus),
         sub_category: editSubCategory,
-        category: `${editingProduct.main_category || 'Lowers'} - ${editSubCategory}`
+        category: `${editingProduct.main_category || 'Lowers'} - ${editSubCategory}`,
+        is_taken_down: editIsTakenDown
       });
 
       setFeedback({ type: 'success', text: `Item #${updated.id} successfully updated.` });
@@ -267,6 +344,17 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
             {mainCategories.map(c => <option key={c} value={c}>{c === 'All' ? 'All Sections' : c}</option>)}
           </select>
 
+          {/* Temporary Take Down / Live Status Filter */}
+          <select
+            value={statusVisibilityFilter}
+            onChange={(e) => setStatusVisibilityFilter(e.target.value)}
+            className="bg-void-900 border border-white/10 px-3 py-2 text-white focus:outline-none focus:border-neon-lime cursor-pointer uppercase text-xs font-bold"
+          >
+            <option value="All">All Statuses ({products.length})</option>
+            <option value="live">Live in Store ({products.filter(p => !isProdTakenDown(p)).length})</option>
+            <option value="taken_down">Temporarily Down ({products.filter(p => isProdTakenDown(p)).length})</option>
+          </select>
+
           {/* Explicit Select Key Toggle Button */}
           {filtered.length > 0 && (
             <button
@@ -334,6 +422,28 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
+            {/* Bulk Take Down Temporarily */}
+            <button
+              onClick={() => handleBulkTakeDown(true)}
+              disabled={actionLoading}
+              className="px-3 py-1.5 bg-amber-500/20 border border-amber-500/60 hover:bg-amber-500/30 text-amber-300 font-bold text-xs uppercase flex items-center gap-1.5 shadow-sm"
+              title="Temporarily hide selected pieces from public storefront"
+            >
+              <EyeOff className="w-3.5 h-3.5 text-amber-400" />
+              <span>Take Down ({selectedIds.length})</span>
+            </button>
+
+            {/* Bulk Put Live */}
+            <button
+              onClick={() => handleBulkTakeDown(false)}
+              disabled={actionLoading}
+              className="px-3 py-1.5 bg-emerald-500/20 border border-emerald-500/60 hover:bg-emerald-500/30 text-emerald-300 font-bold text-xs uppercase flex items-center gap-1.5 shadow-sm"
+              title="Put selected pieces back live on public storefront"
+            >
+              <Eye className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Put Live ({selectedIds.length})</span>
+            </button>
+
             {/* Bulk Drop Status Selector */}
             <select
               defaultValue=""
@@ -354,6 +464,7 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
               <option value="LIMITED">LIMITED</option>
               <option value="BESTSELLER">BESTSELLER</option>
               <option value="ARCHIVED">ARCHIVED</option>
+              <option value="TAKEN DOWN">TAKEN DOWN (HIDDEN)</option>
             </select>
 
             {/* Bulk Section/Category Selector */}
@@ -441,6 +552,7 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
           <tbody className="divide-y divide-white/5">
             {filtered.map((prod, index) => {
               const isSelected = selectedIds.includes(prod.id);
+              const isDown = isProdTakenDown(prod);
               return (
                 <tr
                   key={prod.id}
@@ -454,6 +566,8 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
                   className={`cursor-pointer transition-colors ${
                     isSelected
                       ? 'bg-neon-lime/10 border-l-2 border-l-neon-lime text-white'
+                      : isDown
+                      ? 'bg-void-950/60 hover:bg-void-900/60 opacity-85'
                       : 'hover:bg-void-900/60'
                   }`}
                 >
@@ -473,17 +587,37 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
 
                   <td className="p-3">
                     <div className="flex items-center gap-3">
-                      <img
-                        src={prod.image_url}
-                        alt=""
-                        className="w-10 h-12 object-cover bg-void-900 border border-white/10 flex-shrink-0"
-                      />
+                      <div className="relative flex-shrink-0">
+                        <img
+                          src={prod.image_url}
+                          alt=""
+                          className={`w-10 h-12 object-cover bg-void-900 border border-white/10 ${
+                            isDown ? 'opacity-50 grayscale' : ''
+                          }`}
+                        />
+                        {isDown && (
+                          <div className="absolute inset-0 bg-black/60 flex items-center justify-center" title="Taken Down Temporarily">
+                            <EyeOff className="w-3.5 h-3.5 text-amber-400" />
+                          </div>
+                        )}
+                      </div>
                       <div>
-                        <div className="font-bold text-white uppercase text-xs line-clamp-1 max-w-[220px]">
+                        <div className={`font-bold uppercase text-xs line-clamp-1 max-w-[220px] ${
+                          isDown ? 'text-zinc-300 line-through decoration-amber-500/60' : 'text-white'
+                        }`}>
                           {prod.name}
                         </div>
-                        <div className="text-[10px] text-zinc-400 flex items-center gap-2 mt-0.5">
+                        <div className="text-[10px] text-zinc-400 flex flex-wrap items-center gap-1.5 mt-0.5">
                           <span>#{prod.id}</span>
+                          {isDown ? (
+                            <span className="bg-amber-500/20 text-amber-400 border border-amber-500/40 px-1 py-0.2 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                              <EyeOff className="w-2.5 h-2.5" /> DOWN (TEMP)
+                            </span>
+                          ) : (
+                            <span className="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 px-1 py-0.2 text-[9px] font-bold uppercase">
+                              LIVE
+                            </span>
+                          )}
                           <span className="bg-white/10 px-1 text-zinc-300 text-[9px] uppercase">{prod.drop_status}</span>
                         </div>
                       </div>
@@ -524,7 +658,20 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
                   </td>
 
                   <td className="p-3 text-right" onClick={(e) => e.stopPropagation()}>
-                    <div className="flex items-center justify-end gap-2">
+                    <div className="flex items-center justify-end gap-1.5">
+                      {/* Temporary Take Down / Put Live Button */}
+                      <button
+                        onClick={() => handleToggleTakeDown(prod)}
+                        className={`p-1.5 border transition-all ${
+                          isDown
+                            ? 'bg-amber-500/20 border-amber-500/60 text-amber-300 hover:bg-amber-500/30'
+                            : 'bg-void-900 border-white/10 text-zinc-300 hover:text-amber-400 hover:border-amber-400'
+                        }`}
+                        title={isDown ? "Put Back Live (Restore to Storefront)" : "Take Down Temporarily (Hide from Storefront)"}
+                      >
+                        {isDown ? <Eye className="w-3.5 h-3.5 text-amber-300" /> : <EyeOff className="w-3.5 h-3.5" />}
+                      </button>
+
                       <button
                         onClick={() => handleStartEdit(prod)}
                         className="p-1.5 bg-void-900 border border-white/10 text-zinc-300 hover:text-neon-lime hover:border-neon-lime"
@@ -567,6 +714,48 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
             </div>
 
             <div className="space-y-3">
+              {/* Temporary Take Down Toggle Card */}
+              <div className={`p-3 border transition-colors ${
+                editIsTakenDown
+                  ? 'bg-amber-500/10 border-amber-500/50'
+                  : 'bg-void-900 border-white/10'
+              }`}>
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <div className="flex items-center gap-1.5 font-bold uppercase text-xs">
+                      {editIsTakenDown ? (
+                        <>
+                          <EyeOff className="w-3.5 h-3.5 text-amber-400" />
+                          <span className="text-amber-300">TAKEN DOWN (HIDDEN)</span>
+                        </>
+                      ) : (
+                        <>
+                          <Eye className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="text-emerald-400">LIVE ON PUBLIC STORE</span>
+                        </>
+                      )}
+                    </div>
+                    <div className="text-[10px] text-zinc-400 mt-0.5">
+                      {editIsTakenDown
+                        ? 'Temporarily hidden from customers without deleting.'
+                        : 'Visible and available on the public store.'}
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setEditIsTakenDown(!editIsTakenDown)}
+                    className={`px-3 py-1.5 font-bold uppercase text-[11px] border transition-all ${
+                      editIsTakenDown
+                        ? 'bg-amber-500 text-black border-amber-400 hover:bg-amber-400'
+                        : 'bg-void-950 text-zinc-300 border-white/20 hover:text-amber-300 hover:border-amber-400'
+                    }`}
+                  >
+                    {editIsTakenDown ? 'PUT BACK LIVE' : 'TAKE DOWN (TEMP)'}
+                  </button>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-zinc-300 uppercase font-bold mb-1">Subcategory / Fit</label>
                 <input
@@ -613,6 +802,7 @@ export default function InventoryTable({ products, onProductUpdated, onProductDe
                   <option value="LIMITED">LIMITED</option>
                   <option value="BESTSELLER">BESTSELLER</option>
                   <option value="ARCHIVED">ARCHIVED</option>
+                  <option value="TAKEN DOWN">TAKEN DOWN (HIDDEN)</option>
                 </select>
               </div>
 

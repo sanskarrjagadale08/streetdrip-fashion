@@ -29,7 +29,8 @@ const DROP_STATUSES = [
   "ESSENTIAL",
   "LIMITED",
   "BESTSELLER",
-  "RESTOCKED"
+  "RESTOCKED",
+  "TAKEN DOWN (HIDDEN)"
 ];
 
 export default function ProductUploadForm({ onSuccess }) {
@@ -100,6 +101,7 @@ export default function ProductUploadForm({ onSuccess }) {
         affiliate_link: formData.affiliate_link.trim(),
         vibe_tags: tags.length ? tags : ['Streetwear'],
         drop_status: formData.drop_status,
+        is_taken_down: formData.drop_status === 'TAKEN DOWN (HIDDEN)',
         description: formData.description.trim()
       };
 

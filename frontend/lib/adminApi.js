@@ -212,8 +212,11 @@ export async function fetchAdminStats() {
   const blogs = getLocalBlogs();
   const brands = new Set(prods.map(p => p.brand).filter(Boolean));
   const avg = prods.length ? prods.reduce((sum, p) => sum + (parseFloat(p.price) || 0), 0) / prods.length : 0;
+  const liveCount = prods.filter(p => !p.is_taken_down && p.drop_status !== 'TAKEN DOWN').length;
   return {
     total_products: prods.length,
+    live_products: liveCount,
+    taken_down_products: prods.length - liveCount,
     total_blogs: blogs.length,
     total_brands: brands.size,
     total_categories: Object.keys(FASHION_HIERARCHY).length,

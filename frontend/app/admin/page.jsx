@@ -368,7 +368,11 @@ export default function AdminDashboardPage() {
                     <ShoppingBag className="w-4 h-4 text-neon-lime" />
                   </div>
                   <div className="text-3xl font-black text-white">{stats?.total_products || products.length}</div>
-                  <div className="text-[10px] text-zinc-400 mt-1">Active streetwear pieces</div>
+                  <div className="text-[10px] text-zinc-400 mt-1 flex items-center gap-2">
+                    <span className="text-emerald-400 font-bold">{products.filter(p => !p.is_taken_down && p.drop_status !== 'TAKEN DOWN').length} LIVE</span>
+                    <span>•</span>
+                    <span className="text-amber-400 font-bold">{products.filter(p => p.is_taken_down || p.drop_status === 'TAKEN DOWN').length} DOWN (TEMP)</span>
+                  </div>
                 </div>
 
                 <div className="bg-void-950 border border-white/10 p-5">
@@ -453,7 +457,7 @@ export default function AdminDashboardPage() {
                     INVENTORY & AFFILIATE MANAGEMENT
                   </h2>
                   <p className="text-xs text-zinc-400 font-sans mt-0.5">
-                    Update prices, test affiliate destination links, and remove discontinued drops.
+                    Update prices, take down products temporarily, test affiliate destination links, and manage drops.
                   </p>
                 </div>
                 <button
