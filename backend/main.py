@@ -20,9 +20,8 @@ from pydantic import BaseModel, Field
 from sqlalchemy import create_engine, Column, Integer, String, Float, Text
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 
-# ---------------------------------------------------------
-# DATABASE CONFIGURATION
-# ---------------------------------------------------------
+
+
 DB_PATH = os.path.join(os.path.dirname(__file__), "streetwear.db")
 DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{DB_PATH}")
 
@@ -211,9 +210,6 @@ def get_current_admin(
     return admin
 
 
-# ---------------------------------------------------------
-# PYDANTIC SCHEMAS
-# ---------------------------------------------------------
 class LoginRequest(BaseModel):
     username: str
     password: str
@@ -461,9 +457,6 @@ def admin_bulk_update_blogs(data: dict = Body(...), db: Session = Depends(get_db
     return {"success": True, "updated_count": updated}
 
 
-# ---------------------------------------------------------
-# PRODUCT ENDPOINTS (PUBLIC & ADMIN PROTECTED)
-# ---------------------------------------------------------
 @app.get("/api/products", response_model=List[ProductResponse])
 def get_products(
     main_category: Optional[str] = Query(None),
@@ -675,6 +668,339 @@ def admin_stats(db: Session = Depends(get_db), admin: AdminUserModel = Depends(g
     }
 
 
+CURATED_OUTFIT_TEMPLATES = {
+    "late night drive": {
+        "vibe_summary": "Nocturnal Cyber-Chic with high-vis accents and dark silhouette pooling.",
+        "aesthetic_quote": "3:00 AM empty flyover energy. Tuned Air bouncing off highway streetlights.",
+        "styling_tips": [
+            "Let wide-leg bottoms pool naturally over bulky outsoles.",
+            "Wear aerodynamic wrap shades resting on the collar or neck.",
+            "Keep inner layers tucked boxy beneath oversized outerwear."
+        ],
+        "pieces": {
+            "top": {
+                "name": "Heavyweight 280 GSM Drop-Shoulder Boxy Tee",
+                "brand": "Snitch",
+                "price": 1499.0,
+                "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://snitch.co.in/collections/t-shirts?ref=streetdrip",
+                "role": "Essential Base Layer"
+            },
+            "bottom": {
+                "name": "Loose Carpenter Baggy Denim with Knee Darts",
+                "brand": "Bonkers",
+                "price": 2799.0,
+                "image_url": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://bonkerscorner.com/collections/bottoms?ref=streetdrip",
+                "role": "Grounding Silhouette"
+            },
+            "shoes": {
+                "name": "Chunky Air Drift Cyber Platform Sneakers",
+                "brand": "Nike",
+                "price": 9999.0,
+                "image_url": "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://nike.com/in/w/mens-lifestyle-shoes?ref=streetdrip",
+                "role": "Aggressive Footwear"
+            },
+            "accessory": {
+                "name": "Blade Y2K Aerodynamic Silver Mirror Wrap Shades",
+                "brand": "Urban Monkey",
+                "price": 1499.0,
+                "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://urbanmonkey.com/collections/eyewear?ref=streetdrip",
+                "role": "Statement Eyewear"
+            }
+        }
+    },
+    "college fest": {
+        "vibe_summary": "High-Energy Festival Loud with cyber-tribal accents and functional pockets.",
+        "aesthetic_quote": "Subwoofer bass shaking the campus ground. Heavyweight cotton and moshpit resilience.",
+        "styling_tips": [
+            "Cinch ankle toggles of the cargo trousers to highlight sneaker tongue details.",
+            "Layer a raw-edge white tank peeking 1-inch beneath the boxy tee.",
+            "Keep festival cards and phone secured in the zipped thigh cargo gussets."
+        ],
+        "pieces": {
+            "top": {
+                "name": "Oversized Acid Graphic Cyber-Mesh Jersey",
+                "brand": "Souled Store",
+                "price": 1799.0,
+                "image_url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://thesouledstore.com/collections/oversized-t-shirts?ref=streetdrip",
+                "role": "Moshpit Top"
+            },
+            "bottom": {
+                "name": "Multi-Pocket Tactical Techwear Baggy Cargos",
+                "brand": "Snitch",
+                "price": 2999.0,
+                "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://snitch.co.in/collections/cargo-pants?ref=streetdrip",
+                "role": "Utility Lower"
+            },
+            "shoes": {
+                "name": "Retro High-Top Skate Court Sneakers",
+                "brand": "Adidas",
+                "price": 6499.0,
+                "image_url": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://adidas.co.in/men-shoes?ref=streetdrip",
+                "role": "Court Kicks"
+            },
+            "accessory": {
+                "name": "Heavy Washed Twill Curved Dad Cap with Metal Buckle",
+                "brand": "Urban Monkey",
+                "price": 1199.0,
+                "image_url": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://urbanmonkey.com/collections/caps?ref=streetdrip",
+                "role": "Headwear Accent"
+            }
+        }
+    },
+    "chill weekend": {
+        "vibe_summary": "Laidback Architectural Drape with neutral organic tones and fluid silhouettes.",
+        "aesthetic_quote": "Slow Sunday café acoustics. Soft breathable linen and relaxed proportions.",
+        "styling_tips": [
+            "Leave the camp collar overshirt unbuttoned over a light ribbed tank.",
+            "Let pleated trousers break once over minimalist loafers.",
+            "Contrast warm sand tones against subtle brushed silver jewelry."
+        ],
+        "pieces": {
+            "top": {
+                "name": "Vintage Washed Boxy Camp Collar Linen Overshirt",
+                "brand": "Vastrado",
+                "price": 1899.0,
+                "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://vastrado.com/collections/shirts?ref=streetdrip",
+                "role": "Fluid Layer"
+            },
+            "bottom": {
+                "name": "Wide-Leg Double-Pleated Korean Drape Trousers",
+                "brand": "Zara",
+                "price": 3290.0,
+                "image_url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://zara.com/in/en/man-trousers-l817.html?ref=streetdrip",
+                "role": "Tailored Lower"
+            },
+            "shoes": {
+                "name": "Minimalist Low-Profile Off-White Court Derbies",
+                "brand": "H&M",
+                "price": 2999.0,
+                "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://www2.hm.com/en_in/men/shoes.html?ref=streetdrip",
+                "role": "Clean Footwear"
+            },
+            "accessory": {
+                "name": "Minimalist Titanium Round Wireframe Glasses",
+                "brand": "General",
+                "price": 1499.0,
+                "image_url": "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://streetdrip-fashion.vercel.app/#catalog",
+                "role": "Subtle Frame"
+            }
+        }
+    },
+    "cyberpunk rave": {
+        "vibe_summary": "Dark Industrial Techwear with weather-resistant shells and chromatic eyewear.",
+        "aesthetic_quote": "Subterranean club frequency. High-tensile nylon meeting industrial hardware.",
+        "styling_tips": [
+            "Lock nylon utility straps across knees for structured silhouette.",
+            "Contrast matte water-repellent fabrics against polished chrome accessories.",
+            "Black out base layers to emphasize angular outerwear lines."
+        ],
+        "pieces": {
+            "top": {
+                "name": "Thermal-Reactive Compression Mock Neck Layer",
+                "brand": "Bonkers",
+                "price": 2299.0,
+                "image_url": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://bonkerscorner.com?ref=streetdrip",
+                "role": "Base Shell"
+            },
+            "bottom": {
+                "name": "Waterproof Asymmetrical Cobra-Buckle Tactical Cargos",
+                "brand": "Snitch",
+                "price": 3499.0,
+                "image_url": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://snitch.co.in/collections/cargos?ref=streetdrip",
+                "role": "Hardware Lower"
+            },
+            "shoes": {
+                "name": "Monolithic Chunky Foam Runner Tread Boots",
+                "brand": "Nike",
+                "price": 10999.0,
+                "image_url": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://nike.com/in?ref=streetdrip",
+                "role": "Monolithic Sole"
+            },
+            "accessory": {
+                "name": "Liquid Metal Polarized Visor Shield Shades",
+                "brand": "Zara",
+                "price": 2290.0,
+                "image_url": "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                "role": "Chrome Visor"
+            }
+        }
+    },
+    "tokyo drip": {
+        "vibe_summary": "Harajuku Avant-Garde Proportion with oversized balloon silhouettes.",
+        "aesthetic_quote": "Shibuya crossing overcast skies. Exaggerated raw indigo volume and skate attitude.",
+        "styling_tips": [
+            "Balance the extreme balloon volume of bottoms with cropped boxy top.",
+            "Allow raw denim hems to pool slightly over chunky lug soles.",
+            "Attach vintage key hardware to the exposed front belt loop."
+        ],
+        "pieces": {
+            "top": {
+                "name": "Raw Frayed-Edge Boxy Heavy Denim Overshirt",
+                "brand": "H&M",
+                "price": 2999.0,
+                "image_url": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://www2.hm.com/en_in?ref=streetdrip",
+                "role": "Structured Top"
+            },
+            "bottom": {
+                "name": "Ultra-Wide Balloon Skater Jeans (14oz Raw Indigo)",
+                "brand": "Bonkers",
+                "price": 2899.0,
+                "image_url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://bonkerscorner.com/collections/denim?ref=streetdrip",
+                "role": "Balloon Denim"
+            },
+            "shoes": {
+                "name": "Deconstructed Chunky Lug-Sole Platform Derbies",
+                "brand": "Zara",
+                "price": 4990.0,
+                "image_url": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                "role": "Lug Footwear"
+            },
+            "accessory": {
+                "name": "Retro Micro Acetate Minimalist Oval Sunglasses",
+                "brand": "Urban Monkey",
+                "price": 1299.0,
+                "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+                "affiliate_link": "https://urbanmonkey.com?ref=streetdrip",
+                "role": "Micro Frames"
+            }
+        }
+    }
+}
+
+
+def synthesize_vibe_outfit(aesthetic="Late night drive", preferred_brand=None, user_products=None):
+    key = (aesthetic or "Late night drive").lower().strip()
+    matched = None
+    for k, tpl in CURATED_OUTFIT_TEMPLATES.items():
+        if k in key or key in k:
+            matched = tpl
+            break
+    if not matched:
+        matched = CURATED_OUTFIT_TEMPLATES["late night drive"]
+
+    pieces = {role: dict(data) for role, data in matched["pieces"].items()}
+    vibe_summary = matched["vibe_summary"]
+    quote = matched["aesthetic_quote"]
+    tips = list(matched["styling_tips"])
+
+    if preferred_brand and preferred_brand.lower() != "all":
+        for role, p in pieces.items():
+            if role in ["top", "bottom"]:
+                p["brand"] = preferred_brand
+
+    if user_products and isinstance(user_products, list):
+        valid = [p for p in user_products if isinstance(p, dict) and not p.get("is_taken_down") and p.get("drop_status") != "TAKEN DOWN"]
+        if valid:
+            tops = [p for p in valid if p.get("main_category") in ["T-Shirts", "Shirts"] or any(x in (p.get("category") or "").lower() for x in ["shirt", "tee", "top"])]
+            if tops:
+                t = tops[0]
+                pieces["top"] = {
+                    "name": t.get("name", "Curated Top"),
+                    "brand": t.get("brand", "General"),
+                    "price": float(t.get("price", 1499)),
+                    "image_url": t.get("image_url", pieces["top"]["image_url"]),
+                    "affiliate_link": t.get("affiliate_link", "#"),
+                    "role": f"{t.get('sub_category', 'Top')} (Your Vault)"
+                }
+            bottoms = [p for p in valid if p.get("main_category") == "Lowers" or any(x in (p.get("category") or "").lower() for x in ["lower", "jean", "pant", "cargo", "trouser"])]
+            if bottoms:
+                b = bottoms[0]
+                pieces["bottom"] = {
+                    "name": b.get("name", "Curated Lower"),
+                    "brand": b.get("brand", "General"),
+                    "price": float(b.get("price", 2499)),
+                    "image_url": b.get("image_url", pieces["bottom"]["image_url"]),
+                    "affiliate_link": b.get("affiliate_link", "#"),
+                    "role": f"{b.get('sub_category', 'Lower')} (Your Vault)"
+                }
+            shoes = [p for p in valid if p.get("main_category") == "Shoes" or "shoe" in (p.get("category") or "").lower() or "sneaker" in (p.get("category") or "").lower()]
+            if shoes:
+                s = shoes[0]
+                pieces["shoes"] = {
+                    "name": s.get("name", "Curated Kicks"),
+                    "brand": s.get("brand", "Nike"),
+                    "price": float(s.get("price", 4999)),
+                    "image_url": s.get("image_url", pieces["shoes"]["image_url"]),
+                    "affiliate_link": s.get("affiliate_link", "#"),
+                    "role": f"{s.get('sub_category', 'Footwear')} (Your Vault)"
+                }
+            layers = [p for p in valid if p.get("main_category") in ["Jackets", "Glasses"] or any(x in (p.get("category") or "").lower() for x in ["jacket", "glass", "shade", "coat", "hoodie"])]
+            if layers:
+                l = layers[0]
+                pieces["accessory"] = {
+                    "name": l.get("name", "Curated Accent"),
+                    "brand": l.get("brand", "Zara"),
+                    "price": float(l.get("price", 1999)),
+                    "image_url": l.get("image_url", pieces["accessory"]["image_url"]),
+                    "affiliate_link": l.get("affiliate_link", "#"),
+                    "role": f"{l.get('sub_category', 'Layer')} (Your Vault)"
+                }
+
+    total_price = round(sum(float(p.get("price", 0)) for p in pieces.values()), 2)
+    primary_link = next((p.get("affiliate_link") for p in pieces.values() if p.get("affiliate_link") and p.get("affiliate_link") != "#"), "https://streetdrip-fashion.vercel.app/#catalog")
+
+    return {
+        "vibe": aesthetic or "Late night drive",
+        "vibe_summary": vibe_summary,
+        "aesthetic_quote": quote,
+        "total_price": total_price,
+        "currency": "INR",
+        "outfit_pieces": pieces,
+        "styling_tips": tips,
+        "bundle_affiliate_redirect": primary_link
+    }
+
+
+@app.post("/recommend/vibe")
+@app.post("/api/recommend/vibe")
+def recommend_vibe_endpoint(data: dict = Body(...), db: Session = Depends(get_db)):
+    aesthetic = data.get("aesthetic", "Late night drive")
+    preferred_brand = data.get("preferred_brand")
+    catalog = data.get("catalog") or []
+
+    if not catalog or len(catalog) == 0:
+        prods = db.query(ProductModel).filter(ProductModel.is_taken_down == 0).all()
+        catalog = [
+            {
+                "id": p.id,
+                "name": p.name,
+                "brand": p.brand,
+                "price": p.price,
+                "image_url": p.image_url,
+                "affiliate_link": p.affiliate_link,
+                "main_category": p.main_category,
+                "sub_category": p.sub_category,
+                "category": p.category,
+                "is_taken_down": p.is_taken_down,
+                "drop_status": p.drop_status
+            }
+            for p in prods
+        ]
+
+    return synthesize_vibe_outfit(aesthetic, preferred_brand, catalog)
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
+    
