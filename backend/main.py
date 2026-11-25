@@ -677,39 +677,111 @@ CURATED_OUTFIT_TEMPLATES = {
             "Wear aerodynamic wrap shades resting on the collar or neck.",
             "Keep inner layers tucked boxy beneath oversized outerwear."
         ],
-        "pieces": {
-            "top": {
-                "name": "Heavyweight 280 GSM Drop-Shoulder Boxy Tee",
-                "brand": "Snitch",
-                "price": 1499.0,
-                "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://snitch.co.in/collections/t-shirts?ref=streetdrip",
-                "role": "Essential Base Layer"
-            },
-            "bottom": {
-                "name": "Loose Carpenter Baggy Denim with Knee Darts",
-                "brand": "Bonkers",
-                "price": 2799.0,
-                "image_url": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://bonkerscorner.com/collections/bottoms?ref=streetdrip",
-                "role": "Grounding Silhouette"
-            },
-            "shoes": {
-                "name": "Chunky Air Drift Cyber Platform Sneakers",
-                "brand": "Nike",
-                "price": 9999.0,
-                "image_url": "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://nike.com/in/w/mens-lifestyle-shoes?ref=streetdrip",
-                "role": "Aggressive Footwear"
-            },
-            "accessory": {
-                "name": "Blade Y2K Aerodynamic Silver Mirror Wrap Shades",
-                "brand": "Urban Monkey",
-                "price": 1499.0,
-                "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://urbanmonkey.com/collections/eyewear?ref=streetdrip",
-                "role": "Statement Eyewear"
-            }
+        "pools": {
+            "top": [
+                {
+                    "name": "Heavyweight 280 GSM Drop-Shoulder Boxy Tee",
+                    "brand": "Snitch",
+                    "price": 1499.0,
+                    "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://snitch.co.in/collections/t-shirts?ref=streetdrip",
+                    "role": "Essential Base Layer"
+                },
+                {
+                    "name": "Nocturnal Acid-Wash Oversized French Terry Hoodie",
+                    "brand": "Bonkers",
+                    "price": 2499.0,
+                    "image_url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://bonkerscorner.com/collections/hoodies?ref=streetdrip",
+                    "role": "Heavy Outer Layer"
+                },
+                {
+                    "name": "Reflective Contrast Stitch Boxy Skate Tee",
+                    "brand": "Souled Store",
+                    "price": 1299.0,
+                    "image_url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://thesouledstore.com?ref=streetdrip",
+                    "role": "Reflective Base"
+                }
+            ],
+            "bottom": [
+                {
+                    "name": "Loose Carpenter Baggy Denim with Knee Darts",
+                    "brand": "Bonkers",
+                    "price": 2799.0,
+                    "image_url": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://bonkerscorner.com/collections/bottoms?ref=streetdrip",
+                    "role": "Grounding Silhouette"
+                },
+                {
+                    "name": "Midnight Black Wide-Leg Parachute Pants",
+                    "brand": "Snitch",
+                    "price": 2699.0,
+                    "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://snitch.co.in/collections/cargo-pants?ref=streetdrip",
+                    "role": "Parachute Silhouette"
+                },
+                {
+                    "name": "Double-Knee Relaxed Indigo Raw Denim",
+                    "brand": "Roadster",
+                    "price": 1999.0,
+                    "image_url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://myntra.com/roadster?ref=streetdrip",
+                    "role": "Workwear Denim"
+                }
+            ],
+            "shoes": [
+                {
+                    "name": "Chunky Air Drift Cyber Platform Sneakers",
+                    "brand": "Nike",
+                    "price": 9999.0,
+                    "image_url": "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://nike.com/in/w/mens-lifestyle-shoes?ref=streetdrip",
+                    "role": "Aggressive Footwear"
+                },
+                {
+                    "name": "Monochrome Chunky Sole Skater Lows",
+                    "brand": "Adidas",
+                    "price": 5999.0,
+                    "image_url": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://adidas.co.in/men-shoes?ref=streetdrip",
+                    "role": "Court Footwear"
+                },
+                {
+                    "name": "Thick-Lug Street Platform Combat Derbies",
+                    "brand": "Zara",
+                    "price": 4590.0,
+                    "image_url": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                    "role": "Lug Sole Combat"
+                }
+            ],
+            "accessory": [
+                {
+                    "name": "Blade Y2K Aerodynamic Silver Mirror Wrap Shades",
+                    "brand": "Urban Monkey",
+                    "price": 1499.0,
+                    "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://urbanmonkey.com/collections/eyewear?ref=streetdrip",
+                    "role": "Statement Eyewear"
+                },
+                {
+                    "name": "Industrial Chrome Keyring Utility Lanyard",
+                    "brand": "Snitch",
+                    "price": 899.0,
+                    "image_url": "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://snitch.co.in?ref=streetdrip",
+                    "role": "Hardware Accent"
+                },
+                {
+                    "name": "Washed Black Distressed Curved Edge Dad Cap",
+                    "brand": "Urban Monkey",
+                    "price": 1199.0,
+                    "image_url": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://urbanmonkey.com/collections/caps?ref=streetdrip",
+                    "role": "Headwear Accent"
+                }
+            ]
         }
     },
     "college fest": {
@@ -720,39 +792,111 @@ CURATED_OUTFIT_TEMPLATES = {
             "Layer a raw-edge white tank peeking 1-inch beneath the boxy tee.",
             "Keep festival cards and phone secured in the zipped thigh cargo gussets."
         ],
-        "pieces": {
-            "top": {
-                "name": "Oversized Acid Graphic Cyber-Mesh Jersey",
-                "brand": "Souled Store",
-                "price": 1799.0,
-                "image_url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://thesouledstore.com/collections/oversized-t-shirts?ref=streetdrip",
-                "role": "Moshpit Top"
-            },
-            "bottom": {
-                "name": "Multi-Pocket Tactical Techwear Baggy Cargos",
-                "brand": "Snitch",
-                "price": 2999.0,
-                "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://snitch.co.in/collections/cargo-pants?ref=streetdrip",
-                "role": "Utility Lower"
-            },
-            "shoes": {
-                "name": "Retro High-Top Skate Court Sneakers",
-                "brand": "Adidas",
-                "price": 6499.0,
-                "image_url": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://adidas.co.in/men-shoes?ref=streetdrip",
-                "role": "Court Kicks"
-            },
-            "accessory": {
-                "name": "Heavy Washed Twill Curved Dad Cap with Metal Buckle",
-                "brand": "Urban Monkey",
-                "price": 1199.0,
-                "image_url": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://urbanmonkey.com/collections/caps?ref=streetdrip",
-                "role": "Headwear Accent"
-            }
+        "pools": {
+            "top": [
+                {
+                    "name": "Oversized Acid Graphic Cyber-Mesh Jersey",
+                    "brand": "Souled Store",
+                    "price": 1799.0,
+                    "image_url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://thesouledstore.com/collections/oversized-t-shirts?ref=streetdrip",
+                    "role": "Moshpit Top"
+                },
+                {
+                    "name": "Colorblock Heavyweight Drop-Shoulder College Tee",
+                    "brand": "Bewakoof",
+                    "price": 1199.0,
+                    "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://bewakoof.com?ref=streetdrip",
+                    "role": "Colorblock Layer"
+                },
+                {
+                    "name": "Distressed Boxy Fit Vintage Wash Overshirt",
+                    "brand": "Vastrado",
+                    "price": 1899.0,
+                    "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://vastrado.com?ref=streetdrip",
+                    "role": "Festival Overshirt"
+                }
+            ],
+            "bottom": [
+                {
+                    "name": "Multi-Pocket Tactical Techwear Baggy Cargos",
+                    "brand": "Snitch",
+                    "price": 2999.0,
+                    "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://snitch.co.in/collections/cargo-pants?ref=streetdrip",
+                    "role": "Utility Lower"
+                },
+                {
+                    "name": "Relaxed Skater Baggy Jeans with Side Tape",
+                    "brand": "Highlander",
+                    "price": 1799.0,
+                    "image_url": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://myntra.com/highlander?ref=streetdrip",
+                    "role": "Tape Baggy Denim"
+                },
+                {
+                    "name": "Wide-Leg Off-White Utility Painter Trousers",
+                    "brand": "Bonkers",
+                    "price": 2499.0,
+                    "image_url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://bonkerscorner.com?ref=streetdrip",
+                    "role": "Painter Trousers"
+                }
+            ],
+            "shoes": [
+                {
+                    "name": "Retro High-Top Skate Court Sneakers",
+                    "brand": "Adidas",
+                    "price": 6499.0,
+                    "image_url": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://adidas.co.in/men-shoes?ref=streetdrip",
+                    "role": "Court Kicks"
+                },
+                {
+                    "name": "Colorblock Chunky Heritage Court Kicks",
+                    "brand": "Nike",
+                    "price": 7995.0,
+                    "image_url": "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://nike.com/in?ref=streetdrip",
+                    "role": "Heritage Sneakers"
+                },
+                {
+                    "name": "Slip-On Cushioned Foam Street Clogs",
+                    "brand": "Bewakoof",
+                    "price": 1999.0,
+                    "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://bewakoof.com?ref=streetdrip",
+                    "role": "Cushion Foam Clogs"
+                }
+            ],
+            "accessory": [
+                {
+                    "name": "Heavy Washed Twill Curved Dad Cap with Metal Buckle",
+                    "brand": "Urban Monkey",
+                    "price": 1199.0,
+                    "image_url": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://urbanmonkey.com/collections/caps?ref=streetdrip",
+                    "role": "Headwear Accent"
+                },
+                {
+                    "name": "Vintage Matrix Acetate Rectangular Shades",
+                    "brand": "Urban Monkey",
+                    "price": 1399.0,
+                    "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://urbanmonkey.com?ref=streetdrip",
+                    "role": "Rectangular Shades"
+                },
+                {
+                    "name": "Brushed Stainless Steel Chunky Curb Chain",
+                    "brand": "General",
+                    "price": 999.0,
+                    "image_url": "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://streetdrip-fashion.vercel.app/#catalog",
+                    "role": "Necklace Chain"
+                }
+            ]
         }
     },
     "chill weekend": {
@@ -763,39 +907,111 @@ CURATED_OUTFIT_TEMPLATES = {
             "Let pleated trousers break once over minimalist loafers.",
             "Contrast warm sand tones against subtle brushed silver jewelry."
         ],
-        "pieces": {
-            "top": {
-                "name": "Vintage Washed Boxy Camp Collar Linen Overshirt",
-                "brand": "Vastrado",
-                "price": 1899.0,
-                "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://vastrado.com/collections/shirts?ref=streetdrip",
-                "role": "Fluid Layer"
-            },
-            "bottom": {
-                "name": "Wide-Leg Double-Pleated Korean Drape Trousers",
-                "brand": "Zara",
-                "price": 3290.0,
-                "image_url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://zara.com/in/en/man-trousers-l817.html?ref=streetdrip",
-                "role": "Tailored Lower"
-            },
-            "shoes": {
-                "name": "Minimalist Low-Profile Off-White Court Derbies",
-                "brand": "H&M",
-                "price": 2999.0,
-                "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://www2.hm.com/en_in/men/shoes.html?ref=streetdrip",
-                "role": "Clean Footwear"
-            },
-            "accessory": {
-                "name": "Minimalist Titanium Round Wireframe Glasses",
-                "brand": "General",
-                "price": 1499.0,
-                "image_url": "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://streetdrip-fashion.vercel.app/#catalog",
-                "role": "Subtle Frame"
-            }
+        "pools": {
+            "top": [
+                {
+                    "name": "Vintage Washed Boxy Camp Collar Linen Overshirt",
+                    "brand": "Vastrado",
+                    "price": 1899.0,
+                    "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://vastrado.com/collections/shirts?ref=streetdrip",
+                    "role": "Fluid Layer"
+                },
+                {
+                    "name": "Organic Slub Textured Relaxed Henley Tee",
+                    "brand": "Peter England",
+                    "price": 1499.0,
+                    "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://peterengland.abfrl.in?ref=streetdrip",
+                    "role": "Slub Henley"
+                },
+                {
+                    "name": "Waffle-Knit Drop-Shoulder Casual Resort Shirt",
+                    "brand": "US Polo",
+                    "price": 2199.0,
+                    "image_url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://uspoloassn.in?ref=streetdrip",
+                    "role": "Waffle Resort Shirt"
+                }
+            ],
+            "bottom": [
+                {
+                    "name": "Wide-Leg Double-Pleated Korean Drape Trousers",
+                    "brand": "Zara",
+                    "price": 3290.0,
+                    "image_url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://zara.com/in/en/man-trousers-l817.html?ref=streetdrip",
+                    "role": "Tailored Lower"
+                },
+                {
+                    "name": "Relaxed Slouchy Cotton-Linen Drawstring Chinos",
+                    "brand": "Vastrado",
+                    "price": 1999.0,
+                    "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://vastrado.com?ref=streetdrip",
+                    "role": "Linen Chinos"
+                },
+                {
+                    "name": "Soft Wash Ecru Straight Fit Jeans",
+                    "brand": "Wrogn",
+                    "price": 2299.0,
+                    "image_url": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://wrogn.in?ref=streetdrip",
+                    "role": "Ecru Straight Denim"
+                }
+            ],
+            "shoes": [
+                {
+                    "name": "Minimalist Low-Profile Off-White Court Derbies",
+                    "brand": "H&M",
+                    "price": 2999.0,
+                    "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://www2.hm.com/en_in/men/shoes.html?ref=streetdrip",
+                    "role": "Clean Footwear"
+                },
+                {
+                    "name": "Suede Low-Top Gum Sole Retro Trainers",
+                    "brand": "Adidas",
+                    "price": 5599.0,
+                    "image_url": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://adidas.co.in?ref=streetdrip",
+                    "role": "Gum Sole Kicks"
+                },
+                {
+                    "name": "Clean Minimalist Leather Slip-On Loafers",
+                    "brand": "Zara",
+                    "price": 3990.0,
+                    "image_url": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                    "role": "Leather Loafers"
+                }
+            ],
+            "accessory": [
+                {
+                    "name": "Minimalist Titanium Round Wireframe Glasses",
+                    "brand": "General",
+                    "price": 1499.0,
+                    "image_url": "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://streetdrip-fashion.vercel.app/#catalog",
+                    "role": "Subtle Frame"
+                },
+                {
+                    "name": "Brushed Canvas Slouch Tote Bag with Webbing Strap",
+                    "brand": "H&M",
+                    "price": 1799.0,
+                    "image_url": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://www2.hm.com/en_in?ref=streetdrip",
+                    "role": "Slouch Tote"
+                },
+                {
+                    "name": "Tortoise Shell Vintage Acetate Sun Spectacles",
+                    "brand": "Urban Monkey",
+                    "price": 1299.0,
+                    "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://urbanmonkey.com?ref=streetdrip",
+                    "role": "Acetate Spectacles"
+                }
+            ]
         }
     },
     "cyberpunk rave": {
@@ -806,39 +1022,111 @@ CURATED_OUTFIT_TEMPLATES = {
             "Contrast matte water-repellent fabrics against polished chrome accessories.",
             "Black out base layers to emphasize angular outerwear lines."
         ],
-        "pieces": {
-            "top": {
-                "name": "Thermal-Reactive Compression Mock Neck Layer",
-                "brand": "Bonkers",
-                "price": 2299.0,
-                "image_url": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://bonkerscorner.com?ref=streetdrip",
-                "role": "Base Shell"
-            },
-            "bottom": {
-                "name": "Waterproof Asymmetrical Cobra-Buckle Tactical Cargos",
-                "brand": "Snitch",
-                "price": 3499.0,
-                "image_url": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://snitch.co.in/collections/cargos?ref=streetdrip",
-                "role": "Hardware Lower"
-            },
-            "shoes": {
-                "name": "Monolithic Chunky Foam Runner Tread Boots",
-                "brand": "Nike",
-                "price": 10999.0,
-                "image_url": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://nike.com/in?ref=streetdrip",
-                "role": "Monolithic Sole"
-            },
-            "accessory": {
-                "name": "Liquid Metal Polarized Visor Shield Shades",
-                "brand": "Zara",
-                "price": 2290.0,
-                "image_url": "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://zara.com/in?ref=streetdrip",
-                "role": "Chrome Visor"
-            }
+        "pools": {
+            "top": [
+                {
+                    "name": "Thermal-Reactive Compression Mock Neck Layer",
+                    "brand": "Bonkers",
+                    "price": 2299.0,
+                    "image_url": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://bonkerscorner.com?ref=streetdrip",
+                    "role": "Base Shell"
+                },
+                {
+                    "name": "Technical Asymmetric Zip Waterproof Cyber Shell",
+                    "brand": "Snitch",
+                    "price": 3499.0,
+                    "image_url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://snitch.co.in?ref=streetdrip",
+                    "role": "Tech Shell Jacket"
+                },
+                {
+                    "name": "High-Vis Graphic Raw-Hem Oversized Tee",
+                    "brand": "Souled Store",
+                    "price": 1599.0,
+                    "image_url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://thesouledstore.com?ref=streetdrip",
+                    "role": "Chromatic Base"
+                }
+            ],
+            "bottom": [
+                {
+                    "name": "Waterproof Asymmetrical Cobra-Buckle Tactical Cargos",
+                    "brand": "Snitch",
+                    "price": 3499.0,
+                    "image_url": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://snitch.co.in/collections/cargos?ref=streetdrip",
+                    "role": "Hardware Lower"
+                },
+                {
+                    "name": "Multi-Toggle Strapped Techwear Modular Pants",
+                    "brand": "Bonkers",
+                    "price": 3199.0,
+                    "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://bonkerscorner.com?ref=streetdrip",
+                    "role": "Toggle Modular Pants"
+                },
+                {
+                    "name": "Jet Black Heavy Gauge Baggy Hardware Jeans",
+                    "brand": "Zara",
+                    "price": 3990.0,
+                    "image_url": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                    "role": "Hardware Denim"
+                }
+            ],
+            "shoes": [
+                {
+                    "name": "Monolithic Chunky Foam Runner Tread Boots",
+                    "brand": "Nike",
+                    "price": 10999.0,
+                    "image_url": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://nike.com/in?ref=streetdrip",
+                    "role": "Monolithic Sole"
+                },
+                {
+                    "name": "Cyber Platform Lug-Sole Aggressive High-Tops",
+                    "brand": "Nike",
+                    "price": 12995.0,
+                    "image_url": "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://nike.com/in?ref=streetdrip",
+                    "role": "Cyber High Tops"
+                },
+                {
+                    "name": "All-Black Tactical Weatherproof Tread Derbies",
+                    "brand": "Zara",
+                    "price": 5490.0,
+                    "image_url": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                    "role": "Weatherproof Derbies"
+                }
+            ],
+            "accessory": [
+                {
+                    "name": "Liquid Metal Polarized Visor Shield Shades",
+                    "brand": "Zara",
+                    "price": 2290.0,
+                    "image_url": "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                    "role": "Chrome Visor"
+                },
+                {
+                    "name": "Y2K Chrome Blade Wraparound Sunglasses",
+                    "brand": "Urban Monkey",
+                    "price": 1699.0,
+                    "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://urbanmonkey.com?ref=streetdrip",
+                    "role": "Wraparound Blades"
+                },
+                {
+                    "name": "Tactical Chest Utility Harness with Metal Buckles",
+                    "brand": "Snitch",
+                    "price": 1799.0,
+                    "image_url": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://snitch.co.in?ref=streetdrip",
+                    "role": "Utility Harness"
+                }
+            ]
         }
     },
     "tokyo drip": {
@@ -849,45 +1137,117 @@ CURATED_OUTFIT_TEMPLATES = {
             "Allow raw denim hems to pool slightly over chunky lug soles.",
             "Attach vintage key hardware to the exposed front belt loop."
         ],
-        "pieces": {
-            "top": {
-                "name": "Raw Frayed-Edge Boxy Heavy Denim Overshirt",
-                "brand": "H&M",
-                "price": 2999.0,
-                "image_url": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://www2.hm.com/en_in?ref=streetdrip",
-                "role": "Structured Top"
-            },
-            "bottom": {
-                "name": "Ultra-Wide Balloon Skater Jeans (14oz Raw Indigo)",
-                "brand": "Bonkers",
-                "price": 2899.0,
-                "image_url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://bonkerscorner.com/collections/denim?ref=streetdrip",
-                "role": "Balloon Denim"
-            },
-            "shoes": {
-                "name": "Deconstructed Chunky Lug-Sole Platform Derbies",
-                "brand": "Zara",
-                "price": 4990.0,
-                "image_url": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://zara.com/in?ref=streetdrip",
-                "role": "Lug Footwear"
-            },
-            "accessory": {
-                "name": "Retro Micro Acetate Minimalist Oval Sunglasses",
-                "brand": "Urban Monkey",
-                "price": 1299.0,
-                "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
-                "affiliate_link": "https://urbanmonkey.com?ref=streetdrip",
-                "role": "Micro Frames"
-            }
+        "pools": {
+            "top": [
+                {
+                    "name": "Raw Frayed-Edge Boxy Heavy Denim Overshirt",
+                    "brand": "H&M",
+                    "price": 2999.0,
+                    "image_url": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://www2.hm.com/en_in?ref=streetdrip",
+                    "role": "Structured Top"
+                },
+                {
+                    "name": "Ultra-Oversized Shibuya Typography Heavyweight Tee",
+                    "brand": "Bonkers",
+                    "price": 1699.0,
+                    "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://bonkerscorner.com?ref=streetdrip",
+                    "role": "Shibuya Boxy Tee"
+                },
+                {
+                    "name": "Kimono-Cut Minimalist Boxy Poplin Shirt",
+                    "brand": "Zara",
+                    "price": 2790.0,
+                    "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                    "role": "Kimono Poplin"
+                }
+            ],
+            "bottom": [
+                {
+                    "name": "Ultra-Wide Balloon Skater Jeans (14oz Raw Indigo)",
+                    "brand": "Bonkers",
+                    "price": 2899.0,
+                    "image_url": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://bonkerscorner.com/collections/denim?ref=streetdrip",
+                    "role": "Balloon Denim"
+                },
+                {
+                    "name": "Deep-Pleated Cropped Harajuku Balloon Trousers",
+                    "brand": "Zara",
+                    "price": 3590.0,
+                    "image_url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                    "role": "Harajuku Trousers"
+                },
+                {
+                    "name": "Relaxed Fit Faded Grey Painter Baggy Jeans",
+                    "brand": "Highlander",
+                    "price": 2199.0,
+                    "image_url": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://myntra.com/highlander?ref=streetdrip",
+                    "role": "Painter Baggy Denim"
+                }
+            ],
+            "shoes": [
+                {
+                    "name": "Deconstructed Chunky Lug-Sole Platform Derbies",
+                    "brand": "Zara",
+                    "price": 4990.0,
+                    "image_url": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://zara.com/in?ref=streetdrip",
+                    "role": "Lug Footwear"
+                },
+                {
+                    "name": "Monochrome Chunky Low Skate Sneakers",
+                    "brand": "Adidas",
+                    "price": 6999.0,
+                    "image_url": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://adidas.co.in?ref=streetdrip",
+                    "role": "Skate Lows"
+                },
+                {
+                    "name": "Japanese Minimalist Split-Toe Street Boots",
+                    "brand": "H&M",
+                    "price": 3999.0,
+                    "image_url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://www2.hm.com/en_in?ref=streetdrip",
+                    "role": "Split Toe Boots"
+                }
+            ],
+            "accessory": [
+                {
+                    "name": "Retro Micro Acetate Minimalist Oval Sunglasses",
+                    "brand": "Urban Monkey",
+                    "price": 1299.0,
+                    "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://urbanmonkey.com?ref=streetdrip",
+                    "role": "Micro Frames"
+                },
+                {
+                    "name": "Geometric Minimalist Titanium Wireframe Spectacles",
+                    "brand": "General",
+                    "price": 1599.0,
+                    "image_url": "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://streetdrip-fashion.vercel.app/#catalog",
+                    "role": "Titanium Specs"
+                },
+                {
+                    "name": "Japanese Denim Bucket Hat with Raw Fringe",
+                    "brand": "Urban Monkey",
+                    "price": 1199.0,
+                    "image_url": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
+                    "affiliate_link": "https://urbanmonkey.com?ref=streetdrip",
+                    "role": "Denim Bucket Hat"
+                }
+            ]
         }
     }
 }
 
 
-def synthesize_vibe_outfit(aesthetic="Late night drive", preferred_brand=None, user_products=None):
+def synthesize_vibe_outfit(aesthetic="Late night drive", preferred_brand=None, user_products=None, remix_index=0):
     key = (aesthetic or "Late night drive").lower().strip()
     matched = None
     for k, tpl in CURATED_OUTFIT_TEMPLATES.items():
@@ -897,60 +1257,77 @@ def synthesize_vibe_outfit(aesthetic="Late night drive", preferred_brand=None, u
     if not matched:
         matched = CURATED_OUTFIT_TEMPLATES["late night drive"]
 
-    pieces = {role: dict(data) for role, data in matched["pieces"].items()}
+    pools = matched.get("pools", {})
+    top_list = pools.get("top", [])
+    bottom_list = pools.get("bottom", [])
+    shoes_list = pools.get("shoes", [])
+    acc_list = pools.get("accessory", [])
+
+    idx = int(remix_index or 0)
+    pieces = {
+        "top": dict(top_list[idx % len(top_list)]) if top_list else {},
+        "bottom": dict(bottom_list[(idx + 1) % len(bottom_list)]) if bottom_list else {},
+        "shoes": dict(shoes_list[(idx + 2) % len(shoes_list)]) if shoes_list else {},
+        "accessory": dict(acc_list[(idx + 3) % len(acc_list)]) if acc_list else {}
+    }
+
     vibe_summary = matched["vibe_summary"]
     quote = matched["aesthetic_quote"]
     tips = list(matched["styling_tips"])
 
     if preferred_brand and preferred_brand.lower() != "all":
-        for role, p in pieces.items():
-            if role in ["top", "bottom"]:
-                p["brand"] = preferred_brand
+        for role, p_list in pools.items():
+            matching_brand_p = [p for p in p_list if (p.get("brand") or "").lower() == preferred_brand.lower()]
+            if matching_brand_p:
+                pieces[role] = dict(matching_brand_p[idx % len(matching_brand_p)])
+            elif role in ["top", "bottom"]:
+                pieces[role]["brand"] = preferred_brand
 
+    # Rotate through user uploaded products if available
     if user_products and isinstance(user_products, list):
         valid = [p for p in user_products if isinstance(p, dict) and not p.get("is_taken_down") and p.get("drop_status") != "TAKEN DOWN"]
         if valid:
             tops = [p for p in valid if p.get("main_category") in ["T-Shirts", "Shirts"] or any(x in (p.get("category") or "").lower() for x in ["shirt", "tee", "top"])]
             if tops:
-                t = tops[0]
+                t = tops[idx % len(tops)]
                 pieces["top"] = {
                     "name": t.get("name", "Curated Top"),
                     "brand": t.get("brand", "General"),
                     "price": float(t.get("price", 1499)),
-                    "image_url": t.get("image_url", pieces["top"]["image_url"]),
+                    "image_url": t.get("image_url", pieces["top"].get("image_url", "")),
                     "affiliate_link": t.get("affiliate_link", "#"),
                     "role": f"{t.get('sub_category', 'Top')} (Your Vault)"
                 }
             bottoms = [p for p in valid if p.get("main_category") == "Lowers" or any(x in (p.get("category") or "").lower() for x in ["lower", "jean", "pant", "cargo", "trouser"])]
             if bottoms:
-                b = bottoms[0]
+                b = bottoms[(idx + 1) % len(bottoms)]
                 pieces["bottom"] = {
                     "name": b.get("name", "Curated Lower"),
                     "brand": b.get("brand", "General"),
                     "price": float(b.get("price", 2499)),
-                    "image_url": b.get("image_url", pieces["bottom"]["image_url"]),
+                    "image_url": b.get("image_url", pieces["bottom"].get("image_url", "")),
                     "affiliate_link": b.get("affiliate_link", "#"),
                     "role": f"{b.get('sub_category', 'Lower')} (Your Vault)"
                 }
             shoes = [p for p in valid if p.get("main_category") == "Shoes" or "shoe" in (p.get("category") or "").lower() or "sneaker" in (p.get("category") or "").lower()]
             if shoes:
-                s = shoes[0]
+                s = shoes[(idx + 2) % len(shoes)]
                 pieces["shoes"] = {
                     "name": s.get("name", "Curated Kicks"),
                     "brand": s.get("brand", "Nike"),
                     "price": float(s.get("price", 4999)),
-                    "image_url": s.get("image_url", pieces["shoes"]["image_url"]),
+                    "image_url": s.get("image_url", pieces["shoes"].get("image_url", "")),
                     "affiliate_link": s.get("affiliate_link", "#"),
                     "role": f"{s.get('sub_category', 'Footwear')} (Your Vault)"
                 }
             layers = [p for p in valid if p.get("main_category") in ["Jackets", "Glasses"] or any(x in (p.get("category") or "").lower() for x in ["jacket", "glass", "shade", "coat", "hoodie"])]
             if layers:
-                l = layers[0]
+                l = layers[(idx + 3) % len(layers)]
                 pieces["accessory"] = {
                     "name": l.get("name", "Curated Accent"),
                     "brand": l.get("brand", "Zara"),
                     "price": float(l.get("price", 1999)),
-                    "image_url": l.get("image_url", pieces["accessory"]["image_url"]),
+                    "image_url": l.get("image_url", pieces["accessory"].get("image_url", "")),
                     "affiliate_link": l.get("affiliate_link", "#"),
                     "role": f"{l.get('sub_category', 'Layer')} (Your Vault)"
                 }
@@ -958,9 +1335,12 @@ def synthesize_vibe_outfit(aesthetic="Late night drive", preferred_brand=None, u
     total_price = round(sum(float(p.get("price", 0)) for p in pieces.values()), 2)
     primary_link = next((p.get("affiliate_link") for p in pieces.values() if p.get("affiliate_link") and p.get("affiliate_link") != "#"), "https://streetdrip-fashion.vercel.app/#catalog")
 
+    variation_label = f"Look #{((idx) % 6) + 1}"
+
     return {
         "vibe": aesthetic or "Late night drive",
-        "vibe_summary": vibe_summary,
+        "variation": variation_label,
+        "vibe_summary": f"{variation_label} — {vibe_summary}",
         "aesthetic_quote": quote,
         "total_price": total_price,
         "currency": "INR",
@@ -976,6 +1356,7 @@ def recommend_vibe_endpoint(data: dict = Body(...), db: Session = Depends(get_db
     aesthetic = data.get("aesthetic", "Late night drive")
     preferred_brand = data.get("preferred_brand")
     catalog = data.get("catalog") or []
+    remix_index = int(data.get("remix_index") or data.get("seed") or random.randint(0, 100))
 
     if not catalog or len(catalog) == 0:
         prods = db.query(ProductModel).filter(ProductModel.is_taken_down == 0).all()
@@ -996,7 +1377,7 @@ def recommend_vibe_endpoint(data: dict = Body(...), db: Session = Depends(get_db
             for p in prods
         ]
 
-    return synthesize_vibe_outfit(aesthetic, preferred_brand, catalog)
+    return synthesize_vibe_outfit(aesthetic, preferred_brand, catalog, remix_index)
 
 
 if __name__ == "__main__":
